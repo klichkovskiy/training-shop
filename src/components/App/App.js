@@ -44,19 +44,19 @@ function App() {
           />
         </Route>
 
-        <Route path={`/${URL_WOMEN}/:id`}>
+        <Route exact path={`/${URL_WOMEN}/:id`}>
           <Product 
           productType={PRODUCT_TYPE_WOMEN}
           />
         </Route>
 
-        <Route path={`/${URL_MEN}/:id`}>
+        <Route exact path={`/${URL_MEN}/:id`}>
           <Product 
           productType={PRODUCT_TYPE_MEN}
           />
         </Route>
 
-        <Route exact path="/">
+        <Route path="/">
           <Main />
         </Route>
       </Switch>
