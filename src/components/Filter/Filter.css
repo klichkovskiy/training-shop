@@ -1,0 +1,87 @@
+.filter{
+  padding: 32px 85px;
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: space-between;
+}
+
+.filter__button{
+  padding: 0;
+  border: none;
+  background-color: inherit;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 12px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.filter__button-icon{
+  height: 22px;
+  width: 22px;
+  color: #121212;
+  opacity: 0.6;
+}
+
+.filter__button-text{
+  margin: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+  opacity: 0.6;
+}
+
+.filter__button-display{
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  column-gap: 24px;
+}
+
+.filter__button-display-block{
+  display: grid;
+  align-content: center;
+}
+
+.filter__button-display-list{
+  height: 12px;
+  width: 16px;
+  border: none;
+  padding: 0;
+  background-color: inherit;
+  background-image: url(../../images/icon_list.svg);
+  background-repeat: no-repeat;
+  color: #121212;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.filter__button-display-window{
+  height: 16px;
+  width: 16px;
+  border: none;
+  padding: 0;
+  background-color: inherit;
+  background-image: url(../../images/icon_window.svg);
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+@media (max-width: 550px){
+  .filter{
+    padding: 32px 10px;
+    grid-template-columns: repeat(1, max-content);
+    justify-content: center;
+    row-gap: 15px;
+  }
+
+  .filter__button{
+    justify-content: center;
+  }
+
+  .filter__button-display{
+    justify-content: center;
+  }
+}

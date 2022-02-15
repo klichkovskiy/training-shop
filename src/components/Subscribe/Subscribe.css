@@ -1,0 +1,127 @@
+.subscribe{
+  margin-top: 96px;
+  height: 580px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  background: linear-gradient(180deg, #F3F2F2 0%, #DCDBDB 100%);
+}
+
+.subscribe__form{
+  width: 532px;
+  height: 461px;
+  background: #FFFFFF;
+  border-radius: 4px;
+  position: relative;
+}
+
+.subscribe__fieldset{
+  display: grid;
+  padding: 0;
+  border: none;
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subscribe__title{
+  margin: 0;
+  padding-top: 80px;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 13px;
+  letter-spacing: 0.06em;
+  color: #a0a0a0;
+  text-transform: uppercase;
+}
+
+.subscribe__subtitle{
+  margin: 0;
+  padding-top: 16px;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 36px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.subscribe__subtitle_red{
+  color: #E91E63;
+}
+
+.subscribe__input{
+  margin-top: 32px;
+  height: 64px;
+  padding: 0;
+  border: none;
+  text-align: center;
+  background-color: #F8F8F8;
+  color: #a0a0a0;
+}
+
+.subscribe__button{
+  margin-top: 16px;
+  height: 64px;
+  background: #121212;
+  color: #e7e7e7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.subscribe__form-img-women{
+  background-image: url(../../images/subscribe__form-img-women.png);
+  height: 584px;
+  width: 311px;
+  position: absolute;
+  left: -260px;
+  bottom: -97px;
+}
+
+.subscribe__form-img-men{
+  background-image: url(../../images/subscribe__form-img-men.png);
+  background-repeat: no-repeat;
+  height: 524px;
+  width: 219px;
+  position: absolute;
+  right: -200px;
+  bottom: -50px;
+}
+
+@media (max-width: 1000px){
+  .subscribe__form-img-women{
+    display: none;
+  }
+  
+  .subscribe__form-img-men{
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+  .subscribe__form{
+    max-width: 330px;
+    height: 400px;
+  }
+
+  .subscribe__fieldset{
+    max-width: 330px;
+  }
+
+  .subscribe__title{
+      padding-top: 40px;
+  }
+
+  .subscribe__input{
+    width: 300px;
+    margin: 32px auto 0;
+  }
+
+  .subscribe__button{
+    margin: 16px auto 0;
+    width: 250px;
+  }
+}
+

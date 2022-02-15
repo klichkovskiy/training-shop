@@ -1,0 +1,18 @@
+.social-links{
+  justify-content: end;
+  display: grid;
+  grid-template-columns: repeat(4, min-content);
+  column-gap: 10px;
+  align-items: center;
+}
+
+.social-links__icon{
+  height: 14px;
+  width: 14px;
+}
+
+@media (max-width: 800px){
+  .social-links{
+    justify-content: center;
+  }
+}

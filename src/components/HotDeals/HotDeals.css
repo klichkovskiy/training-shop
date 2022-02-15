@@ -1,0 +1,69 @@
+.hot-deals{
+  display: grid;
+  padding: 96px 85px 0;
+  grid-template-columns: repeat(2, minmax(max-content, 540px));
+  column-gap: 30px;
+}
+
+.hot-deals__block{
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 260px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.hot-deals__block-new-season{
+  background-image: url(../../images/hot-deals_new-season.jpg);
+}
+
+.hot-deals__block-sale{
+  background-image: url(../../images/hot-deals_sale.jpg);
+}
+
+.hot-deals__link{
+  height: 71px;
+  background-color: #fff;
+  border-radius: 4px;
+  display: grid;
+  text-align: center;
+  grid-template-columns: max-content;
+  padding: 0 24px;
+  text-decoration: none;
+}
+
+.hot-deals__title{
+  margin: 0;
+  padding-top: 16px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #717171;
+}
+
+.hot-deals__subtitle{
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #121212;
+}
+
+.hot-deals__subtitle_red{
+  color: #E91E63;
+}
+
+@media (max-width: 1000px){
+  .hot-deals{
+    display: grid;
+    margin: 0 auto;
+    padding: 96px 25px 0;
+    grid-template-columns: repeat(1, minmax(max-content, 540px));
+    row-gap: 30px;
+  }
+}

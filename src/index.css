@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/fonts.css);
+
+@import url(./components/App/App.css);
+
+@import url(./components/Header/Header.css);
+@import url(./components/SocialLinks/SocialLinks.css);
+
+@import url(./components/Main/Main.css);
+@import url(./components/Banner/Banner.css);
+@import url(./components/Advantage/Advantage.css);
+@import url(./components/Clothes/Clothes.css);
+@import url(./components/ClothesWomen/ClothesWomen.css);
+@import url(./components/ClothesMen/ClothesMen.css);
+@import url(./components/Card/Card.css);
+@import url(./components/HotDeals/HotDeals.css);
+@import url(./components/Subscribe/Subscribe.css);
+@import url(./components/LatestBlog/LatestBlog.css);
+@import url(./components/ArticlePromo/ArticlePromo.css);
+
+@import url(./components/Card/Card.css);
+@import url(./components/RatingStar/RatingStar.css);
+@import url(./components/ProductInfo/ProductInfo.css);
+
+@import url(./components/Catergories/Catergories.css);
+@import url(./components/Breadcrumbs/Breadcrumbs.css);
+@import url(./components/Filter/Filter.css);
+
+@import url(./components/Product/Product.css);
+@import url(./components/CarouselImages/CarouselImages.css);
+@import url(./components/ProductInfo/ProductInfo.css);
+@import url(./components/RelatedProducts/RelatedProducts.css);
+
+@import url(./components/Footer/Footer.css);
+
+.template-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 255px);
+  gap: 30px;
+  padding-top: 48px;
+  justify-content: center;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-link{
+  text-decoration: none;
 }

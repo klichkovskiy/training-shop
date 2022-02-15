@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Spartan';
+    font-style:  normal;
+    font-weight: normal;
+    font-display: swap;
+    src: url('spartan-v10-latin-regular.woff2') format('woff2'),
+        url('spartan-v10-latin-regular.woff') format('woff'),
+        url('spartan-v10-latin-regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Spartan';
+    font-style:  normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('spartan-v10-latin-500.woff2') format('woff2'),
+        url('spartan-v10-latin-500.woff') format('woff'),
+        url('spartan-v10-latin-500.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Spartan';
+    font-style:  normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('spartan-v10-latin-600.woff2') format('woff2'),
+        url('spartan-v10-latin-600.woff') format('woff'),
+        url('spartan-v10-latin-600.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Spartan';
+    font-style:  normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('spartan-v10-latin-700.woff2') format('woff2'),
+        url('spartan-v10-latin-700.woff') format('woff'),
+        url('spartan-v10-latin-700.ttf') format('truetype');
+  }

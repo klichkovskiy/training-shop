@@ -1,0 +1,49 @@
+.clothes-women{
+  display: grid;
+  padding: 96px 85px 0;
+}
+
+.clothes-women__header{
+  display: grid;
+  justify-content: space-between;
+}
+
+.clothes-women__title{
+  margin: 0;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 25px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.clothes-women__nav{
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+  column-gap: 32px;
+}
+
+.clothes-women__button{
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 13px;
+  letter-spacing: 0.06em;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+
+.clothes-women__button_active{
+  font-weight: 500;
+}
+
+.clothes-women__button-all{
+  height: 48px;
+  margin-top: 48px;
+  padding: 0;
+  background-color: #F8F8F8;
+  border: none;
+  cursor: pointer;
+}
