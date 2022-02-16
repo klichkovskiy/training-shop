@@ -40,16 +40,16 @@ function Footer() {
           <h3 className="footer__nav-title">Categories</h3>
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <NavLink to="/men" data-test-id='menu-link-men' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Men</NavLink>
+              <NavLink to="/men" data-test-id='footer-nav-link-men' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Men</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/women" data-test-id='menu-link-women' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Women</NavLink>
+              <NavLink to="/women" data-test-id='footer-nav-link-women' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Women</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/acccessories" data-test-id='menu-link-acccessories' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Accessories</NavLink>
+              <NavLink to="/acccessories" data-test-id='footer-nav-link-acccessories' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Accessories</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/beauty" data-test-id='menu-link-beauty' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Beauty</NavLink>
+              <NavLink to="/beauty" data-test-id='footer-nav-link-beauty' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Beauty</NavLink>
             </li>
           </ul>
         </article>
@@ -58,16 +58,16 @@ function Footer() {
           <h3 className="footer__nav-title">Infomation</h3>
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <NavLink to="/about-us" data-test-id='menu-link-about-us' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">About Us</NavLink>
+              <NavLink to="/about-us" data-test-id='footer-nav-link-about-us' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">About Us</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/contact" data-test-id='menu-link-contact' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Contact Us</NavLink>
+              <NavLink to="/contact" data-test-id='footer-nav-link-contact' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Contact Us</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/blog" data-test-id='menu-link-blog' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Blog</NavLink>
+              <NavLink to="/blog" data-test-id='footer-nav-link-blog' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Blog</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/faq" data-test-id='menu-link-faq' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">FAQs</NavLink>
+              <NavLink to="/faq" data-test-id='footer-nav-link-faq' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">FAQs</NavLink>
             </li>
           </ul>
         </article>
@@ -76,16 +76,16 @@ function Footer() {
           <h3 className="footer__nav-title">Useful links</h3>
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <NavLink to="/terms-conditions" data-test-id='menu-link-terms-conditions' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Terms &amp; Conditions</NavLink>
+              <NavLink to="/terms-conditions" data-test-id='footer-nav-link-terms-conditions' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Terms &amp; Conditions</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/returns-exchanges" data-test-id='menu-link-returns-exchanges' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Returns &amp; Exchanges</NavLink>
+              <NavLink to="/returns-exchanges" data-test-id='footer-nav-link-returns-exchanges' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Returns &amp; Exchanges</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/shipping-delivery" data-test-id='menu-link-shipping-delivery' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Shipping &amp; Delivery</NavLink>
+              <NavLink to="/shipping-delivery" data-test-id='footer-nav-link-shipping-delivery' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Shipping &amp; Delivery</NavLink>
             </li>
             <li className="footer__nav-item">
-              <NavLink to="/privacy-policy" data-test-id='menu-link-privacy-policy' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Privacy Policy</NavLink>
+              <NavLink to="/privacy-policy" data-test-id='footer-nav-link-privacy-policy' activeClassName="footer__nav-link_active" className="footer__nav-bar-link">Privacy Policy</NavLink>
             </li>
           </ul>
         </article>
