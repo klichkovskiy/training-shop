@@ -41,7 +41,7 @@ function Header() {
             <img src={logo} className="header__logo" alt="Логотип" />
           </Link>
 
-          <nav className="header__nav-bar"  data-test-id='menu'>
+          <nav className="header__nav-bar" data-test-id='menu'>
             <NavLink to="/about-us" data-test-id='menu-link-about-us' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">About Us</NavLink>
             <NavLink to="/women" data-test-id='menu-link-women' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Women</NavLink>
             <NavLink to="/men" data-test-id='menu-link-men' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Men</NavLink>

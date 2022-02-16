@@ -11,9 +11,9 @@ function Catergories(props) {
   function handleChangeAddCard() {
     setСounterCard(counterCard + 4);
   }
-
+  
   return (
-    <section className="catergories" data-test-id={`products-page-${props.name}`}>
+    <section className="catergories" data-test-id={`products-page-${props.url}`}>
       <Breadcrumbs
         stepTwo={props.name}
       />
