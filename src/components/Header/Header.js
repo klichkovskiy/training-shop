@@ -37,7 +37,7 @@ function Header() {
         </section>
 
         <section className="header__nav-menu">
-          <Link to="#/" className="header__logo-link" data-test-id='header-logo-link'>
+          <Link to="/" className="header__logo-link" data-test-id='header-logo-link'>
             <img src={logo} className="header__logo" alt="Логотип" />
           </Link>
 
