@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/training-shop/static/css/main.e4f4a7a4.css",
-    "main.js": "/training-shop/static/js/main.dfba6c8a.js",
+    "main.js": "/training-shop/static/js/main.4c03eead.js",
     "static/js/787.47ca6e30.chunk.js": "/training-shop/static/js/787.47ca6e30.chunk.js",
     "static/media/subscribe__form-img-women.png": "/training-shop/static/media/subscribe__form-img-women.79a920fae51eb15d71e8.png",
     "static/media/article-promo_1.jpg": "/training-shop/static/media/article-promo_1.9a5da4825aa6b8a8de69.jpg",
@@ -76,11 +76,11 @@
     "static/media/icon_button-left.svg": "/training-shop/static/media/icon_button-left.8dcfc00d75eaccfc1acc.svg",
     "static/media/icon_button-right.svg": "/training-shop/static/media/icon_button-right.a9d33e7f73c42be6e214.svg",
     "main.e4f4a7a4.css.map": "/training-shop/static/css/main.e4f4a7a4.css.map",
-    "main.dfba6c8a.js.map": "/training-shop/static/js/main.dfba6c8a.js.map",
+    "main.4c03eead.js.map": "/training-shop/static/js/main.4c03eead.js.map",
     "787.47ca6e30.chunk.js.map": "/training-shop/static/js/787.47ca6e30.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e4f4a7a4.css",
-    "static/js/main.dfba6c8a.js"
+    "static/js/main.4c03eead.js"
   ]
 }
