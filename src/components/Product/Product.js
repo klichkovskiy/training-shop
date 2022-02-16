@@ -7,10 +7,10 @@ import RelatedProducts from '../RelatedProducts/RelatedProducts';
 
 
 function Product(props) {
-  console.log();
-  console.log(`products-page-${props.productType}/:id`);
+  console.log(window.location.pathname);
+  console.log(`products-page-${props.url}/${window.location.pathname.toString().slice(-1)}`);
   return (
-    <section className="product" data-test-id={`products-page-${props.productType}/:id`}>
+    <section className="product" data-test-id={`products-page-${props.url}/:id`}>
       <Breadcrumbs
         stepTwo={props.productType}
         stepThree='Women&#10076;s tracksuit Q109'

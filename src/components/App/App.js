@@ -47,12 +47,14 @@ function App() {
         <Route exact path={`/${URL_WOMEN}/:id`}>
           <Product
             productType={PRODUCT_TYPE_WOMEN}
+            url={URL_WOMEN}
           />
         </Route>
 
         <Route exact path={`/${URL_MEN}/:id`}>
           <Product
             productType={PRODUCT_TYPE_MEN}
+            url={URL_MEN}
           />
         </Route>
 
