@@ -12,7 +12,7 @@ import "./RelatedProducts.css"
 
 function RelatedProducts() {
   return (
-    <section className="related-products">
+    <section className="related-products" data-test-id='related-slider'>
       <h3 className="related-products__title">RELATED PRODUCTS</h3>
       <div className="related-products__switch">
         <button type="button" className="related-products__button related-products__button-left"></button>
@@ -27,7 +27,6 @@ function RelatedProducts() {
           nextEl: '.related-products__button-right',
           prevEl: '.related-products__button-left',
         }}
-        data-test-id='related-slider'
       >
         {PRODUCTS_WOMEN.data.map((card) =>
           <SwiperSlide key={card.id}>
