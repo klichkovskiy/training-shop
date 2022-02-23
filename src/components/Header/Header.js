@@ -1,4 +1,6 @@
+import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import classNames from 'classnames'
 
 import SocialLinks from '../SocialLinks/SocialLinks';
 
@@ -14,6 +16,15 @@ import iconUser from '../../images/icon_user.svg';
 import iconShopingBag from '../../images/icon_shoping-bag.svg';
 
 function Header() {
+  const [isStateButtonBurger, setIsStateButtonBurger] = useState(false);
+
+  function handleClickButtonBurger() {
+    setIsStateButtonBurger(!isStateButtonBurger)
+  }
+
+  let menuClassNames = classNames('header__menu', { 'header__menu_mobile': isStateButtonBurger });
+  let buttonBurgerClassNames = classNames('header__button-burger', { 'header__button-burger_close': isStateButtonBurger });
+
   return (
     <header className="header" data-test-id='header'>
       <div className="header__block">
@@ -37,19 +48,21 @@ function Header() {
         </section>
 
         <section className="header__nav-menu">
-          <Link to="#/" className="header__logo-link" data-test-id='header-logo-link'>
-            <img src={logo} className="header__logo" alt="Логотип" />
-          </Link>
-
-          <nav className="header__nav-bar" data-test-id='menu'>
-            <NavLink to="/about-us" data-test-id='menu-link-about-us' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">About Us</NavLink>
-            <NavLink to="/women" data-test-id='menu-link-women' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Women</NavLink>
-            <NavLink to="/men" data-test-id='menu-link-men' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Men</NavLink>
-            <NavLink to="/beauty" data-test-id='menu-link-beauty' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Beauty</NavLink>
-            <NavLink to="/acccessories" data-test-id='menu-link-acccessories' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Accessories</NavLink>
-            <NavLink to="/blog" data-test-id='menu-link-blog' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Blog</NavLink>
-            <NavLink to="/contact" data-test-id='menu-link-contact' activeClassName="header__nav-bar-link_active" className="header__nav-bar-link">Contact</NavLink>
+          <nav className={menuClassNames} data-test-id='burger-menu'>
+            <NavLink to="/about-us" data-test-id='menu-link-about-us' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">About Us</NavLink>
+            <NavLink to="/women" data-test-id='menu-link-women' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Women</NavLink>
+            <NavLink to="/men" data-test-id='menu-link-men' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Men</NavLink>
+            <NavLink to="/beauty" data-test-id='menu-link-beauty' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Beauty</NavLink>
+            <NavLink to="/acccessories" data-test-id='menu-link-acccessories' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Accessories</NavLink>
+            <NavLink to="/blog" data-test-id='menu-link-blog' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Blog</NavLink>
+            <NavLink to="/contact" data-test-id='menu-link-contact' onClick={handleClickButtonBurger} activeClassName="header__menu-link_active" className="header__menu-link">Contact</NavLink>
           </nav>
+
+          <div className="header__logo-block">
+            <Link to="#/" className="header__logo-link" data-test-id='header-logo-link'>
+              <img src={logo} className="header__logo" alt="Логотип" />
+            </Link>
+          </div>
 
           <div className="header__nav-shop">
             <button type="button" className="header__nav-shop-link">
@@ -65,6 +78,13 @@ function Header() {
               <img src={iconShopingBag} className="header__nav-shop-icon" alt="Иконка сумки" />
               <p className="header__nav-shop-index">2</p>
             </Link>
+
+            <button type="button" onClick={handleClickButtonBurger} className={buttonBurgerClassNames} data-test-id='burger-menu-btn'>
+              <span className='header__button-line header__button-line_first'></span>
+              <span className='header__button-line header__button-line_second'></span>
+              <span className='header__button-line header__button-line_third'></span>
+              <span className='header__button-line header__button-line_fourth'></span>
+            </button>
           </div>
         </section>
       </div>

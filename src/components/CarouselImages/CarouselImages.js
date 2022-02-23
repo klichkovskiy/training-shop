@@ -1,27 +1,85 @@
-import productImagePreview1 from '../../images/product_image-preview-1.jpg';
-import productImagePreview2 from '../../images/product_image-preview-2.jpg';
-import productImagePreview3 from '../../images/product_image-preview-3.jpg';
-import productImagePreview4 from '../../images/product_image-preview-4.jpg';
+import React, { useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Navigation, Thumbs } from "swiper";
+
+import 'swiper/css';
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+import "./CarouselImages.css"
 
 import productImage from '../../images/product_image.jpg';
 
 function CarouselImages() {
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+
   return (
-    <div className="carousel-images">
+    <div className="carousel-images" data-test-id='product-slider'>
       <div className="carousel-images__preview">
         <button type="button" className="carousel-images__button carousel-images__button-up"></button>
         <button type="button" className="carousel-images__button carousel-images__button-down"></button>
-        <img src={productImagePreview1} className="carousel-images__img-preview carousel-images__img-preview_active" alt='Фото товара' />
-        <img src={productImagePreview2} className="carousel-images__img-preview" alt='Фото товара' />
-        <img src={productImagePreview3} className="carousel-images__img-preview" alt='Фото товара' />
-        <img src={productImagePreview4} className="carousel-images__img-preview" alt='Фото товара' />
+      </div>
+      
+      <div className="carousel-images__vertical">
+        <Swiper
+          direction={"vertical"}
+          modules={[FreeMode, Navigation, Thumbs]}
+          onSwiper={setThumbsSwiper}
+          className="carousel-images__swiper-vertical"
+          slidesPerView={5}
+          spaceBetween={16}
+          freeMode={true}
+          watchSlidesProgress={true}
+          navigation={{
+            nextEl: '.carousel-images__button-down',
+            prevEl: '.carousel-images__button-up',
+          }}
+        >
+          <SwiperSlide className="carousel-images__swiper-slide">
+            <img src={productImage} className='carousel-images__img-preview' alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide className="carousel-images__swiper-slide">
+            <img src={productImage} className='carousel-images__img-preview' alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide className="rcarousel-images__swiper-slide">
+            <img src={productImage} className='carousel-images__img-preview' alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide className="carousel-images__swiper-slide">
+            <img src={productImage} className='carousel-images__img-preview' alt="Фото товара" />
+          </SwiperSlide>
+        </Swiper>
       </div>
 
-      <div className="carousel-images__baner">
-        <button type="button" className="carousel-images__button carousel-images__button-left"></button>
-        <img src={productImage} className="carousel-images__foto" alt="Фото товара" />
-        <button type="button" className="carousel-images__button carousel-images__button-right"></button>
+      <div className="carousel-images__main">
+      <button type="button" className="carousel-images__button carousel-images__button-up carousel-images__button-left"></button>
+        <Swiper
+          navigation={
+            {
+            nextEl: '.carousel-images__button-down',
+            prevEl: '.carousel-images__button-up',
+          }}
+          modules={[FreeMode, Navigation, Thumbs]}
+          className="carousel-images__swiper-main"
+          thumbs={{ swiper: thumbsSwiper }}
+        >
+          <SwiperSlide>
+            <img src={productImage} className="carousel-images__foto" alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={productImage} className="carousel-images__foto" alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={productImage} className="carousel-images__foto" alt="Фото товара" />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={productImage} className="carousel-images__foto" alt="Фото товара" />
+          </SwiperSlide>
+        </Swiper>
+        <button type="button" className="carousel-images__button carousel-images__button-down carousel-images__button-right"></button>
       </div>
+
+      
     </div>
   )
 }

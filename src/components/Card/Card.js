@@ -2,7 +2,7 @@ import RatingStar from '../RatingStar/RatingStar';
 
 function Card(props) {
   return (
-    <article className="card">
+    <article className="card"  key={props.id}>
       <img src={props.img} className="card__img" alt={props.name} />
       <h3 className="card__name">{props.name}</h3>
       <p className="card__price">&#36; {props.price}.00</p>

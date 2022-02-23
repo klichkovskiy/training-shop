@@ -1,20 +1,47 @@
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
+
+import 'swiper/css';
+import "swiper/css/navigation";
+
+import "./Banner.css"
+
+import slideOne from '../../images/banner__principal.jpg';
 
 function Banner() {
   return (
     <section className="banner">
-      <div className="banner__principal">
-        <div className="banner__button banner__left-button">
-          <button type="button" className="banner__button-left"></button>
-        </div>
-        <Link to="/accessories" className="banner__principal-link">
-          <h3 className="banner__title">Banner</h3>
-          <p className="banner__subtitle">your title text</p>
-        </Link>
-        <div className="banner__button banner__right-button">
-          <button type="button" className="banner__button-right"></button>
-        </div>
-      </div>
+      <Swiper navigation={true} modules={[Navigation]} className="mySwiper" data-test-id='main-slider'>
+        <SwiperSlide>
+          <img src={slideOne} alt="Иконка машины" className="advantage__icon" />
+          <Link to="/accessories" className="banner__swiper-link">
+            <div className="banner__swiper-text">
+              <h3 className="banner__title">Banner</h3>
+              <p className="banner__subtitle">your title text</p>
+            </div>
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slideOne} alt="Иконка машины" className="advantage__icon" />
+          <Link to="/accessories" className="banner__swiper-link">
+            <div className="banner__swiper-text">
+              <h3 className="banner__title">Banner</h3>
+              <p className="banner__subtitle">your title text</p>
+            </div>
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={slideOne} alt="Иконка машины" className="advantage__icon" />
+          <Link to="/accessories" className="banner__swiper-link">
+            <div className="banner__swiper-text">
+              <h3 className="banner__title">Banner</h3>
+              <p className="banner__subtitle">your title text</p>
+            </div>
+          </Link>
+        </SwiperSlide>
+      </Swiper>
+
 
       <div className="banner__women">
         <Link to="/women" className="banner__link">Women</Link>

@@ -1,14 +1,16 @@
 .carousel-images{
   grid-column: 1;
   display: grid;
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: 94px 448px;
+  grid-template-rows: 40px max-content;
   align-items: start;
-  column-gap: 16px;
+  gap: 16px;
 }
 
 .carousel-images__preview{
   display: grid;
-  justify-items: center;
+  grid-template-columns: repeat(2, max-content);
+  justify-content: space-between;
   row-gap: 16px;
 }
 
@@ -36,30 +38,44 @@
   grid-column: 2;
 }
 
-.carousel-images__img-preview{
-  grid-column: 1/3;
-  opacity: 0.4;
+.carousel-images__vertical{
+  grid-column: 1;
+  height: 50px;
 }
 
-.carousel-images__img-preview_active{
-  opacity: 1;
-  
+.carousel-images__vertical .swiper-slide-visible{
+  filter: opacity(0.4)
 }
 
-.carousel-images__baner{
+.carousel-images__vertical .swiper-slide-thumb-active{
+  filter: opacity(1)
+}
+
+
+.carousel-images__main{
+  grid-row: 1/3;
+  grid-column: 2;
+}
+
+.carousel-images__vertical .swiper-slide{
+  height: 114px!important;
+  width: 94px;
+}
+
+.carousel-images__main{
   position: relative;
 }
 
 .carousel-images__foto{
   max-height: 560px;
-  max-width: 420px;
+  max-width: 448px;
 }
 
 .carousel-images__button-left{
   background-image: url(../../images/icon_button-down.svg);
   transform: rotate(90deg);
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   top: calc(50% - 20px);
   left: 16px;
 }
@@ -73,6 +89,10 @@
   right: 16px;
 }
 
+.carousel-images .swiper-wrapper{
+  width: 448px;
+}
+
 @media (max-width: 1275px){
   .carousel-images{
     justify-content: center;
@@ -80,13 +100,29 @@
 }
 
 @media (max-width: 620px){
-  .carousel-images{
-    grid-template-columns: repeat(1, max-content);
-    row-gap: 15px;
+  .carousel-images__vertical, .carousel-images__preview{
+    display: none;
   }
 
-  .carousel-images__preview{
-    grid-row: 2;
+  .carousel-images__foto{
+    max-height: 560px;
+    max-width: 100%;
+  }
+
+  .carousel-images{
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: max-content;
   }
 }
 
+
+@media (max-width: 550px){
+.carousel-images__main{
+  width: 400px;
+}
+
+.carousel-images__main .swiper-slide{
+  max-width: 400px;
+}
+}

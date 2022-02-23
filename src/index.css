@@ -7,7 +7,6 @@
 @import url(./components/SocialLinks/SocialLinks.css);
 
 @import url(./components/Main/Main.css);
-@import url(./components/Banner/Banner.css);
 @import url(./components/Advantage/Advantage.css);
 @import url(./components/Clothes/Clothes.css);
 @import url(./components/ClothesWomen/ClothesWomen.css);
@@ -43,4 +42,8 @@
 
 .card-link{
   text-decoration: none;
+}
+
+.swiper-button-disabled{
+  opacity: 0.4;
 }

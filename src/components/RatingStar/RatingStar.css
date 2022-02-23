@@ -1,3 +1,8 @@
+.rating{
+  display: grid;
+  grid-template-columns: repeat(5, max-content);
+}
+
 .rating-star{
   width: 16px;
   height: 16px;

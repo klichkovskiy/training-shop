@@ -1,43 +1,46 @@
-import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from "swiper";
 
 import Card from '../Card/Card';
 
 import { PRODUCTS_WOMEN } from '../../constants/constants';
 
+import 'swiper/css';
+import "swiper/css/navigation";
+import "./RelatedProducts.css"
+
 function RelatedProducts() {
-  const [counterCard, setСounterCard] = useState(4);
-  const [startCard, setStartCard] = useState(0);
-
-  function handleChangeCardRight() {
-    setСounterCard(counterCard + 4);
-    setStartCard(startCard + 4);
-  }
-
-  function handleChangeCardLeft() {
-    setСounterCard(counterCard - 4);
-    setStartCard(startCard - 4);
-  }
-
   return (
     <section className="related-products">
       <h3 className="related-products__title">RELATED PRODUCTS</h3>
       <div className="related-products__switch">
-        <button type="button" onClick={handleChangeCardLeft} className="related-products__button related-products__button-left"></button>
-        <button type="button" onClick={handleChangeCardRight} className="related-products__button related-products__button-right"></button>
+        <button type="button" className="related-products__button related-products__button-left"></button>
+        <button type="button" className="related-products__button related-products__button-right"></button>
       </div>
-
-      <div className="related-products-cards">
-        {PRODUCTS_WOMEN.data.slice(startCard, counterCard).map((card) =>
-          <Link to={`/women/${card.id}`} className="card-link" key={card.id}>
-            <Card
-              name={card.name}
-              img={card.img}
-              price={card.price}
-            />
-          </Link>
+      <Swiper
+        modules={[Navigation]}
+        className="related-products__swiper"
+        slidesPerView={4}
+        spaceBetween={30}
+        navigation={{
+          nextEl: '.related-products__button-right',
+          prevEl: '.related-products__button-left',
+        }}
+        data-test-id='related-slider'
+      >
+        {PRODUCTS_WOMEN.data.map((card) =>
+          <SwiperSlide key={card.id}>
+            <Link to={`/women/${card.id}`} className="card-link">
+              <Card
+                name={card.name}
+                img={card.img}
+                price={card.price}
+              />
+            </Link>
+          </SwiperSlide>
         )}
-      </div>
+      </Swiper>
     </section>
   )
 }

@@ -3,23 +3,46 @@
   padding-top: 32px;
   margin: 0 85px;
   grid-template-areas:
-  "banner__principal banner__women banner__men"
-  "banner__principal banner__accessories banner__accessories";
+  "banner__swiper banner__women banner__men"
+  "banner__swiper banner__accessories banner__accessories";
   gap: 30px;
   grid-template-columns: minmax(min-content, 540px) minmax(min-content, 255px) minmax(min-content, 255px);
   grid-template-rows: minmax(min-content, 200px) minmax(min-content, 260px);
+  z-index: 1;
 }
 
-.banner__principal{
-  background-image: url(../../images/banner__principal.jpg);
-  background-repeat: no-repeat;
-  grid-area: banner__principal;
-  background-position: center;
+.banner .swiper{
+  max-width: 540px;
+  max-height: 490px;
+  grid-area: banner__swiper;
+  
+}
+
+.swiper-slide img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.swiper-button-prev, .swiper-button-next{
+  --swiper-navigation-size: 14px;
+  color: #121212;
+  height: 40px;
+  width: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.banner__swiper-link{
+  position: absolute;
   display: grid;
-  grid-template-columns: repeat(3, min-content);
-  justify-content: space-between;
-  align-content: center;
-  padding: 0 24px;
+  justify-content: center;
+  text-decoration: none;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
 }
 
 .banner__button{
@@ -27,35 +50,7 @@
   align-content: center;
 }
 
-.banner__button-left{
-  background-image: url(../../images/icon_button-left.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 24px 24px;
-  background-color: #f9f9f9;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-}
-
-.banner__button-right{
-  background-image: url(../../images/icon_button-right.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 24px 24px;
-  background-color: #f9f9f9;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  padding: 0;
-  border: none;
-  cursor: pointer;
-}
-
-.banner__principal-link{
+.banner__swiper-text{
   width: 289px;
   height: 100px;
   background-color: #FFFFFF;
@@ -141,7 +136,7 @@
 @media (max-width: 1000px){
   .banner{
     grid-template-areas:
-    "banner__principal banner__principal"
+    "banner__swiper banner__swiper"
     "banner__women banner__men"
     "banner__accessories banner__accessories";
     grid-template-columns: minmax(min-content, 255px) minmax(min-content, 255px);
@@ -169,7 +164,7 @@
 @media (max-width: 550px){
   .banner{
     grid-template-areas:
-    "banner__principal banner__principal"
+    "banner__swiper banner__swiper"
     "banner__women banner__men"
     "banner__accessories banner__accessories";
     grid-template-columns: minmax(min-content, 230px) minmax(min-content, 230px);
@@ -201,7 +196,7 @@
   .banner{
     margin: 0 a;
     grid-template-areas:
-    "banner__principal"
+    "banner__swiper"
     "banner__women"
     "banner__men"
     "banner__accessories";
