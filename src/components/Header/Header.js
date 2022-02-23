@@ -20,12 +20,14 @@ function Header() {
 
   function handleClickButtonBurger(event) {
     setIsStateButtonBurger(!isStateButtonBurger)
-    const div = document.querySelector('.header__nav-menu');
+    const div = document.querySelector('.header__menu');
+    const div2 = document.querySelector('.header__button-burger');
 
     document.addEventListener('click', (e) => {
       const withinBoundaries = e.composedPath().includes(div);
+      const withinBoundaries2 = e.composedPath().includes(div2);
   
-      if (!withinBoundaries) {
+      if (!withinBoundaries && !withinBoundaries2) {
         setIsStateButtonBurger(false); // скрываем элемент т к клик был за его пределами
       }
     })

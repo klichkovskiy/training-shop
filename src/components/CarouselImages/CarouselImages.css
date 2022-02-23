@@ -43,6 +43,14 @@
   height: 50px;
 }
 
+.carousel-images__vertical .swiper-slide img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
 .carousel-images__vertical .swiper-slide-visible{
   filter: opacity(0.4)
 }

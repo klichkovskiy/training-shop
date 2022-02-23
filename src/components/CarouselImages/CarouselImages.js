@@ -27,7 +27,7 @@ function CarouselImages() {
           modules={[FreeMode, Navigation, Thumbs]}
           onSwiper={setThumbsSwiper}
           className="carousel-images__swiper-vertical"
-          slidesPerView={5}
+          slidesPerView={4}
           spaceBetween={16}
           freeMode={true}
           watchSlidesProgress={true}
