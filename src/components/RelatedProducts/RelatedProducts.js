@@ -22,10 +22,32 @@ function RelatedProducts() {
         modules={[Navigation]}
         className="related-products__swiper"
         slidesPerView={4}
+        slidesPerGroup={1}
         spaceBetween={30}
         navigation={{
           nextEl: '.related-products__button-right',
           prevEl: '.related-products__button-left',
+        }}
+        breakpoints={{
+          // when window width is >= 320px
+          400: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          // when window width is >= 480px
+          600: {
+            slidesPerView: 2,
+            spaceBetween: 15
+          },
+          // when window width is >= 640px
+          1000: {
+            slidesPerView: 3,
+            spaceBetween: 20
+          },
+          1168: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          }
         }}
       >
         {PRODUCTS_WOMEN.data.map((card) =>

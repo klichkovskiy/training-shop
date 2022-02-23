@@ -12,7 +12,13 @@ import slideOne from '../../images/banner__principal.jpg';
 function Banner() {
   return (
     <section className="banner">
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper" data-test-id='main-slider'>
+      <Swiper
+      navigation={true} 
+      modules={[Navigation]} 
+      className="banner__swiper" 
+      data-test-id='main-slider'
+      autoHeight={true}
+      >
         <SwiperSlide>
           <img src={slideOne} alt="Иконка машины" className="advantage__icon" />
           <Link to="/accessories" className="banner__swiper-link">

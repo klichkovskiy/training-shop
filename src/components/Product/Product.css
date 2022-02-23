@@ -72,7 +72,7 @@
 }
 
 .product__data{
-  padding: 32px 85px 96px;
+  padding: 32px 70px 96px;
   display: grid;
   background-color: #fefefe;
   column-gap: 15px;
@@ -83,13 +83,22 @@
     padding: 32px 20px 96px;
     column-gap: 0;
   }
+
+  .product-info{
+    padding-top: 30px;
+  }
 }
 
 @media (max-width: 620px){
+  .product__data{
+    padding: 32px 10px 96px;
+  }
+
   .product__info{
     padding: 0 25px;
     height: 100px;
     justify-content: center;
+    row-gap: 10px;
   }
 
   .product__rating{
@@ -106,6 +115,12 @@
     grid-template-columns: repeat(2, max-content);
     justify-content: end;
     column-gap: 24px;
+  }
+}
+
+@media (max-width: 450px){
+  .product__info{
+    height: 150px;
   }
 }
 

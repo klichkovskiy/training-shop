@@ -4,7 +4,7 @@
   display: grid;
   row-gap: 40px;
   align-content: center;
-  max-width: 1100px;
+  max-width: 1170px;
 }
 
 .related-products__title{
@@ -60,6 +60,7 @@
 .related-products__swiper{
   max-width: 100%;
 }
+
 
 .related-products .swiper-slide{
   width: 255px!important;

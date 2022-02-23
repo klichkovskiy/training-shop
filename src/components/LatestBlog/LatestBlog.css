@@ -52,8 +52,12 @@
 
   .latest-blog__article-promo{
     justify-content: center;
-    grid-template-columns: repeat(1, 330px);
+    grid-template-columns: repeat(1, 300px);
     row-gap: 90px;
+  }
+
+  .article-promo__img{
+    max-width: 300px;
   }
 
   .latest-blog__block{

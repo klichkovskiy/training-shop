@@ -62,8 +62,19 @@
   .hot-deals{
     display: grid;
     margin: 0 auto;
-    padding: 96px 25px 0;
+    padding: 96px 0 0;
+    margin: 0 auto;
     grid-template-columns: repeat(1, minmax(max-content, 540px));
     row-gap: 30px;
+  }
+}
+
+@media (max-width: 400px){
+  .hot-deals{
+    grid-template-columns: repeat(1, minmax(min-content, 340px));
+  }
+
+  .hot-deals__block{
+    max-width: 330px;
   }
 }

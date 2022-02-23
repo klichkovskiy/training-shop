@@ -121,8 +121,22 @@
 .carousel-images__main{
   width: 400px;
 }
+}
 
-.carousel-images__main .swiper-slide{
-  max-width: 400px;
-}
-}
+@media (max-width: 500px){
+    .carousel-images__main{
+      width: 350px;
+    }
+  }
+
+  @media (max-width: 450px){
+    .carousel-images__main{
+      width: 300px;
+    }
+  }
+
+  @media (max-width: 400px){
+    .carousel-images__main{
+      width: 250px;
+    }
+  }

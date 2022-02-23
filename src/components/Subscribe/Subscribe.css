@@ -108,6 +108,7 @@
 
   .subscribe__fieldset{
     max-width: 330px;
+    margin: 0 auto;
   }
 
   .subscribe__title{
@@ -125,3 +126,14 @@
   }
 }
 
+@media (max-width: 500px){
+  .subscribe__subtitle{
+    width: 250px;
+    margin: 0 auto;
+  }
+
+  .subscribe__input{
+    width: 270px;
+    margin: 32px auto 0;
+  }
+}
