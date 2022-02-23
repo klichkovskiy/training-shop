@@ -11,7 +11,6 @@ function Product(props) {
         stepTwo={props.productType}
         stepThree='Women&#10076;s tracksuit Q109'
       />
-
       <div className="product__info">
         <h2 className="product__name">Women's tracksuit Q109</h2>
 

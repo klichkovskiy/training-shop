@@ -20,7 +20,7 @@ function CarouselImages() {
         <button type="button" className="carousel-images__button carousel-images__button-up"></button>
         <button type="button" className="carousel-images__button carousel-images__button-down"></button>
       </div>
-      
+
       <div className="carousel-images__vertical">
         <Swiper
           direction={"vertical"}
@@ -52,13 +52,13 @@ function CarouselImages() {
       </div>
 
       <div className="carousel-images__main">
-      <button type="button" className="carousel-images__button carousel-images__button-up carousel-images__button-left"></button>
+        <button type="button" className="carousel-images__button carousel-images__button-up carousel-images__button-left"></button>
         <Swiper
           navigation={
             {
-            nextEl: '.carousel-images__button-down',
-            prevEl: '.carousel-images__button-up',
-          }}
+              nextEl: '.carousel-images__button-down',
+              prevEl: '.carousel-images__button-up',
+            }}
           modules={[FreeMode, Navigation, Thumbs]}
           className="carousel-images__swiper-main"
           thumbs={{ swiper: thumbsSwiper }}
@@ -79,7 +79,7 @@ function CarouselImages() {
         <button type="button" className="carousel-images__button carousel-images__button-down carousel-images__button-right"></button>
       </div>
 
-      
+
     </div>
   )
 }
