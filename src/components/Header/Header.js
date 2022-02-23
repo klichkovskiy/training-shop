@@ -18,9 +18,21 @@ import iconShopingBag from '../../images/icon_shoping-bag.svg';
 function Header() {
   const [isStateButtonBurger, setIsStateButtonBurger] = useState(false);
 
-  function handleClickButtonBurger() {
+  function handleClickButtonBurger(event) {
     setIsStateButtonBurger(!isStateButtonBurger)
+    const div = document.querySelector('.header__nav-menu');
+
+    document.addEventListener('click', (e) => {
+      const withinBoundaries = e.composedPath().includes(div);
+  
+      if (!withinBoundaries) {
+        setIsStateButtonBurger(false); // скрываем элемент т к клик был за его пределами
+      }
+    })
   }
+
+
+
 
   let menuClassNames = classNames('header__menu', { 'header__menu_mobile': isStateButtonBurger });
   let buttonBurgerClassNames = classNames('header__button-burger', { 'header__button-burger_close': isStateButtonBurger });
