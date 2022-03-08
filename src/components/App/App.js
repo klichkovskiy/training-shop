@@ -12,14 +12,13 @@ import { URL_MEN } from '../../constants/constants';
 import { PRODUCT_TYPE_WOMEN } from '../../constants/constants';
 import { PRODUCT_TYPE_MEN } from '../../constants/constants';
 
-
-
 import { PRODUCTS_WOMEN } from '../../constants/constants';
 import { PRODUCTS_MEN } from '../../constants/constants';
 
+import { PRODUCTS } from '../../constants/products';
+
 
 function App() {
-
   return (
     <div className="app" data-test-id='app'>
       <Header />
@@ -31,7 +30,7 @@ function App() {
             key={PRODUCTS_MEN.id}
             name='Men'
             url={URL_MEN}
-            products={PRODUCTS_MEN}
+            products={PRODUCTS.men}
           />
         </Route>
 
@@ -40,7 +39,7 @@ function App() {
             key={PRODUCTS_WOMEN.id}
             name='Women'
             url={URL_WOMEN}
-            products={PRODUCTS_WOMEN}
+            products={PRODUCTS.women}
           />
         </Route>
 
@@ -59,7 +58,9 @@ function App() {
         </Route>
 
         <Route path="/">
-          <Main />
+          <Main
+            products={PRODUCTS}
+          />
         </Route>
       </Switch>
 

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import imgProductWomen_1 from '../images/product_women_1.jpg'
 import imgProductWomen_2 from '../images/product_women_2.jpg'
 import imgProductWomen_3 from '../images/product_women_3.jpg'
@@ -25,6 +27,35 @@ export const URL_MEN = 'men'
 
 export const PRODUCT_TYPE_WOMEN = 'Women'
 export const PRODUCT_TYPE_MEN = 'Men'
+
+export const CLOTHES_BLOCK_MENU = [
+  {
+    particularName: 'isNewArrivals',
+    name: 'NEW ARRIVALS',
+    id: uuidv4()
+  },
+  {
+    particularName: 'isSpecial',
+    name: 'SPECIALS',
+    id: uuidv4()
+  },
+  {
+    particularName: 'isBestseller',
+    name: 'BESTSELLERS',
+    id: uuidv4()
+  },
+  {
+    particularName: 'isMostViewed',
+    name: 'MOST VIEWED',
+    id: uuidv4()
+  },
+  {
+    particularName: 'isFeatured',
+    name: 'FEATURED PRODUCTS',
+    id: uuidv4()
+  },
+]
+
 
 export const PRODUCTS_WOMEN = {
   data:[

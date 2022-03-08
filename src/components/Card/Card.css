@@ -1,6 +1,7 @@
 .card{
   display: grid;
   cursor: pointer;
+  position: relative;
 }
 
 .card__img{
@@ -30,5 +31,28 @@
 
 .card__rating-star{
   grid-column: 2;
-  text-align: end;
+}
+
+.card__discount{
+  position: absolute;
+  height: 31px;
+  width: 53px;
+  background-color: #E91E63;
+  left: 0;
+  top: 0;
+  display: none;
+}
+
+.card__discount_active{
+  display: grid;
+  align-items: center;
+}
+
+.card__discount-text{
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 13px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0;
 }

@@ -4,14 +4,23 @@
   row-gap: 32px;
 }
 
+.product-info__form{
+  display: grid;
+  row-gap: 32px;
+}
+
 .product-info__color{
   display: grid;
   row-gap: 16px;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
+
 
 .product-info__characteristic{
   display: grid;
-  grid-template-columns: repeat(2, min-content);
+  grid-template-columns: repeat(2, max-content);
   column-gap: 2px;
 }
 
@@ -40,15 +49,51 @@
   gap: 16px;
 }
 
+.product-info__color-item{
+  height: 64px;
+  width: 64px;
+  position: relative;
+}
+
+.product-info__color-input{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.product-info__color-label{
+  width: 100%;
+  height: 100%;
+  object-position: top;
+  position: absolute;
+}
+
+.product-info__color-input:checked + .product-info__color-label{
+  outline: 2px solid #121212;
+}
+
+.product-info__color-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
 .product-info__size{
   display: grid;
   row-gap: 16px;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .product-info__radio{
   display: grid;
   grid-template-columns: repeat(auto-fill, 40px);
   column-gap: 16px;
+  
 }
 
 .product-info__radio-input{
@@ -64,9 +109,13 @@
   display: grid;
   height: 40px;
   width: 40px;
+  text-align: center;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
 }
 
 .product-info__radio-input:checked + .product-info__radio-label{
@@ -115,6 +164,9 @@
   grid-template-columns: repeat(2, max-content);
   align-items: center;
   column-gap: 24px;
+  padding: 0;
+  margin: 0;
+  border: none;
 }
 
 .product-info__price{
@@ -339,16 +391,6 @@
   align-items: center;
 }
 
-.product-info__reviews-coment-rating-age{
-  margin: 0;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 11px;
-  line-height: 18px;
-  color: #121212;
-  opacity: 0.4;
-}
-
 .product-info__reviews-coment-text{
   grid-column: 1/3;
   margin: 0;
@@ -395,7 +437,4 @@
     text-align: center;
   }
 
-  .carousel-images__foto{
-    max-width: 250px;
-  }
 }

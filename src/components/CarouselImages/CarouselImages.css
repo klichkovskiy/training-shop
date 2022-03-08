@@ -74,9 +74,18 @@
   position: relative;
 }
 
+.carousel-images__swiper-vertical{
+  max-height: 504px;
+}
+
+.carousel-images__img-preview{
+  object-position: top;
+}
 .carousel-images__foto{
   max-height: 560px;
-  max-width: 448px;
+  width: 448px;
+  object-position: top;
+  object-fit: cover;
 }
 
 .carousel-images__button-left{

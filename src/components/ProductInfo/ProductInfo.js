@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import RatingStar from '../RatingStar/RatingStar';
 
 import iconHanger from '../../images/icon_hanger.svg';
@@ -8,11 +10,6 @@ import iconLetter from '../../images/icon_letter.svg';
 
 import iconComent from '../../images/icon_coment.svg';
 
-import ProductColorPreview1 from '../../images/product_color-preview-1.jpg';
-import ProductColorPreview2 from '../../images/product_color-preview-2.jpg';
-import ProductColorPreview3 from '../../images/product_color-preview-3.jpg';
-import ProductColorPreview4 from '../../images/product_color-preview-4.jpg';
-
 import iconStripe from '../../images/stripe.png';
 import iconAes from '../../images/aes256.png';
 import iconPayPal from '../../images/paypal.png';
@@ -21,62 +18,105 @@ import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
 
-function ProductInfo() {
+function ProductInfo(props) {
+  const images = props.card.images
+  const colorsArr = images.map((images) => {
+    return images.color
+  })
+
+  function uniqueColor(images, colorsArr) {
+    let result = [];
+    for (let i = 0; i < colorsArr.length; i = i + 1) {
+      let resultUnique = [];
+      function uniqueArr(image) {
+        if (image.color === colorsArr[i]) {
+          resultUnique.push(image)
+        }
+      }
+      images.filter((image) => uniqueArr(image))
+      result.push(resultUnique[0])
+    }
+    return result;
+  }
+
+  function unique(arr) {
+    let result = [];
+    for (let str of arr) {
+      if (!result.includes(str)) {
+        result.push(str);
+      }
+    }
+    return result;
+  }
+
+  const colors = unique(colorsArr.join().split(','));
+  const uniqueColors = uniqueColor(images, colors)
+
+  const [isColorValue, setIsColorValue] = useState(colors[0]);
+  function checkedColor(event) {
+    setIsColorValue(event.target.value);
+  }
+  const [isSizeValue, setIsSizeValue] = useState(props.card.sizes[0]);
+  function checkedSize(event) {
+    setIsSizeValue(event.target.value);
+  }
+
+  
+
   return (
     <div className="product-info">
-      <div className="product-info__color">
-        <div className="product-info__characteristic">
-          <h3 className="product-info__attribute">Color:</h3>
-          <p className="product-info__value">Blue</p>
-        </div>
-        <div className="product-info__color-carousel">
-          <img src={ProductColorPreview1} alt="icon prewiev color" className="product-info__color-carousel-img product-info__color-carousel-img_active" />
-          <img src={ProductColorPreview2} alt="icon prewiev color" className="product-info__color-carousel-img" />
-          <img src={ProductColorPreview3} alt="icon prewiev color" className="product-info__color-carousel-img" />
-          <img src={ProductColorPreview4} alt="icon prewiev color" className="product-info__color-carousel-img" />
-        </div>
-      </div>
-
-      <div className="product-info__size">
-        <div className="product-info__characteristic">
-          <h3 className="product-info__attribute">Size:</h3>
-          <p className="product-info__value">S</p>
-        </div>
-        <div className="product-info__radio">
-          <div className="product-info__radio-item">
-            <input type="radio" id="XS" name="size" value="XS" className="product-info__radio-input"></input>
-            <label htmlFor="XS" className="product-info__radio-label">XS</label>
+      <form className="product-info__form">
+        <fieldset className="product-info__color">
+          <div className="product-info__characteristic">
+            <h3 className="product-info__attribute">Color:</h3>
+            <p className="product-info__value">{isColorValue}</p>
           </div>
-          <div className="product-info__radio-item">
-            <input type="radio" id="S" name="size" value="S" className="product-info__radio-input"></input>
-            <label htmlFor="S" className="product-info__radio-label">S</label>
+          <div className="product-info__color-carousel">
+            {uniqueColors.map((image) =>
+              <div className="product-info__color-item" key={image.id}>
+                <input type="radio" onClick={checkedColor} id={image.id} name="color" value={image.color}
+                  className="product-info__color-input"></input>
+                <label htmlFor={image.id} className="product-info__color-label">
+                  <img src={`https://training.cleverland.by/shop${image.url}`}
+                    alt="Иконка карточки выбора цвета" className="product-info__color-img" />
+                </label>
+              </div>
+            )}
           </div>
-          <div className="product-info__radio-item">
-            <input type="radio" id="M" name="size" value="M" className="product-info__radio-input"></input>
-            <label htmlFor="M" className="product-info__radio-label">M</label>
+        </fieldset>
+
+        <fieldset className="product-info__size">
+          <div className="product-info__characteristic">
+            <h3 className="product-info__attribute">Size:</h3>
+            <p className="product-info__value">{isSizeValue}</p>
           </div>
-          <div className="product-info__radio-item">
-            <input type="radio" id="L" name="size" value="L" className="product-info__radio-input"></input>
-            <label htmlFor="L" className="product-info__radio-label">L</label>
+          <div className="product-info__radio">
+            {props.card.sizes.map((size) =>
+              <div className="product-info__radio-item" key={size}>
+                <input type="radio" id={size} name="size" value={size}
+                  onClick={checkedSize} className="product-info__radio-input"></input>
+                <label htmlFor={size} className="product-info__radio-label">{size}</label>
+              </div>
+            )}
           </div>
-        </div>
 
-        <button type="button" className="product-info__size-guide">
-          <img src={iconHanger} alt="Иконка телефона" className="product-info__size-guide-icon" />
-          <p className="product-info__size-guide-text">Size guide</p>
-        </button>
-      </div>
+          <button type="button" className="product-info__size-guide">
+            <img src={iconHanger} alt="Иконка телефона" className="product-info__size-guide-icon" />
+            <p className="product-info__size-guide-text">Size guide</p>
+          </button>
+        </fieldset>
 
-      <hr className="product-info__line" />
+        <hr className="product-info__line" />
 
-      <div className="product-info__buy">
-        <h3 className="product-info__price">&#36; 379.99</h3>
-        <div className="product-info__buy-buttons">
-          <button type="button" className="product-info__buy-button">Add to card</button>
-          <button type="button" className="product-info__buy-button-like"></button>
-          <button type="button" className="product-info__buy-button-comparison"></button>
-        </div>
-      </div>
+        <fieldset className="product-info__buy">
+          <h3 className="product-info__price">&#36; {props.card.price}</h3>
+          <div className="product-info__buy-buttons">
+            <button type="button" className="product-info__buy-button">Add to card</button>
+            <button type="button" className="product-info__buy-button-like"></button>
+            <button type="button" className="product-info__buy-button-comparison"></button>
+          </div>
+        </fieldset>
+      </form>
 
       <hr className="product-info__line" />
 
@@ -127,17 +167,17 @@ function ProductInfo() {
       <div className="product-info__additional-info-characteristic">
         <div className="product-info__additional-info-element">
           <p className="product-info__additional-info-subtitle">Color:</p>
-          <p className="product-info__additional-info-value">Blue, White, Black, Grey</p>
+          <p className="product-info__additional-info-value">{colors.join(', ')}</p>
         </div>
 
         <div className="product-info__additional-info-element">
           <p className="product-info__additional-info-subtitle">Size:</p>
-          <p className="product-info__additional-info-value">XS, S, M, L</p>
+          <p className="product-info__additional-info-value">{props.card.sizes.join(', ')}</p>
         </div>
 
         <div className="product-info__additional-info-element">
           <p className="product-info__additional-info-subtitle">Material:</p>
-          <p className="product-info__additional-info-value">	100% Polyester</p>
+          <p className="product-info__additional-info-value">	{props.card.material}</p>
         </div>
       </div>
 
@@ -146,8 +186,10 @@ function ProductInfo() {
       <div className="product-info__reviews">
         <div className="product-info__reviews-rating">
           <div className="product-info__rating">
-            <RatingStar />
-            <p className="product-info__rating-text">2 Reviews</p>
+            <RatingStar
+              rating={props.card.rating}
+            />
+            <p className="product-info__rating-text">{props.card.reviews.length} Reviews</p>
           </div>
 
           <button type="button" className="product-info__reviews-button">
@@ -156,27 +198,17 @@ function ProductInfo() {
           </button>
         </div>
 
-        <div className="product-info__reviews-coment">
-          <p className="product-info__reviews-coment-name-user">Oleh Chabanov</p>
-
-          <div className="product-info__reviews-coment-rating">
-            <p className="product-info__reviews-coment-rating-age">3 months ago</p>
-            <RatingStar />
+        {props.card.reviews.map((review) =>
+          <div className="product-info__reviews-coment" key={review.id}>
+            <p className="product-info__reviews-coment-name-user">{review.name}</p>
+            <div className="product-info__reviews-coment-rating">
+              <RatingStar
+                rating={review.rating}
+              />
+            </div>
+            <p className="product-info__reviews-coment-text">{review.text}</p>
           </div>
-
-          <p className="product-info__reviews-coment-text">On the other hand, we denounce with righteous indignation and like men who are so beguiled and demoralized by the charms of pleasure of the moment</p>
-        </div>
-
-        <div className="product-info__reviews-coment">
-          <p className="product-info__reviews-coment-name-user">ShAmAn design</p>
-
-          <div className="product-info__reviews-coment-rating">
-            <p className="product-info__reviews-coment-rating-age">3 months ago</p>
-            <RatingStar />
-          </div>
-
-          <p className="product-info__reviews-coment-text">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti</p>
-        </div>
+        )}
 
       </div>
 

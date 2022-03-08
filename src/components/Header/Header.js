@@ -18,23 +18,20 @@ import iconShopingBag from '../../images/icon_shoping-bag.svg';
 function Header() {
   const [isStateButtonBurger, setIsStateButtonBurger] = useState(false);
 
-  function handleClickButtonBurger(event) {
+  function handleClickButtonBurger() {
     setIsStateButtonBurger(!isStateButtonBurger)
-    const div = document.querySelector('.header__menu');
+    const div = document.querySelector('.header__nav-menu');
     const div2 = document.querySelector('.header__button-burger');
 
-    document.addEventListener('click', (e) => {
-      const withinBoundaries = e.composedPath().includes(div);
-      const withinBoundaries2 = e.composedPath().includes(div2);
+    document.addEventListener('click', (event) => {
+      const withinBoundaries = event.composedPath().includes(div);
+      const withinBoundaries2 = event.composedPath().includes(div2);
   
       if (!withinBoundaries && !withinBoundaries2) {
-        setIsStateButtonBurger(false); // скрываем элемент т к клик был за его пределами
+        setIsStateButtonBurger(false);
       }
     })
   }
-
-
-
 
   let menuClassNames = classNames('header__menu', { 'header__menu_mobile': isStateButtonBurger });
   let buttonBurgerClassNames = classNames('header__button-burger', { 'header__button-burger_close': isStateButtonBurger });
@@ -73,7 +70,7 @@ function Header() {
           </nav>
 
           <div className="header__logo-block">
-            <Link to="#/" className="header__logo-link" data-test-id='header-logo-link'>
+            <Link to="/" className="header__logo-link" data-test-id='header-logo-link'>
               <img src={logo} className="header__logo" alt="Логотип" />
             </Link>
           </div>

@@ -4,13 +4,12 @@ import { Navigation } from "swiper";
 
 import Card from '../Card/Card';
 
-import { PRODUCTS_WOMEN } from '../../constants/constants';
-
 import 'swiper/css';
 import "swiper/css/navigation";
 import "./RelatedProducts.css"
 
-function RelatedProducts() {
+function RelatedProducts(props) {
+
   return (
     <section className="related-products">
       <h3 className="related-products__title">RELATED PRODUCTS</h3>
@@ -51,13 +50,16 @@ function RelatedProducts() {
             }
           }}
         >
-          {PRODUCTS_WOMEN.data.map((card) =>
+          {props.product.map((card) =>
             <SwiperSlide key={card.id}>
-              <Link to={`/women/${card.id}`} className="card-link">
+              <Link to={`/${props.url}/${card.id}`} className="card-link">
                 <Card
+                  card={card}
                   name={card.name}
-                  img={card.img}
+                  img={card.images[0]}
                   price={card.price}
+                  rating={card.rating}
+                  discount={card.discount}
                 />
               </Link>
             </SwiperSlide>

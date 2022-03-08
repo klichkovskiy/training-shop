@@ -76,7 +76,6 @@
 
 .header__menu{
   z-index: 2;
-  
   height: 66px;
   display: grid;
   grid-template-columns: repeat(7, max-content);

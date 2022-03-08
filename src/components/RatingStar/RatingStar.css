@@ -1,6 +1,7 @@
 .rating{
   display: grid;
   grid-template-columns: repeat(5, max-content);
+  justify-content: end;
 }
 
 .rating-star{

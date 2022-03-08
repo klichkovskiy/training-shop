@@ -11,7 +11,7 @@ function Breadcrumbs(props) {
         </li>
         <p className={props.stepThree ? "breadcrumbs__pointer" : "breadcrumbs__pointer breadcrumbs__pointer_active"}>&#9658;</p>
         <li className="breadcrumbs__item">
-          <Link to="/women" className={props.stepThree ? "breadcrumbs__link" : "breadcrumbs__link breadcrumbs__link_active"}>{props.stepTwo}</Link>
+          <Link to={`/${props.url}`} className={props.stepThree ? "breadcrumbs__link" : "breadcrumbs__link breadcrumbs__link_active"}>{props.stepTwo}</Link>
         </li>
         <p className={props.stepThree ? "breadcrumbs__pointer breadcrumbs__pointer_active" : "breadcrumbs__pointer_hide"}>&#9658;</p>
         <li className={props.stepThree ? "breadcrumbs__item" : "breadcrumbs__hide"}>

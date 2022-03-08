@@ -5,12 +5,12 @@ import HotDeals from '../HotDeals/HotDeals';
 import Subscribe from '../Subscribe/Subscribe';
 import LatestBlog from '../LatestBlog/LatestBlog';
 
-import { PRODUCTS_WOMEN } from '../../constants/constants';
-import { PRODUCTS_MEN } from '../../constants/constants';
+
 import { URL_WOMEN } from '../../constants/constants';
 import { URL_MEN } from '../../constants/constants';
 
-function Main() {
+function Main(props) {
+
   return (
     <section className="main">
       <hr className="main__line" />
@@ -19,12 +19,12 @@ function Main() {
       <hr className="main__line" />
       <Clothes
         title='WOMEN&#10076;S'
-        products={PRODUCTS_WOMEN}
+        products={props.products.women}
         url={URL_WOMEN}
       />
       <Clothes
         title='MEN&#10076;S'
-        products={PRODUCTS_MEN}
+        products={props.products.men}
         url={URL_MEN}
       />
       <HotDeals />
