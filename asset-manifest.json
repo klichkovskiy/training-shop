@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/training-shop/static/css/main.8e8f9a69.css",
-    "main.js": "/training-shop/static/js/main.ed68bdd6.js",
+    "main.css": "/training-shop/static/css/main.5b753844.css",
+    "main.js": "/training-shop/static/js/main.c3c62da9.js",
     "static/js/787.47ca6e30.chunk.js": "/training-shop/static/js/787.47ca6e30.chunk.js",
     "static/media/subscribe__form-img-women.png": "/training-shop/static/media/subscribe__form-img-women.79a920fae51eb15d71e8.png",
     "static/media/article-promo_1.jpg": "/training-shop/static/media/article-promo_1.9a5da4825aa6b8a8de69.jpg",
@@ -28,7 +28,6 @@
     "static/media/product_women_3.jpg": "/training-shop/static/media/product_women_3.6ff0398c0026caa263e0.jpg",
     "static/media/product_women_4.jpg": "/training-shop/static/media/product_women_4.1a954e5ee339e5428e9e.jpg",
     "static/media/product_men_3.jpg": "/training-shop/static/media/product_men_3.1d5397814672953ac555.jpg",
-    "static/media/product_image.jpg": "/training-shop/static/media/product_image.491637ad45202a72bbfa.jpg",
     "static/media/product_men_6.jpg": "/training-shop/static/media/product_men_6.ae4693430a1b5a0db5fc.jpg",
     "static/media/product_women_6.jpg": "/training-shop/static/media/product_women_6.763c638a551e9704de4e.jpg",
     "static/media/spartan-v10-latin-700.woff": "/training-shop/static/media/spartan-v10-latin-700.4282c5e6c4ab123a576b.woff",
@@ -72,13 +71,14 @@
     "static/media/icon_search.svg": "/training-shop/static/media/icon_search.ed6244f7beb82842b9b479b8a49d2d7e.svg",
     "static/media/icon_shoping-bag.svg": "/training-shop/static/media/icon_shoping-bag.9edac722abe6171d033ce0d0b0a2354d.svg",
     "static/media/icon_list.svg": "/training-shop/static/media/icon_list.87e97cf6d2df73bc9783.svg",
+    "static/media/icon_close.svg": "/training-shop/static/media/icon_close.8437cb5394bc95679db8a46799114951.svg",
     "static/media/icon_button-down.svg": "/training-shop/static/media/icon_button-down.c0f20a828b79f9fd2f9c9a1e77f844e1.svg",
-    "main.8e8f9a69.css.map": "/training-shop/static/css/main.8e8f9a69.css.map",
-    "main.ed68bdd6.js.map": "/training-shop/static/js/main.ed68bdd6.js.map",
+    "main.5b753844.css.map": "/training-shop/static/css/main.5b753844.css.map",
+    "main.c3c62da9.js.map": "/training-shop/static/js/main.c3c62da9.js.map",
     "787.47ca6e30.chunk.js.map": "/training-shop/static/js/787.47ca6e30.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8e8f9a69.css",
-    "static/js/main.ed68bdd6.js"
+    "static/css/main.5b753844.css",
+    "static/js/main.c3c62da9.js"
   ]
 }
