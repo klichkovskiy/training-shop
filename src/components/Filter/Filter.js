@@ -162,8 +162,8 @@ function Filter(props) {
         </button>
       </div>
 
-      <div className={filterFormClassNames}>
-        <form className="filter__form" data-test-id={`filters-${props.url}`}>
+      <div className={filterFormClassNames} data-test-id={`filters-${props.url}`}>
+        <form className="filter__form">
           <fieldset className="filter__fieldset">
             <h3 className="filter__fieldset-attribute">Color</h3>
             <div className="filter__fieldset-values" data-test-id='filters-color'>
