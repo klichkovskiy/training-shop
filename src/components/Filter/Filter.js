@@ -63,39 +63,75 @@ function Filter(props) {
   const [isFilteredValue, setIsFilteredValue] = useState([]);
 
   function checkedFilteredValue() {
-    let result = [];
+    let objFilteredValue = {
+      "Colors": {},
+      "Sizes": {},
+      "Brands": {},
+      "Prices": {}
+    };
+    let resColors = []
+    let resSizes = []
+    let resBrands = []
+    let resPrices = []
+
+    let filteredValuesText = [];
     for (let i = 0; i < checkbox.length; i = i + 1) {
       let resultUnique = [];
+      let filteredValuesTextUnique = [];
+
       if (checkbox[i].checked) {
-        resultUnique.push(`${checkbox[i].name}: ${checkbox[i].value}`)
-        result.push(resultUnique[0])
+        resultUnique.push(`${checkbox[i].value}`)
+        let objColorsValues = {}
+        let objSizesValues = {}
+        let objBrandsValues = {}
+        let objPricesValues = {}
+        if (`${checkbox[i].name}` === "Color") {
+          resColors.push(resultUnique[0])
+          objColorsValues = { ...resColors }
+          objFilteredValue.Colors = objColorsValues
+        }
+        else if (`${checkbox[i].name}` === "Size") {
+          resSizes.push(resultUnique[0])
+          objSizesValues = { ...resSizes }
+          objFilteredValue.Sizes = objSizesValues
+        }
+        else if (`${checkbox[i].name}` === "Brand") {
+          resBrands.push(resultUnique[0])
+          objBrandsValues = { ...resBrands }
+          objFilteredValue.Brands = objBrandsValues
+        }
+        else if (`${checkbox[i].name}` === "Price") {
+          resPrices.push(resultUnique[0])
+          objPricesValues = { ...resPrices }
+          objFilteredValue.Prices = objPricesValues
+        }
+
+        filteredValuesTextUnique.push(`${checkbox[i].name}: ${checkbox[i].value}`)
+        filteredValuesText.push(filteredValuesTextUnique[0])
       }
     }
-
-    setIsFilteredValue(result.join().split(','));
-
+    setIsFilteredValue(filteredValuesText.join().split(','));
+    //console.log(objFilteredValue);
     function isFilteredCards(data) {
-      let attributesArr = result.map((res) => {
-        const attributes = res.split(': ')
-        return attributes
-      })
-      let filteredArr = [];
-      
-      for (let i = 0; i < attributesArr.length; i = i + 1) {
-        if (data.brand === attributesArr[i][1]) {
-          return filteredArr.push(data)
+
+      function isEmpty(obj) {
+        for (let key in obj) {
+          return true;
         }
-        if (data.sizes.includes(attributesArr[i][1])) {
-          return filteredArr.push(data)
-        }
-        if (data.images.map( (image) => image.color.includes(attributesArr[i][1]) ).includes(true)) {
-          return filteredArr.push(data)
-        }
-        if (attributesArr[i][1].split(' - ')[0] < data.price && data.price < attributesArr[i][1].split(' - ')[1]) {
-          return filteredArr.push(data)
-        }
+        return false;
       }
 
+      let isFilter =
+        (isEmpty(objFilteredValue.Colors) ? data.images.some(image =>
+          Object.values(objFilteredValue.Colors).some(color => color === image.color)) : true)
+        && (isEmpty(objFilteredValue.Sizes) ? data.sizes.some(size =>
+          Object.values(objFilteredValue.Sizes).some(siz => siz === size)) : true)
+        && (isEmpty(objFilteredValue.Brands) ? Object.values(objFilteredValue.Brands).some(br =>
+          br === data.brand) : true)
+        && (isEmpty(objFilteredValue.Prices) ? Object.values(objFilteredValue.Prices).some(br =>
+          br.split(' - ')[0] < data.price && data.price < br.split(' - ')[1]
+        ) : true)
+      return isFilter === true ? data : null
     }
 
     return props.handleCardsArr(CardsArr.filter((card) => isFilteredCards(card)))
@@ -133,9 +169,9 @@ function Filter(props) {
             <div className="filter__fieldset-values" data-test-id='filters-color'>
               {colors.map((value) =>
                 <div className="filter__fieldset-value" key={value}>
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`} data-test-id={`filter-color-${value}`}>
+                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`}>
                     <input type="checkbox" name='Color' value={value} id={`checkbox-${value}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                      className="filter__fieldset-input" onClick={checkedFilteredValue} data-test-id={`filter-color-${value}`}></input>
                     <span className="filter__fieldset-pseudo-input" style={{ backgroundColor: `${value}` }}></span>
                     <span className="filter__fieldset-text">{value}</span>
                   </label>
@@ -149,9 +185,9 @@ function Filter(props) {
             <div className="filter__fieldset-values" data-test-id='filters-size'>
               {sizes.map((value) =>
                 <div className="filter__fieldset-value" key={value}>
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`} data-test-id={`filter-size-${value}`}>
+                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`}>
                     <input type="checkbox" name='Size' value={value} id={`checkbox-${value}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                      className="filter__fieldset-input" onClick={checkedFilteredValue} data-test-id={`filter-size-${value}`}></input>
                     <span className="filter__fieldset-pseudo-input"></span>
                     <span className="filter__fieldset-text">{value}</span>
                   </label>
@@ -165,9 +201,9 @@ function Filter(props) {
             <div className="filter__fieldset-values" data-test-id='filters-brand'>
               {brands.map((value) =>
                 <div className="filter__fieldset-value" key={value}>
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`} data-test-id={`filter-brand-${value}`}>
+                  <label className="filter__fieldset-label" htmlFor={`checkbox-${value}`}>
                     <input type="checkbox" name='Brand' value={value} id={`checkbox-${value}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                      className="filter__fieldset-input" onClick={checkedFilteredValue} data-test-id={`filter-brand-${value}`}></input>
                     <span className="filter__fieldset-pseudo-input"></span>
                     <span className="filter__fieldset-text">{value}</span>
                   </label>
@@ -180,41 +216,41 @@ function Filter(props) {
             <h3 className="filter__fieldset-attribute">Price</h3>
             <div className="filter__fieldset-values">
 
-                <div className="filter__fieldset-value">
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${minPrice}`}>
-                    <input type="checkbox" name='Price' value={minPrice} id={`checkbox-${minPrice}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
-                    <span className="filter__fieldset-pseudo-input"></span>
-                    <span className="filter__fieldset-text">{minPrice}</span>
-                  </label>
-                </div>
+              <div className="filter__fieldset-value">
+                <label className="filter__fieldset-label" htmlFor={`checkbox-${minPrice}`}>
+                  <input type="checkbox" name='Price' value={minPrice} id={`checkbox-${minPrice}`}
+                    className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                  <span className="filter__fieldset-pseudo-input"></span>
+                  <span className="filter__fieldset-text">{minPrice}</span>
+                </label>
+              </div>
 
-                <div className="filter__fieldset-value">
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${minMiddlePrice}`}>
-                    <input type="checkbox" name='Price' value={minMiddlePrice} id={`checkbox-${minMiddlePrice}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
-                    <span className="filter__fieldset-pseudo-input"></span>
-                    <span className="filter__fieldset-text">{minMiddlePrice}</span>
-                  </label>
-                </div>
+              <div className="filter__fieldset-value">
+                <label className="filter__fieldset-label" htmlFor={`checkbox-${minMiddlePrice}`}>
+                  <input type="checkbox" name='Price' value={minMiddlePrice} id={`checkbox-${minMiddlePrice}`}
+                    className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                  <span className="filter__fieldset-pseudo-input"></span>
+                  <span className="filter__fieldset-text">{minMiddlePrice}</span>
+                </label>
+              </div>
 
-                <div className="filter__fieldset-value">
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${maxMiddlePrice}`}>
-                    <input type="checkbox" name='Price' value={maxMiddlePrice} id={`checkbox-${maxMiddlePrice}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
-                    <span className="filter__fieldset-pseudo-input"></span>
-                    <span className="filter__fieldset-text">{maxMiddlePrice}</span>
-                  </label>
-                </div>
+              <div className="filter__fieldset-value">
+                <label className="filter__fieldset-label" htmlFor={`checkbox-${maxMiddlePrice}`}>
+                  <input type="checkbox" name='Price' value={maxMiddlePrice} id={`checkbox-${maxMiddlePrice}`}
+                    className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                  <span className="filter__fieldset-pseudo-input"></span>
+                  <span className="filter__fieldset-text">{maxMiddlePrice}</span>
+                </label>
+              </div>
 
-                <div className="filter__fieldset-value">
-                  <label className="filter__fieldset-label" htmlFor={`checkbox-${maxPrice}`}>
-                    <input type="checkbox" name='Price' value={maxPrice} id={`checkbox-${maxPrice}`}
-                      className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
-                    <span className="filter__fieldset-pseudo-input"></span>
-                    <span className="filter__fieldset-text">{maxPrice}</span>
-                  </label>
-                </div>
+              <div className="filter__fieldset-value">
+                <label className="filter__fieldset-label" htmlFor={`checkbox-${maxPrice}`}>
+                  <input type="checkbox" name='Price' value={maxPrice} id={`checkbox-${maxPrice}`}
+                    className="filter__fieldset-input" onClick={checkedFilteredValue}></input>
+                  <span className="filter__fieldset-pseudo-input"></span>
+                  <span className="filter__fieldset-text">{maxPrice}</span>
+                </label>
+              </div>
 
             </div>
           </fieldset>
