@@ -61,6 +61,7 @@ function Product(props) {
             <RelatedProducts
               product={PRODUCTS[props.url]}
               url={props.url}
+              onClickCard={props.onClickCard}
             />
           </div>
         </section>
