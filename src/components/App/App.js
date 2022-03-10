@@ -24,6 +24,7 @@ function App() {
   function onClickCard(card) {
     setCard(card)
   }
+  console.log(card);
   return (
     <div className="app" data-test-id='app'>
       <Header />
