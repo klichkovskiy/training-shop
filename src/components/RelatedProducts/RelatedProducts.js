@@ -53,7 +53,7 @@ function RelatedProducts(props) {
         >
           {props.product.map((card) =>
             <SwiperSlide key={card.id}>
-              <Link to={`/${props.url}/${card.id}`} className="card-link">
+              <Link to={`/${props.url}/${card.id}`} className="card-link"  data-test-id={`clothes-card-${props.url}`}>
                 <Card
                   onClickCard={props.onClickCard}
                   card={card}

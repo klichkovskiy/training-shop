@@ -35,7 +35,8 @@ function Catergories(props) {
 
       <div className="catergories__cards">
         {filteredСardsArr.slice(0, counterCard).map((card) =>
-          <Link to={`/${props.url}/${card.id}`} className="card-link" key={card.id}>
+          <Link to={`/${props.url}/${card.id}`} className="card-link" key={card.id}
+          data-test-id={`clothes-card-${props.url}`}>
             <Card
               card={card}
               name={card.name}
