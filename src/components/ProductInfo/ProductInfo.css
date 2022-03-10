@@ -70,9 +70,10 @@
   position: absolute;
 }
 
-.product-info__color-input:checked + .product-info__color-label{
+.product-info__color-label_active{
   outline: 2px solid #121212;
 }
+
 
 .product-info__color-img{
   width: 100%;
@@ -118,7 +119,7 @@
   line-height: 18px;
 }
 
-.product-info__radio-input:checked + .product-info__radio-label{
+.product-info__radio-label_active{
   background-color: #FFF;
   outline: 2px solid #121212;
 }

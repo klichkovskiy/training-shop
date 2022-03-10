@@ -13,11 +13,9 @@ function Catergories(props) {
   }
 
   const [filteredСardsArr, setfilteredСardsArr] = useState(props.products);
-
   function handleCardsArr(cards) {
     setfilteredСardsArr(cards)
   }
-  //console.log(filteredСardsArr);
 
   return (
     <section className="catergories" data-test-id={`products-page-${props.url}`}>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames'
 
 import RatingStar from '../RatingStar/RatingStar';
 
@@ -61,8 +62,6 @@ function ProductInfo(props) {
     setIsSizeValue(event.target.value);
   }
 
-  
-
   return (
     <div className="product-info">
       <form className="product-info__form">
@@ -76,9 +75,11 @@ function ProductInfo(props) {
               <div className="product-info__color-item" key={image.id}>
                 <input type="radio" onClick={checkedColor} id={image.id} name="color" value={image.color}
                   className="product-info__color-input"></input>
-                <label htmlFor={image.id} className="product-info__color-label">
+                <label htmlFor={image.id} className={classNames('product-info__color-label',
+                { 'product-info__color-label_active': isColorValue === image.color})}>
                   <img src={`https://training.cleverland.by/shop${image.url}`}
-                    alt="Иконка карточки выбора цвета" className="product-info__color-img" />
+                    alt="Иконка карточки выбора цвета" className="product-info__color-img" 
+                    />
                 </label>
               </div>
             )}
@@ -95,7 +96,8 @@ function ProductInfo(props) {
               <div className="product-info__radio-item" key={size}>
                 <input type="radio" id={size} name="size" value={size}
                   onClick={checkedSize} className="product-info__radio-input"></input>
-                <label htmlFor={size} className="product-info__radio-label">{size}</label>
+                <label htmlFor={size} className={classNames("product-info__radio-label",
+                { 'product-info__radio-label_active': isSizeValue === size })}>{size}</label>
               </div>
             )}
           </div>

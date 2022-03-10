@@ -51,7 +51,7 @@ function Clothes(props) {
         )
         }
       </div>
-      <button type="button" className="сlothes__button-all">See All</button>
+      <Link to={`/${props.url}`} className="сlothes__button-all">See All</Link>
     </section>
   )
 }
