@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames'
 
 import RatingStar from '../RatingStar/RatingStar';
+import { deleteItemFromCart, setItemInCart } from '../../redux/cart/reducer';
 
 import iconHanger from '../../images/icon_hanger.svg';
 
@@ -19,7 +22,9 @@ import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
 
+
 function ProductInfo(props) {
+  
   const images = props.card.images
   const colorsArr = images.map((images) => {
     return images.color
@@ -50,6 +55,7 @@ function ProductInfo(props) {
     return result;
   }
 
+
   const colors = unique(colorsArr.join().split(','));
   const uniqueColors = uniqueColor(images, colors)
 
@@ -61,6 +67,29 @@ function ProductInfo(props) {
   function checkedSize(event) {
     setIsSizeValue(event.target.value);
   }
+
+
+  //функция добавления карточки в корзину
+  const dispatch = useDispatch();
+  function handleClickAddCard(event) {
+    event.stopPropagation()
+    const size = document.querySelector('.product-info__radio-input_active').value;
+    const color = document.querySelector('.product-info__color-input_active').value;
+    const image = document.querySelector('.product-info__color-label_active').querySelector('.product-info__color-img').src;
+    const price = props.card.price
+    const name = props.card.name
+    const quantity = 1;
+    const card = [size, color, name, image, price, quantity]
+    
+    if(isItemInCart){
+      dispatch(deleteItemFromCart([size, color, name]))
+    } else {
+      dispatch(setItemInCart(card))
+    }
+  }
+
+  const cards = useSelector(state => state.cart.itemsInCart)
+  const isItemInCart = cards.some(item => item[0] === isSizeValue && item[1] === isColorValue && item[2] === props.card.name)
 
   return (
     <div className="product-info">
@@ -74,12 +103,13 @@ function ProductInfo(props) {
             {uniqueColors.map((image) =>
               <div className="product-info__color-item" key={image.id}>
                 <input type="radio" onClick={checkedColor} id={image.id} name="color" value={image.color}
-                  className="product-info__color-input"></input>
+                  className={classNames('product-info__color-input',
+                    { 'product-info__color-input_active': isColorValue === image.color })}></input>
                 <label htmlFor={image.id} className={classNames('product-info__color-label',
-                { 'product-info__color-label_active': isColorValue === image.color})}>
+                  { 'product-info__color-label_active': isColorValue === image.color })}>
                   <img src={`https://training.cleverland.by/shop${image.url}`}
-                    alt="Иконка карточки выбора цвета" className="product-info__color-img" 
-                    />
+                    alt="Иконка карточки выбора цвета" className="product-info__color-img"
+                  />
                 </label>
               </div>
             )}
@@ -95,9 +125,10 @@ function ProductInfo(props) {
             {props.card.sizes.map((size) =>
               <div className="product-info__radio-item" key={size}>
                 <input type="radio" id={size} name="size" value={size}
-                  onClick={checkedSize} className="product-info__radio-input"></input>
+                  onClick={checkedSize} className={classNames("product-info__radio-input",
+                    { 'product-info__radio-input_active': isSizeValue === size })}></input>
                 <label htmlFor={size} className={classNames("product-info__radio-label",
-                { 'product-info__radio-label_active': isSizeValue === size })}>{size}</label>
+                  { 'product-info__radio-label_active': isSizeValue === size })}>{size}</label>
               </div>
             )}
           </div>
@@ -113,7 +144,9 @@ function ProductInfo(props) {
         <fieldset className="product-info__buy">
           <h3 className="product-info__price">&#36; {props.card.price}</h3>
           <div className="product-info__buy-buttons">
-            <button type="button" className="product-info__buy-button">Add to card</button>
+            <button type="button" onClick={handleClickAddCard} className="product-info__buy-button"  data-test-id='add-cart-button'>
+              { isItemInCart ? 'Remove to card': 'Add to card'}
+              </button>
             <button type="button" className="product-info__buy-button-like"></button>
             <button type="button" className="product-info__buy-button-comparison"></button>
           </div>

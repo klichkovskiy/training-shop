@@ -38,8 +38,9 @@ function Clothes(props) {
       <div className="template-cards">
         {props.products.filter((card) => isFilterData(card, { isStateParticulars })).map((card) =>
           <Link to={`/${props.url}/${card.id}`} className="card-link"
-          key={card.id} data-test-id={`clothes-card-${props.url}`}>
+            key={card.id} data-test-id={`clothes-card-${props.url}`}>
             <Card
+              onClickCard={props.onClickCard}
               card={card}
               name={card.name}
               img={card.images[0]}

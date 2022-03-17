@@ -144,6 +144,10 @@
   color: #FFFFFF;
 }
 
+.header__nav-shop-index_hiden{
+  display: none;
+}
+
 .header__button-burger{
   display: none;
   position: relative;

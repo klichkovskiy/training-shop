@@ -18,11 +18,13 @@ function Main(props) {
       <Advantage />
       <hr className="main__line" />
       <Clothes
+        onClickCard={props.onClickCard}
         title='WOMEN&#10076;S'
         products={props.products.women}
         url={URL_WOMEN}
       />
       <Clothes
+        onClickCard={props.onClickCard}
         title='MEN&#10076;S'
         products={props.products.men}
         url={URL_MEN}

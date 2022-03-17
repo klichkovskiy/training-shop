@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import classNames from 'classnames'
 
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -25,9 +26,17 @@ function App() {
     setCard(card)
   }
   console.log(card);
+
+  const [isActiveButtonMenu, setIsActiveButtonMenu] = useState(false);
+  const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);
+
   return (
-    <div className="app" data-test-id='app'>
-      <Header />
+    <div className={classNames('app', { 'app__fixed': isActiveButtonMenu}, { 'app__fixed app__muted': isActiveButtonCart})} data-test-id='app'>
+      <Header 
+      setIsActiveButtonMenu={setIsActiveButtonMenu}
+      setIsActiveButtonCart={setIsActiveButtonCart}
+      isActiveButtonCart={isActiveButtonCart}
+      />
 
       <Switch>
 
@@ -69,7 +78,9 @@ function App() {
 
         <Route path="/">
           <Main
+            onClickCard={onClickCard}
             products={PRODUCTS}
+            isActiveButtonCart={isActiveButtonCart}
           />
         </Route>
       </Switch>
