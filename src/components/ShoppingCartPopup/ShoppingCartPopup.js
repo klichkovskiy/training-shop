@@ -56,7 +56,7 @@ function ShoppingCartPopup(props) {
           </div>
           <div className='shopping-cart__total'>
             <p className='shopping-cart__total-text'>Total</p>
-            <p className='shopping-cart__total-value'>&#36; {totalValue}</p>
+            <p className='shopping-cart__total-value'>&#36; {totalValue.toFixed(2)}</p>
           </div>
           <div className='shopping-cart__buttons'>
             <button type="button" className='shopping-cart__button-further'>Further</button>

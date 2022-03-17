@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeItemFromCart, deleteItemFromCart } from '../../redux/cart/reducer';
+import { changeCounterPlus, changeCounterMinus, deleteItemFromCart } from '../../redux/cart/reducer';
 
 import iconTrash from '../../images/icon_trash.svg';
 
@@ -12,33 +12,33 @@ function ShoppingCartCard(props) {
     dispatch(deleteItemFromCart([props.size, props.color, props.name]))
   }
 
-  const [count, setCount] = useState(props.quantity)
-  function handleMinusCounter(event) {
-    let currentCount = count;
-    if (currentCount === 0) {
-      currentCount = 0
-    } else {
-      currentCount--;
-    }
-    setCount(currentCount)
+  //const [count, setCount] = useState(props.quantity)
+  function handleMinusCounter() {
+    //let currentCount = count;
+    //if (currentCount === 0) {
+    //  currentCount = 0
+    //} else {
+    //  currentCount--;
+    //}
+    //setCount(currentCount)
 
-    event.stopPropagation()
+    //event.stopPropagation()
     //const quant = props.quantity - 1
-    dispatch(changeItemFromCart([props.size, props.color, props.name, currentCount]))
+    dispatch(changeCounterMinus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
 
 
-  function handlePlusCounter(event) {
-    let currentCount = count;
-    currentCount++;
-    setCount(currentCount)
-    event.stopPropagation()
+  function handlePlusCounter() {
+    //let currentCount = count;
+    //currentCount++;
+    //setCount(currentCount)
+    //event.stopPropagation()
     //const quant = props.quantity + 1
-    dispatch(changeItemFromCart([props.size, props.color, props.name, currentCount]))
+    dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
 
 
-  const totalPriceCard = props.price * count
+  const totalPriceCard = props.price * props.quantity
   return (
     <article className='cart__card' data-test-id='cart-card'>
       <img src={props.image} className="cart__img" alt={props.name} />
@@ -49,14 +49,14 @@ function ShoppingCartCard(props) {
         <button type="button" onClick={handleMinusCounter} className='cart__button-minus' data-test-id='minus-product'>
           <span className='cart__button_gorizont'></span>
         </button>
-        <p className="card__count">{count}</p>
+        <p className="card__count">{props.quantity}</p>
         <button type="button" onClick={handlePlusCounter} className='cart__button-plus' data-test-id='plus-product'>
           <span className='cart__button_gorizont'></span>
           <span className='cart__button_vertical'></span>
         </button>
       </div>
 
-      <p className="cart__price">&#36; {totalPriceCard}</p>
+      <p className="cart__price">&#36; {totalPriceCard.toFixed(2)}</p>
       <button type="button" onClick={handleDeleteCard} className='cart__button-trash'  data-test-id='remove-product'>
         <img src={iconTrash} alt="Иконка мусорки" className="cart__button-trash-icon" />
       </button>

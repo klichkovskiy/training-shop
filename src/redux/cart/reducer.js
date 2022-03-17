@@ -14,22 +14,35 @@ const cartSlice = createSlice({
         card[1] !== action.payload[1] ||
         card[2] !== action.payload[2])
     },
-    changeItemFromCart: (state, action) => {
-      state.itemsInCart.forEach(card => {
+    changeCounterPlus: (state, action) => {
+      state.itemsInCart.forEach((card) => {
         if (
-          card[0] !== action.payload[0] ||
-          card[1] !== action.payload[1] ||
-          card[2] !== action.payload[2]
+          card[0] === action.payload[0] &&
+          card[1] === action.payload[1] &&
+          card[2] === action.payload[2]
         ) {
           if (card[5] >= 1) {
-            card[5] = card[5] + 1
+            card[5] = card[5] + 1;
           }
-          //card[5] = action.payload[3]
+        }
+      })
+    },
+    changeCounterMinus: (state, action) => {
+      state.itemsInCart.forEach((card) => {
+        if (
+          card[0] === action.payload[0] &&
+          card[1] === action.payload[1] &&
+          card[2] === action.payload[2]
+        ) {
+          if (card[5] > 1) {
+            card[5] = card[5] - 1;
+          }
         }
       })
     }
+
   }
 })
 
-export const { setItemInCart, deleteItemFromCart, changeItemFromCart } = cartSlice.actions;
+export const { setItemInCart, deleteItemFromCart, changeCounterPlus, changeCounterMinus } = cartSlice.actions;
 export default cartSlice.reducer;
