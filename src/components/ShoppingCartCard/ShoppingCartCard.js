@@ -20,12 +20,10 @@ function ShoppingCartCard(props) {
     //  currentCount--;
     //}
     //setCount(currentCount)
-
     //event.stopPropagation()
     //const quant = props.quantity - 1
     dispatch(changeCounterMinus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
-
 
   function handlePlusCounter() {
     //let currentCount = count;
@@ -35,7 +33,6 @@ function ShoppingCartCard(props) {
     //const quant = props.quantity + 1
     dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
-
 
   const totalPriceCard = props.price * props.quantity
   return (

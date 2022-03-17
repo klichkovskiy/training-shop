@@ -10,9 +10,7 @@ function ShoppingCartPopup(props) {
   }
 
   const cards = useSelector(state => state.cart.itemsInCart)
-
   const totalValue = cards.reduce((acc, card) => acc += card[4] * card[5], 0)
-  
   return (
     <section className={classNames('shopping-cart', { 'shopping-cart_active': props.isStateButtonCart })} data-test-id='cart'>
       <div className='shopping-cart__header'>
