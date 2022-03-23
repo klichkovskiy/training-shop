@@ -5,7 +5,6 @@ import HotDeals from '../HotDeals/HotDeals';
 import Subscribe from '../Subscribe/Subscribe';
 import LatestBlog from '../LatestBlog/LatestBlog';
 
-
 import { URL_WOMEN } from '../../constants/constants';
 import { URL_MEN } from '../../constants/constants';
 
@@ -15,6 +14,7 @@ function Main(props) {
     <section className="main">
       <hr className="main__line" />
       <Banner />
+
       <Advantage />
       <hr className="main__line" />
       <Clothes

@@ -27,7 +27,9 @@ function Filter(props) {
   let filterClassNamesClose = classNames('filter__button-icon', { 'filter__button-icon_hiden': !isStateButtonFilter });
   let filterFormClassNames = classNames('filter__form-block', { 'filter__form-block_hiden': !isStateButtonFilter });
 
+  //console.log(props.products);
   const colorsArr = props.products.map((card) => {
+    //console.log(card);
     return card.images.map((images) => {
       return images.color
     })

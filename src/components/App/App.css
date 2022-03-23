@@ -22,3 +22,39 @@
   z-index: 1;
   transition: opacity 0.3s linear;
 }
+
+.app__preloader_none{
+  display: none;
+}
+
+.app__preloader{
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  column-gap: 15px;
+  justify-content: center;
+  height: calc(100vh - 450px);
+}
+
+.app__loading_none{
+  display: block;
+}
+
+.app__loading{
+  display: none;
+}
+
+.app__error{
+  display: grid;
+}
+
+.app__error_none{
+  display: none;
+  justify-content: center;
+  grid-template-columns: max-content;
+}
+
+@media (max-height: 500px){
+  .app__preloader{
+    display: none;
+  }
+}

@@ -8,7 +8,7 @@ function ShoppingCartCard(props) {
   const dispatch = useDispatch();
   function handleDeleteCard(event) {
     event.stopPropagation()
-    dispatch(deleteItemFromCart([props.size, props.color, props.name]))
+    dispatch({ type: 'REMOVE_CART_ITEM', payload: [props.size, props.color, props.name] });
   }
 
   //const [count, setCount] = useState(props.quantity)
@@ -22,7 +22,7 @@ function ShoppingCartCard(props) {
     //setCount(currentCount)
     //event.stopPropagation()
     //const quant = props.quantity - 1
-    dispatch(changeCounterMinus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
+    dispatch({ type: 'MINUS_PRODUCT', payload: [props.size, props.color, props.name, props.image, props.price, props.quantity]})
   }
 
   function handlePlusCounter() {
@@ -31,7 +31,7 @@ function ShoppingCartCard(props) {
     //setCount(currentCount)
     //event.stopPropagation()
     //const quant = props.quantity + 1
-    dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
+    dispatch({ type: 'PLUS_PRODUCT', payload: [props.size, props.color, props.name, props.image, props.price, props.quantity]})
   }
 
   const totalPriceCard = props.price * props.quantity

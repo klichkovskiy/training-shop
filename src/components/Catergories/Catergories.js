@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames'
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Card from '../Card/Card';
 import Filter from '../Filter/Filter';
 
 function Catergories(props) {
+  const cards = useSelector(state => state.cards.itemsInCads[props.url])
+
+  const { isLoading } = useSelector((state) => state.cards);
+  const [filteredСardsArr, setfilteredСardsArr] = useState(isLoading === false ? cards : []);
+  
+  console.log(isLoading);
+  console.log(cards);
+  console.log(filteredСardsArr);
+
+  function handleCardsArr(cards) {
+    setfilteredСardsArr(cards)
+  }
+
   const [counterCard, setСounterCard] = useState(8);
 
   function handleChangeAddCard() {
     setСounterCard(counterCard + 4);
   }
-
-  const [filteredСardsArr, setfilteredСardsArr] = useState(props.products);
-  function handleCardsArr(cards) {
-    setfilteredСardsArr(cards)
-  }
+  
 
   return (
-    <section className="catergories" data-test-id={`products-page-${props.url}`}>
+    <section className={classNames('catergories_none', { 'catergories': !isLoading })} data-test-id={`products-page-${props.url}`}>
       <Breadcrumbs
         stepTwo={props.name}
         url={props.url}

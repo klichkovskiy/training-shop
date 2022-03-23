@@ -16,3 +16,10 @@
   border: none;
   background-color:#F8F8F8;;
 }
+
+.main__preloader{
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  justify-content: center;
+  column-gap: 20px;
+}

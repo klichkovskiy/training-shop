@@ -18,6 +18,8 @@
 @import url(./components/Subscribe/Subscribe.css);
 @import url(./components/LatestBlog/LatestBlog.css);
 @import url(./components/ArticlePromo/ArticlePromo.css);
+@import url(./components/Preloader/Preloader.css);
+@import url(./components/Error/Error.css);
 
 @import url(./components/Card/Card.css);
 @import url(./components/RatingStar/RatingStar.css);
