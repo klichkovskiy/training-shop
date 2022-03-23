@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames'
@@ -8,26 +8,23 @@ import Card from '../Card/Card';
 import Filter from '../Filter/Filter';
 
 function Catergories(props) {
-  const cards = useSelector(state => state.cards.itemsInCads[props.url])
-
   const { isLoading } = useSelector((state) => state.cards);
-  const [filteredСardsArr, setfilteredСardsArr] = useState(isLoading === false ? cards : []);
-  
-  console.log(isLoading);
-  console.log(cards);
-  console.log(filteredСardsArr);
+  const [filteredСardsArr, setfilteredСardsArr] = useState(props.products);
+  const cards = useSelector(state => state.cards.itemsInCads[props.url])
+  useEffect(() => {
+    setfilteredСardsArr(cards);
+  }, [cards]);
 
   function handleCardsArr(cards) {
     setfilteredСardsArr(cards)
   }
 
-  const [counterCard, setСounterCard] = useState(4);
+  const [counterCard, setСounterCard] = useState(8);
 
   function handleChangeAddCard() {
     setСounterCard(counterCard + 4);
   }
   
-
   return (
     <section className={classNames('catergories_none', { 'catergories': !isLoading })} data-test-id={`products-page-${props.url}`}>
       <Breadcrumbs
@@ -39,7 +36,7 @@ function Catergories(props) {
       </div>
       <Filter
         url={props.url}
-        products={props.products}
+        products={cards}
         handleCardsArr={handleCardsArr}
         amountCards={filteredСardsArr.length}
       />
@@ -49,7 +46,6 @@ function Catergories(props) {
           <Link to={`/${props.url}/${card.id}`} className="card-link" key={card.id}
             data-test-id={`clothes-card-${props.url}`}>
             <Card
-              onClickCard={props.onClickCard}
               card={card}
               name={card.name}
               img={card.images[0]}

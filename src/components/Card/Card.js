@@ -4,11 +4,9 @@ import RatingStar from '../RatingStar/RatingStar';
 
 function Card(props) {
   let discountClassNames = classNames('card__discount', { 'card__discount_active': props.discount });
-  function handleClick() {
-    props.onClickCard(props.card);
-  }
+
   return (
-    <article className="card" key={props.id} onClick={handleClick}>
+    <article className="card" key={props.id}>
       <div className={discountClassNames}>
         <p className="card__discount-text">{props.discount}</p>
       </div>

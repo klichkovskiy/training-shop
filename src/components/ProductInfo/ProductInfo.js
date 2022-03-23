@@ -20,10 +20,10 @@ import iconVisa from '../../images/visa.png';
 import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
+import { deleteItemFromCart, setItemInCart } from '../../redux/reducers/cart';
 
 
 function ProductInfo(props) {
-  
   const images = props.card.images
   const colorsArr = images.map((images) => {
     return images.color
@@ -69,8 +69,6 @@ function ProductInfo(props) {
 
 
   //функция добавления карточки в корзину
-
-
   const dispatch = useDispatch();
   function handleClickAddCard(event) {
     event.stopPropagation()
@@ -83,18 +81,14 @@ function ProductInfo(props) {
     const card = [size, color, name, image, price, quantity]
     
     if(isItemInCart){
-      dispatch({ type: 'REMOVE_CART_ITEM', payload: [size, color, name] });
-      //dispatch(deleteItemFromCart([size, color, name]))
+      dispatch(deleteItemFromCart([size, color, name]))
     } else {
-      dispatch({ type: 'ADD_PRODUCT', payload: card });
-      //dispatch(setItemInCart(card))
+      dispatch(setItemInCart(card))
     }
   }
 
   const cards = useSelector(state => state.cart.itemsInCart)
-  console.log(cards);
   const isItemInCart = cards.some(item => item[0] === isSizeValue && item[1] === isColorValue && item[2] === props.card.name)
-  console.log(isItemInCart);
   
   return (
     <div className="product-info">

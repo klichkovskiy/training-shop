@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { changeCounterPlus, changeCounterMinus, deleteItemFromCart } from '../../redux/reducers/cart';
 
 import iconTrash from '../../images/icon_trash.svg';
 
@@ -7,30 +8,15 @@ function ShoppingCartCard(props) {
   const dispatch = useDispatch();
   function handleDeleteCard(event) {
     event.stopPropagation()
-    dispatch({ type: 'REMOVE_CART_ITEM', payload: [props.size, props.color, props.name] });
+    dispatch(deleteItemFromCart([props.size, props.color, props.name]))
   }
 
-  //const [count, setCount] = useState(props.quantity)
   function handleMinusCounter() {
-    //let currentCount = count;
-    //if (currentCount === 0) {
-    //  currentCount = 0
-    //} else {
-    //  currentCount--;
-    //}
-    //setCount(currentCount)
-    //event.stopPropagation()
-    //const quant = props.quantity - 1
-    dispatch({ type: 'MINUS_PRODUCT', payload: [props.size, props.color, props.name, props.image, props.price, props.quantity]})
+    dispatch(changeCounterMinus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
 
   function handlePlusCounter() {
-    //let currentCount = count;
-    //currentCount++;
-    //setCount(currentCount)
-    //event.stopPropagation()
-    //const quant = props.quantity + 1
-    dispatch({ type: 'PLUS_PRODUCT', payload: [props.size, props.color, props.name, props.image, props.price, props.quantity]})
+    dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
 
   const totalPriceCard = props.price * props.quantity

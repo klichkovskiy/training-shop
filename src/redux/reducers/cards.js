@@ -10,7 +10,8 @@ const defaultState = {
 const cards = (state = defaultState, action) => {
   switch (action.type) {
     case 'LOADING_DATA': {
-      return { ...state,
+      return {
+        ...state,
         isLoading: true
       };
     }
@@ -18,8 +19,8 @@ const cards = (state = defaultState, action) => {
     case 'LOAD_SUCCESS_DATA': {
       return {
         ...state,
-        ...state.itemsInCads.men = action.payload.men,
         ...state.itemsInCads.women = action.payload.women,
+        ...state.itemsInCads.men = action.payload.men,
         isLoading: false,
       };
     }

@@ -40,7 +40,6 @@ function Clothes(props) {
           <Link to={`/${props.url}/${card.id}`} className="card-link"
             key={card.id} data-test-id={`clothes-card-${props.url}`}>
             <Card
-              onClickCard={props.onClickCard}
               card={card}
               name={card.name}
               img={card.images[0]}
