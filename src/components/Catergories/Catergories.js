@@ -21,7 +21,7 @@ function Catergories(props) {
     setfilteredСardsArr(cards)
   }
 
-  const [counterCard, setСounterCard] = useState(8);
+  const [counterCard, setСounterCard] = useState(4);
 
   function handleChangeAddCard() {
     setСounterCard(counterCard + 4);
