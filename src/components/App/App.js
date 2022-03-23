@@ -20,9 +20,9 @@ import { PRODUCTS_WOMEN } from '../../constants/constants';
 import { PRODUCTS_MEN } from '../../constants/constants';
 
 import { PRODUCTS } from '../../constants/products';
-import Api from '../../utils/Api';
-import { useDispatch, useSelector } from 'react-redux';
-import { setItemsInCards } from '../../redux/cards/reducer';
+//import Api from '../../utils/Api';
+import { useSelector } from 'react-redux';
+//import { setItemsInCards } from '../../redux/cards/reducer';
 import { useLocation } from 'react-router-dom';
 
 
@@ -37,7 +37,7 @@ function App() {
   function onClickCard(card) {
     setCard(card)
   }
-  //console.log(card);
+  console.log(card);
 
   const [isActiveButtonMenu, setIsActiveButtonMenu] = useState(false);
   const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);

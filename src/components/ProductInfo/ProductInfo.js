@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import classNames from 'classnames'
 
 import RatingStar from '../RatingStar/RatingStar';
-import { deleteItemFromCart, setItemInCart } from '../../redux/cart/reducer';
 
 import iconHanger from '../../images/icon_hanger.svg';
 
