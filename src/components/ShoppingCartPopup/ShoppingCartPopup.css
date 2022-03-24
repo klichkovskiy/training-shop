@@ -114,7 +114,7 @@
 
 .shopping-cart__cards{
   height: calc(100vh - 322px);
-  overflow-y: scroll;
+  overflow: auto;
   margin: 32px 24px 0px;
   display: grid;
   grid-auto-rows: max-content;
@@ -201,4 +201,10 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
+}
+
+@media (max-width: 500px){
+  .shopping-cart{
+    width: 100vw;
+  }
 }
