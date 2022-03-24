@@ -84,6 +84,11 @@
     padding: 0 25px;
   }
 }
+@media (max-width: 500px){
+  .breadcrumbs{
+    padding: 0;
+  }
+}
 
 @media (max-width: 450px){
   .breadcrumbs{

@@ -74,6 +74,7 @@
 .product__data{
   padding: 32px 70px 96px;
   display: grid;
+  grid-template-columns: repeat(1, min-content);
   background-color: #fefefe;
   column-gap: 15px;
 }
@@ -90,12 +91,16 @@
 }
 
 @media (max-width: 620px){
+  .product{
+    grid-template-columns: repeat(1, max-content);
+  }
+
   .product__data{
-    padding: 32px 10px 96px;
+    padding: 32px 0 96px;
   }
 
   .product__info{
-    padding: 0 25px;
+    padding: 0;
     height: 100px;
     justify-content: center;
     row-gap: 10px;

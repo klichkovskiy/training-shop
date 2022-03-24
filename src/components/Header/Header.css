@@ -251,7 +251,7 @@
   }
 
   .header__nav-menu{
-    margin: 0 20px;
+    margin: 0 auto;
   }
 
   .header__menu{
@@ -281,7 +281,7 @@
   }
 
   .header__contact-bar{
-    padding: 10px 25px;
+    padding: 10px 0;
   }
 
   .header__menu{
