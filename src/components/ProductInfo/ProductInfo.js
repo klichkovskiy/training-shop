@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import classNames from 'classnames'
 
 import RatingStar from '../RatingStar/RatingStar';
+import FormPostReview from '../FormPostReview/FormPostReview';
+
 
 import iconHanger from '../../images/icon_hanger.svg';
 
@@ -79,8 +81,8 @@ function ProductInfo(props) {
     const name = props.card.name
     const quantity = 1;
     const card = [size, color, name, image, price, quantity]
-    
-    if(isItemInCart){
+
+    if (isItemInCart) {
       dispatch(deleteItemFromCart([size, color, name]))
     } else {
       dispatch(setItemInCart(card))
@@ -89,7 +91,28 @@ function ProductInfo(props) {
 
   const cards = useSelector(state => state.cart.itemsInCart)
   const isItemInCart = cards.some(item => item[0] === isSizeValue && item[1] === isColorValue && item[2] === props.card.name)
-  
+
+
+  //Форма открытия отзыва
+  const [isActiveFormReview, setIsActiveFormReview] = useState(false);
+
+  function handleClickFormReview() {
+    setIsActiveFormReview(true)
+    props.setIsActiveFormReview(true)
+
+    const div = document.querySelector('.form-post__formik');
+    const div2 = document.querySelector('.product-info__reviews-button');
+    document.addEventListener('click', (event) => {
+      const withinBoundaries = event.composedPath().includes(div);
+      const withinBoundaries2 = event.composedPath().includes(div2);
+
+      if (!withinBoundaries && !withinBoundaries2) {
+        setIsActiveFormReview(false);
+        props.setIsActiveFormReview(false)
+      }
+    })
+  }
+
   return (
     <div className="product-info">
       <form className="product-info__form">
@@ -143,9 +166,9 @@ function ProductInfo(props) {
         <fieldset className="product-info__buy">
           <h3 className="product-info__price">&#36; {props.card.price}</h3>
           <div className="product-info__buy-buttons">
-            <button type="button" onClick={handleClickAddCard} className="product-info__buy-button"  data-test-id='add-cart-button'>
-              { isItemInCart ? 'Remove to card': 'Add to card'}
-              </button>
+            <button type="button" onClick={handleClickAddCard} className="product-info__buy-button" data-test-id='add-cart-button'>
+              {isItemInCart ? 'Remove to card' : 'Add to card'}
+            </button>
             <button type="button" className="product-info__buy-button-like"></button>
             <button type="button" className="product-info__buy-button-comparison"></button>
           </div>
@@ -226,10 +249,19 @@ function ProductInfo(props) {
             <p className="product-info__rating-text">{props.card.reviews.length} Reviews</p>
           </div>
 
-          <button type="button" className="product-info__reviews-button">
+          <button type="button" className="product-info__reviews-button" onClick={handleClickFormReview} data-test-id='review-button'>
             <img src={iconComent} alt="Иконка сообщения" className="product-info__reviews-button-icon" />
             <p className="product-info__reviews-button-text">Write a review</p>
           </button>
+        </div>
+
+        <div className={classNames('product-info__form product-info__form-review',
+          { 'product-info__form product-info__form-review_active': isActiveFormReview })}>
+          <FormPostReview
+            idCard={props.card.id}
+            setIsActiveFormReview={setIsActiveFormReview}
+            setIsFixedFormReview={props.setIsActiveFormReview}
+          />
         </div>
 
         {props.card.reviews.map((review) =>

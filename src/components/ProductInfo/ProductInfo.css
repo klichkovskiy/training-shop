@@ -370,6 +370,18 @@
   opacity: 0.6;
 }
 
+.product-info__form-review{
+  position: fixed;
+  right: calc(50% - 250px);
+  top: calc(50% - 250px);
+  display: none;
+  z-index: 3;
+}
+
+.product-info__form-review_active{
+  display: grid;
+}
+
 .product-info__reviews-coment{
   display: grid;
   row-gap: 12px;
@@ -400,15 +412,21 @@
   line-height: 22px;
   color: #121212;
   opacity: 0.8;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (max-width: 1275px){
   .product-info{
-    grid-column: 1;
+    grid-column: 1/4;
   }
 }
 
 @media (max-width: 620px){
+  .product-info{
+    grid-column: 1;
+  }
+
   .product-info__payment{
     grid-template-columns: repeat(2, max-content);
     row-gap: 16px;

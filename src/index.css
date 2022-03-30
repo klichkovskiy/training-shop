@@ -24,6 +24,8 @@
 @import url(./components/Card/Card.css);
 @import url(./components/RatingStar/RatingStar.css);
 @import url(./components/ProductInfo/ProductInfo.css);
+@import url(./components/FormPostReview/FormPostReview.css);
+
 
 @import url(./components/Catergories/Catergories.css);
 @import url(./components/Breadcrumbs/Breadcrumbs.css);

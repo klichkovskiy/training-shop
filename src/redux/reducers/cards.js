@@ -19,8 +19,8 @@ const cards = (state = defaultState, action) => {
     case 'LOAD_SUCCESS_DATA': {
       return {
         ...state,
-        ...state.itemsInCads.women = action.payload.women,
         ...state.itemsInCads.men = action.payload.men,
+        ...state.itemsInCads.women = action.payload.women,
         isLoading: false,
       };
     }

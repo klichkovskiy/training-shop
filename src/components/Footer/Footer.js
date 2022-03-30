@@ -1,4 +1,7 @@
+import { Formik } from 'formik';
+import * as yup from 'yup'
 import { NavLink } from 'react-router-dom';
+import classNames from 'classnames'
 
 import SocialLinks from '../SocialLinks/SocialLinks';
 
@@ -15,20 +18,92 @@ import iconVisa from '../../images/visa.png';
 import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { reseptionResponseEmail, postUserEmail } from '../../redux/reducers/email';
+import Preloader from '../Preloader/Preloader';
+
 
 function Footer() {
+  const dispatch = useDispatch();
+
+  const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
+  const responce = useSelector(state => state.email.serverResponce);
+
+  const validatoinSchema = yup.object().shape({
+    mail: yup.string().email('Введите email')
+  })
+
+  function handleClickInput() {
+    dispatch(reseptionResponseEmail(null))
+    const div = document.querySelector('.footer__form');
+    document.addEventListener('click', (event) => {
+      const withinBoundaries = event.composedPath().includes(div);
+
+      if (!withinBoundaries) {
+        dispatch(reseptionResponseEmail(null))
+      }
+    })
+  }
   return (
-    <footer className="footer"  data-test-id='footer'>
+    <footer className="footer" data-test-id='footer'>
       <form className="footer__form">
         <fieldset className="footer__fieldset">
           <div className="footer__fieldset-text">
             <p className="footer__in-touch-text">BE IN TOUCH WITH US:</p>
           </div>
 
-          <div className="footer__field">
-            <input type="email" className="footer__input" placeholder="Enter your email" required></input>
-            <button type="submit" className="footer__button">Join Us</button>
-          </div>
+          <Formik
+            initialValues={{
+              mail: '',
+            }}
+            validateOnBlur
+            onSubmit={(values, { resetForm }) => {
+              if (values.mail) {
+                dispatch(postUserEmail(values));
+              }
+              resetForm({
+                mail: ""
+              });
+            }}
+            validationSchema={validatoinSchema}
+          >
+            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+              <div className="footer__field">
+                <input
+                  type="email"
+                  name='mail'
+                  className="footer__input"
+                  onChange={handleChange}
+                  onClick={handleClickInput}
+                  onBlur={handleBlur}
+                  value={values.mail}
+                  placeholder="Enter your email"
+                  data-test-id='footer-mail-field'
+                >
+                </input>
+
+                <button
+                  disabled={!isValid || !dirty || loadingAction || values.mail === ''}
+                  onClick={handleSubmit}
+                  type="submit"
+                  data-test-id='footer-subscribe-mail-button'
+                  className={classNames(
+                    { 'footer__button': isValid && dirty && values.mail !== '' && !loadingAction },
+                    { 'footer__button_deactivated': !isValid || !dirty || loadingAction || values.mail === '' },
+                  )}
+                >
+                  {loadingAction ? <Preloader /> : 'Join Us'}
+                </button>
+
+                {touched.mail && errors.mail && <p className="footer__error">{errors.mail}</p>}
+
+                <div className="footer__responce">
+                  {responce === null ? "" : responce === "OK" ? "Почта успешно отправлена" : `${responce}`}
+                </div>
+              </div>
+            )}
+          </Formik>
+
           <div className="footer__social-links">
             <SocialLinks />
           </div>

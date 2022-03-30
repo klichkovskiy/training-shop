@@ -31,6 +31,7 @@ function App() {
 
   const [isActiveButtonMenu, setIsActiveButtonMenu] = useState(false);
   const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);
+  const [isActiveFormReview, setIsActiveFormReview] = useState(false);
 
   const cardsMen = useSelector(state => state.cards.itemsInCads.men)
   const cardsWomen = useSelector(state => state.cards.itemsInCads.women)
@@ -38,7 +39,7 @@ function App() {
   const { isLoading, isError } = useSelector((state) => state.cards);
 
   return (
-    <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart })} data-test-id='app'>
+    <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart || isActiveFormReview})} data-test-id='app'>
       <Header
         setIsActiveButtonMenu={setIsActiveButtonMenu}
         setIsActiveButtonCart={setIsActiveButtonCart}
@@ -77,6 +78,7 @@ function App() {
             <Product
               productType={PRODUCT_TYPE_WOMEN}
               url={URL_WOMEN}
+              setIsActiveFormReview={setIsActiveFormReview}
             />
           </Route>
 
@@ -84,6 +86,7 @@ function App() {
             <Product
               productType={PRODUCT_TYPE_MEN}
               url={URL_MEN}
+              setIsActiveFormReview={setIsActiveFormReview}
             />
           </Route>
 

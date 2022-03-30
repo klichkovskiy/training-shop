@@ -113,6 +113,7 @@
 @media (max-width: 1275px){
   .carousel-images{
     justify-content: center;
+    grid-column: 1/4;
   }
 }
 

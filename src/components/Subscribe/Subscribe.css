@@ -49,6 +49,10 @@
   color: #E91E63;
 }
 
+.subscribe__formik{
+  display: grid;
+}
+
 .subscribe__input{
   margin-top: 32px;
   height: 64px;
@@ -57,6 +61,29 @@
   text-align: center;
   background-color: #F8F8F8;
   color: #a0a0a0;
+}
+
+.subscribe__error{
+  padding-top: 10px;
+  margin: 0;
+  color: #121212;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+}
+
+.subscribe__button_deactivated{
+  margin-top: 16px;
+  height: 64px;
+  border: none;
+  background: #404040;
+  color: #e7e7e7;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .subscribe__button{
@@ -69,6 +96,16 @@
   line-height: 18px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  cursor: pointer;
+}
+
+.subscribe__responce{
+  margin-top: 12px;
+  color:#121212;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.06em;
 }
 
 .subscribe__form-img-women{

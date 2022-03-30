@@ -58,6 +58,7 @@ function Product(props) {
 
             <ProductInfo
               card={card}
+              setIsActiveFormReview={props.setIsActiveFormReview}
             />
 
             <RelatedProducts
