@@ -78,6 +78,7 @@ function FormPostReview(props) {
     if (closeForm === true && Boolean(error) === false) {
       props.setIsActiveFormReview(false);
       props.setIsFixedFormReview(false);
+      document.querySelector('.form-post__rating-value').innerHTML = 1;
     }
   });
 
