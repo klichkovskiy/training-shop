@@ -2,10 +2,10 @@
   height: 500px;
   width: 500px;
   background-color: #fff;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, max-content);
   border: 2px solid rgb(48, 48, 48);
   border-radius: 30px;
   row-gap: 23px;
@@ -19,56 +19,62 @@
 
 /*Рэйтинг*/
 .form-post__rating{
-  display: flex;
-  font-size: 40px;
-  justify-self: center;
-  align-items: flex-end;
-  line-height: 0.75;
-}
-
-.form-post__rating-body{
   position: relative;
+  font-size: 40px;
+  display: inline-block;
+  margin: 0 auto;
 }
 
-.form-post__rating-body::before {
+.form-post__rating::before{
   content: "★★★★★";
   display: block;
-  color:#e2e2e2;
-}
-
-.form-post__rating-active{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.form-post__rating-active::before{
-  content: "★★★★★";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  color:#eeff00;
 }
 
 .form-post__rating-items{
-  display: flex;
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
 }
 
 .form-post__rating-item{
+  position: absolute;
+  width: 0%;
+  height: 0%;
+  opacity: 0;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+}
+
+.form-post__rating-label{
   flex: 0 0 20%;
   height: 100%;
-  opacity: 0;
+  cursor: pointer;
+  color:#e2e2e2;
 }
+
+.form-post__rating-label::before{
+  content: "★";
+  display: block;
+  transition: color 0.3s ease 0s;
+}
+
+.form-post__rating-item:checked,
+.form-post__rating-item:checked ~ .form-post__rating-label{
+  color:#ffe604;
+}
+
+.form-post__rating-label:hover,
+.form-post__rating-label:hover ~ .form-post__rating-label,
+.form-post__rating-label:checked ~ .form-post__rating-label:hover{
+  color:#eeff00;
+}
+
 
 .form-post__rating-value{
   display: none;

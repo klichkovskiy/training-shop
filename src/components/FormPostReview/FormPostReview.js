@@ -8,79 +8,27 @@ import { postReview } from '../../redux/reducers/review';
 import { useEffect } from 'react';
 
 function FormPostReview(props) {
-  const ratings = document.querySelectorAll('.form-post__rating')
-  if (ratings > 0) {
-    initRatings();
-  }
-  function initRatings() {
-    let ratingActive, ratingValue;
-    for (let index = 0; index < ratings.length; index++) {
-      const rating = ratings[index];
-      initRating(rating)
-    }
-
-    function initRating(rating) {
-      initRatingVars(rating);
-      setRatingActiveWidth()
-      if (rating.classList.contains('form-post__rating-set')) {
-        setRating(rating)
-      }
-    }
-
-    function initRatingVars(rating) {
-      ratingActive = rating.querySelector('.form-post__rating-active');
-      ratingValue = rating.querySelector('.form-post__rating-value');
-    }
-
-    function setRatingActiveWidth(index = ratingValue.innerHTML) {
-      const ratingActiveWidth = index / 0.05;
-      ratingActive.style.width = `${ratingActiveWidth}%`;
-    }
-
-    function setRating(rating) {
-      const ratingItems = rating.querySelectorAll('.form-post__rating-item')
-      for (let index = 0; index < ratingItems.length; index++) {
-        const ratingItem = ratingItems[index];
-
-        ratingItem.addEventListener("mouseenter", function (e) {
-          initRatingVars(rating);
-          setRatingActiveWidth(ratingItem.value);
-        })
-        ratingItem.addEventListener("mouseleave", function (e) {
-          setRatingActiveWidth();
-        })
-        // eslint-disable-next-line no-loop-func
-        ratingItem.addEventListener("click", () => {
-          initRatingVars(rating);
-          ratingValue.innerHTML = index + 1;
-          setRatingActiveWidth();
-        })
-      }
-    }
-  }
-  initRatings()
-
-
-  const validatoinSchema = yup.object().shape({
+    const validatoinSchema = yup.object().shape({
     name: yup.string().typeError('Enter your name').required('Obligatory field'),
     review: yup.string().typeError('Enter your review').required('Obligatory field')
   })
 
   const dispatch = useDispatch();
+
   const loadingAction = useSelector(state => state.review.isLoadingPostReview);
   const closeForm = useSelector(state => state.review.isCloseForm);
   const serverResponce = useSelector(state => state.review.serverResponce);
   const error = useSelector(state => state.review.error);
 
-  console.log(closeForm);
-  console.log(Boolean(error));
   useEffect(() => {
-    if (closeForm === true && Boolean(error) === false) {
+    if (closeForm === true && error === false) {
+      console.log(closeForm);
+      console.log(error);
       props.setIsActiveFormReview(false);
       props.setIsFixedFormReview(false);
-      document.querySelector('.form-post__rating-value').innerHTML = 1;
     }
   });
+
 
   return (
     <Formik
@@ -91,64 +39,75 @@ function FormPostReview(props) {
         rating: '1'
       }}
       validateOnBlur
-      onSubmit={(values, { resetForm }) => {
-        dispatch(postReview(values));
-        resetForm({
-          id: props.idCard,
-          name: '',
-          review: '',
-          rating: '1'
-        });
-      }}
+      onSubmit={values => dispatch(postReview(values))}
       validationSchema={validatoinSchema}
     >
       {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
         <form className="form-post__formik" data-test-id='review-modal'>
           <p className="form-post__title">Write a review</p>
 
-          <div className="form-post__rating form-post__rating-set">
-            <div className="form-post__rating-body">
-              <div className="form-post__rating-active"></div>
-              <div className="form-post__rating-items">
-                <input
-                  type='radio'
-                  className="form-post__rating-item"
-                  value={1}
-                  name='rating'
-                  onChange={handleChange}
-                ></input>
-                <input
-                  type='radio'
-                  className="form-post__rating-item"
-                  value={2}
-                  name='rating'
-                  onChange={handleChange}
-                ></input>
-                <input
-                  type='radio'
-                  className="form-post__rating-item"
-                  value={3}
-                  name='rating'
-                  onChange={handleChange}
-                ></input>
-                <input
-                  type='radio'
-                  className="form-post__rating-item"
-                  value={4}
-                  name='rating'
-                  onChange={handleChange}
-                ></input>
-                <input
-                  type='radio'
-                  className="form-post__rating-item"
-                  value={5}
-                  name='rating'
-                  onChange={handleChange}
-                ></input>
-              </div>
-              <p className="form-post__rating-value">1</p>
+
+          <div className="form-post__rating">
+            <div className="form-post__rating-items">
+              <input
+                type='radio'
+                className="form-post__rating-item"
+                value={5}
+                name='rating'
+                id='rating_5'
+                onChange={handleChange}
+              >
+              </input>
+              <label htmlFor='rating_5'className="form-post__rating-label"></label>
+
+              <input
+                type='radio'
+                className="form-post__rating-item"
+                value={4}
+                name='rating'
+                id='rating_4'
+                onChange={handleChange}
+              >
+              </input>
+              <label htmlFor='rating_4'className="form-post__rating-label"></label>
+
+              <input
+                type='radio'
+                className="form-post__rating-item"
+                value={3}
+                name='rating'
+                id='rating_3'
+                onChange={handleChange}
+              >
+              </input>
+              <label htmlFor='rating_3'className="form-post__rating-label"></label>
+
+              <input
+                type='radio'
+                className="form-post__rating-item"
+                value={2}
+                name='rating'
+                id='rating_2'
+                onChange={handleChange}
+              >
+              </input>
+              <label htmlFor='rating_2'className="form-post__rating-label"></label>
+
+              <input
+                type='radio'
+                className="form-post__rating-item"
+                value={1}
+                name='rating'
+                id='rating_1'
+                onChange={handleChange}
+                defaultChecked
+              >
+              </input>
+              <label htmlFor='rating_1'className="form-post__rating-label"></label>
             </div>
+            <p className="form-post__rating-value">1</p>
           </div>
+
 
           <div className="form-post__fieldset">
             <input
@@ -185,19 +144,19 @@ function FormPostReview(props) {
           </div>
 
           <button
-            disabled={!isValid || !dirty || values.name === '' || values.review === ''}
+            disabled={!isValid || !dirty || loadingAction || values.name === '' || values.review === ''}
             onClick={handleSubmit}
             type="submit"
             data-test-id='review-submit-button'
             className={classNames(
-              { 'form-post__button_deactivated': !isValid || !dirty || values.name === '' || values.review === '' },
+              { 'form-post__button_deactivated': !isValid || !dirty || loadingAction || values.name === '' || values.review === '' },
               { 'form-post__button': isValid && dirty && values.name !== '' && values.review !== '' })}
           >
             {loadingAction ? <Preloader /> : 'Send'}
           </button>
           <div className="form-post__responce">
-              {error && `${serverResponce}`}
-            </div>
+            {error && `${serverResponce}`}
+          </div>
         </form>
       )}
     </Formik>

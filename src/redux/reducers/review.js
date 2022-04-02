@@ -9,7 +9,7 @@ const initialState = {
   serverResponce: null,
   isLoadingPostReview: false,
   isCloseForm: false,
-  error: '',
+  error: false,
   review: {
     "id": '',
     "name": '',
@@ -24,6 +24,7 @@ export default createReducer(initialState, {
     state.review.name = action.payload.name;
     state.review.review = action.payload.review;
     state.review.rating = action.payload.rating;
+    state.error = false;
   },
   [loadingReview]: (state, action) => {
     state.isLoadingPostReview = action.payload;

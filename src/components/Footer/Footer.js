@@ -28,9 +28,12 @@ function Footer() {
 
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
   const responce = useSelector(state => state.email.serverResponce);
+  const id = useSelector(state => state.email.id);
 
+  const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
   const validatoinSchema = yup.object().shape({
-    mail: yup.string().email('Введите email')
+    mail: yup.string()
+    .matches(emailRegex, "Введите email")
   })
 
   function handleClickInput() {
@@ -55,19 +58,17 @@ function Footer() {
           <Formik
             initialValues={{
               mail: '',
+              id: 'footer'
             }}
             validateOnBlur
-            onSubmit={(values, { resetForm }) => {
+            onSubmit={(values) => {
               if (values.mail) {
                 dispatch(postUserEmail(values));
               }
-              resetForm({
-                mail: ""
-              });
             }}
             validationSchema={validatoinSchema}
           >
-            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+            {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
               <div className="footer__field">
                 <input
                   type="email"
@@ -76,7 +77,7 @@ function Footer() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={values.mail}
+                  value={responce === "OK" ?  "" : values.mail }
                   placeholder="Enter your email"
                   data-test-id='footer-mail-field'
                 >
@@ -95,10 +96,10 @@ function Footer() {
                   {loadingAction ? <Preloader /> : 'Join Us'}
                 </button>
 
-                {touched.mail && errors.mail && <p className="footer__error">{errors.mail}</p>}
+                {!isValid && <p className="footer__error">{errors.mail}</p>}
 
                 <div className="footer__responce">
-                  {responce === null ? "" : responce === "OK" ? "Почта успешно отправлена" : `${responce}`}
+                  {responce === null ? "" : responce === "OK" && id === 'footer' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'footer' ? `${responce}`: ''}
                 </div>
               </div>
             )}

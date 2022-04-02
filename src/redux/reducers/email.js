@@ -8,11 +8,13 @@ const initialState ={
   serverResponce:null,
   isLoadingPostEmail:false,
   mail:"",
+  id: null,
 }
 
 export default createReducer(initialState, {
   [postUserEmail]: (state,action) => {
-      state.mail=action.payload; 
+      state.mail=action.payload.mail;
+      state.id=action.payload.id;
   },
   [reseptionResponseEmail]: (state,action) => {
       state.serverResponce=action.payload; 

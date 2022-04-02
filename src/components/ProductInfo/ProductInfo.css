@@ -7,6 +7,7 @@
 .product-info__form{
   display: grid;
   row-gap: 32px;
+  font-family: 'Spartan' , "Arial", sans-serif;
 }
 
 .product-info__color{
@@ -379,7 +380,11 @@
 }
 
 .product-info__form-review_active{
+  position: fixed;
+  right: calc(50% - 250px);
+  top: calc(50% - 250px);
   display: grid;
+  z-index: 3;
 }
 
 .product-info__reviews-coment{

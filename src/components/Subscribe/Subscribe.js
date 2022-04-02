@@ -10,9 +10,13 @@ function Subscribe() {
 
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
   const responce = useSelector(state => state.email.serverResponce);
+  const id = useSelector(state => state.email.id);
 
+
+  const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
   const validatoinSchema = yup.object().shape({
-    mail: yup.string().email('Введите email')
+    mail: yup.string()
+      .matches(emailRegex, "Введите email")
   })
 
   function handleClickInput() {
@@ -37,6 +41,7 @@ function Subscribe() {
           <Formik
             initialValues={{
               mail: '',
+              id: 'subscribe'
             }}
             validateOnBlur
             onSubmit={(values, { resetForm }) => {
@@ -49,7 +54,8 @@ function Subscribe() {
             }}
             validationSchema={validatoinSchema}
           >
-            {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+            {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+
               <div className="subscribe__formik">
                 <input
                   type="email"
@@ -58,14 +64,17 @@ function Subscribe() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={values.mail}
+                  value={responce === "OK" ? "" : values.mail}
                   placeholder="Enter your email"
                   data-test-id='main-subscribe-mail-field'
                 ></input>
 
                 <button
                   disabled={!isValid || !dirty || loadingAction || values.mail === ''}
-                  onClick={handleSubmit}
+                  onClick={() => {
+                    handleSubmit();
+
+                  }}
                   type="submit"
                   data-test-id='main-subscribe-mail-button'
                   className={classNames(
@@ -75,10 +84,10 @@ function Subscribe() {
                   {loadingAction ? <Preloader /> : 'Subscribe'}
                 </button>
 
-                {touched.mail && errors.mail && <p className="subscribe__error">{errors.mail}</p>}
+                {!isValid && <p className="subscribe__error">{errors.mail}</p>}
 
                 <div className="subscribe__responce">
-                  {responce === null ? "" : responce === "OK" ? "Почта успешно отправлена" : `${responce}`}
+                  {responce === null ? "" : responce === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'subscribe' ? `${responce}` : ''}
                 </div>
               </div>
             )}

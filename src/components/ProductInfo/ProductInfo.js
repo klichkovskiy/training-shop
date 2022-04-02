@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames'
@@ -100,7 +101,7 @@ function ProductInfo(props) {
     setIsActiveFormReview(true)
     props.setIsActiveFormReview(true)
 
-    const div = document.querySelector('.form-post__formik');
+    const div = document.getElementById('reviev-popap');
     const div2 = document.querySelector('.product-info__reviews-button');
     document.addEventListener('click', (event) => {
       const withinBoundaries = event.composedPath().includes(div);
@@ -115,6 +116,28 @@ function ProductInfo(props) {
 
   return (
     <div className="product-info">
+      {isActiveFormReview &&
+        ReactDOM.createPortal(
+          <div className='product-info__form product-info__form-review_active'>
+            <FormPostReview
+              idCard={props.card.id}
+              setIsActiveFormReview={setIsActiveFormReview}
+              setIsFixedFormReview={props.setIsActiveFormReview}
+            />
+          </div>,
+          document.getElementById('reviev-popap')
+        )
+      }
+
+      {/*<div className={classNames('product-info__form product-info__form-review',
+        { 'product-info__form product-info__form-review_active': isActiveFormReview })}>
+        <FormPostReview
+          idCard={props.card.id}
+          setIsActiveFormReview={setIsActiveFormReview}
+          setIsFixedFormReview={props.setIsActiveFormReview}
+        />
+      </div>*/}
+
       <form className="product-info__form">
         <fieldset className="product-info__color">
           <div className="product-info__characteristic">
@@ -253,15 +276,6 @@ function ProductInfo(props) {
             <img src={iconComent} alt="Иконка сообщения" className="product-info__reviews-button-icon" />
             <p className="product-info__reviews-button-text">Write a review</p>
           </button>
-        </div>
-
-        <div className={classNames('product-info__form product-info__form-review',
-          { 'product-info__form product-info__form-review_active': isActiveFormReview })}>
-          <FormPostReview
-            idCard={props.card.id}
-            setIsActiveFormReview={setIsActiveFormReview}
-            setIsFixedFormReview={props.setIsActiveFormReview}
-          />
         </div>
 
         {props.card.reviews.map((review) =>
