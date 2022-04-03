@@ -32,7 +32,7 @@ function Subscribe() {
   }
   return (
     <section className="subscribe">
-      <form className="subscribe__form">
+      <div className="subscribe__form">
         <fieldset className="subscribe__fieldset">
           <h3 className="subscribe__title">Special Offer</h3>
           <p className="subscribe__subtitle">Subscribe<br />And <span
@@ -46,17 +46,18 @@ function Subscribe() {
             validateOnBlur
             onSubmit={(values, { resetForm }) => {
               if (values.mail) {
-                dispatch(postUserEmail(values));
+                dispatch(postUserEmail(
+                  {
+                    'values': values,
+                    'reset': resetForm
+                  }))
               }
-              resetForm({
-                mail: ""
-              });
             }}
             validationSchema={validatoinSchema}
           >
             {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
 
-              <div className="subscribe__formik">
+              <form className="subscribe__formik">
                 <input
                   type="email"
                   name={'mail'}
@@ -64,7 +65,7 @@ function Subscribe() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={responce === "OK" ? "" : values.mail}
+                  value={values.mail}
                   placeholder="Enter your email"
                   data-test-id='main-subscribe-mail-field'
                 ></input>
@@ -89,14 +90,14 @@ function Subscribe() {
                 <div className="subscribe__responce">
                   {responce === null ? "" : responce === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'subscribe' ? `${responce}` : ''}
                 </div>
-              </div>
+              </form>
             )}
           </Formik>
 
           <div className="subscribe__form-img-women"></div>
           <div className="subscribe__form-img-men"></div>
         </fieldset>
-      </form>
+      </div>
     </section>
   )
 }

@@ -33,7 +33,7 @@ function Footer() {
   const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
   const validatoinSchema = yup.object().shape({
     mail: yup.string()
-    .matches(emailRegex, "Введите email")
+      .matches(emailRegex, "Введите email")
   })
 
   function handleClickInput() {
@@ -49,8 +49,8 @@ function Footer() {
   }
   return (
     <footer className="footer" data-test-id='footer'>
-      <form className="footer__form">
-        <fieldset className="footer__fieldset">
+      <div className="footer__form">
+        <div className="footer__fieldset">
           <div className="footer__fieldset-text">
             <p className="footer__in-touch-text">BE IN TOUCH WITH US:</p>
           </div>
@@ -61,15 +61,22 @@ function Footer() {
               id: 'footer'
             }}
             validateOnBlur
-            onSubmit={(values) => {
+            onSubmit={(values, onSubmitProps) => {
+              let resetForm = () => {
+                onSubmitProps.resetForm()
+              }
               if (values.mail) {
-                dispatch(postUserEmail(values));
+                dispatch(postUserEmail(
+                  {
+                    'values': values,
+                    'reset': resetForm
+                  }))
               }
             }}
             validationSchema={validatoinSchema}
           >
             {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-              <div className="footer__field">
+              <form className="footer__field">
                 <input
                   type="email"
                   name='mail'
@@ -77,7 +84,7 @@ function Footer() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={responce === "OK" ?  "" : values.mail }
+                  value={values.mail}
                   placeholder="Enter your email"
                   data-test-id='footer-mail-field'
                 >
@@ -99,17 +106,17 @@ function Footer() {
                 {!isValid && <p className="footer__error">{errors.mail}</p>}
 
                 <div className="footer__responce">
-                  {responce === null ? "" : responce === "OK" && id === 'footer' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'footer' ? `${responce}`: ''}
+                  {responce === null ? "" : responce === "OK" && id === 'footer' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'footer' ? `${responce}` : ''}
                 </div>
-              </div>
+              </form>
             )}
           </Formik>
 
           <div className="footer__social-links">
             <SocialLinks />
           </div>
-        </fieldset>
-      </form>
+        </div>
+      </div>
 
       <section className="footer__nav">
         <article className="footer__nav-block">
