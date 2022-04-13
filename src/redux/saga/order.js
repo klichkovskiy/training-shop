@@ -1,9 +1,9 @@
 import { all, put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { PostProductsCart, responsePostProducts } from '../productBasket';
+import { PostProductsCart, responsePostProducts } from '../reducers/order';
 
 
-function* cartSagaPost(action) {
+function* orderSagaPost(action) {
   try {
     const responce = yield call(axios.post, "https://training.cleverland.by/shop/cart", {
       product: action.payload.product,
@@ -24,16 +24,17 @@ function* cartSagaPost(action) {
       cardDate: action.payload.cardDate,
       cardCVV: action.payload.cardCVV,
     });
-    yield console.log(responce)
+  console.log(responce);
     yield put(responsePostProducts(responce.statusText));
   } catch (err) {
+    console.log(err);
     yield put(responsePostProducts(err.message))
     console.log(err.message);
   }
 }
 
-function* cartSagaPostWatcher() {
-  yield all([takeLatest(PostProductsCart().type, cartSagaPost)]);
+function* orderSagaPostWatcher() {
+  yield all([takeLatest(PostProductsCart().type, orderSagaPost)]);
 }
 
-export default cartSagaPostWatcher;
+export default orderSagaPostWatcher;

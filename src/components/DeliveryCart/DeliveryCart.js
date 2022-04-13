@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import InputMask from 'react-input-mask';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkedMethod } from '../../redux/reducers/countryStore';
+import { checkedMethod } from '../../redux/reducers/country';
 import { checkedAdress, getAdressStore } from '../../redux/reducers/adress';
 import { useState } from 'react';
 //import classNames from 'classnames'
@@ -22,7 +22,7 @@ function DeliveryCart(props) {
   const dispatch = useDispatch();
   const dataCart = useSelector(state => state.order.data);
 
-  const countryStrore = useSelector(state => state.countryStore.countryStore);
+  const countryStrore = useSelector(state => state.country.countryStore);
 
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
 
@@ -57,8 +57,8 @@ function DeliveryCart(props) {
         validateOnBlur
         onSubmit={
           (values) => {
-            dispatch(postDeliveryInfo(values))
-            props.setIsActiveStepCart('three')
+            //dispatch(postDeliveryInfo(values))
+            //props.setIsActiveStepCart('three')
           }
         }
         validationSchema={
@@ -402,8 +402,9 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  //handleClickFurter()
-                  handleSubmit()
+                  //handleSubmit()
+                  dispatch(postDeliveryInfo(values))
+                  props.setIsActiveStepCart('three')
                 }}>
                 Further
               </button>

@@ -28,11 +28,11 @@ function PaymentCart(props) {
     <section className="payment-cart">
       <Formik
         initialValues={{
-          paymentMethod: 'visa',
-          cashEmail: '',
-          card: '',
-          cardDate: '',
-          cardCVV: ''
+          paymentMethod: dataCart.paymentMethod,
+          cashEmail: dataCart.cashEmail,
+          card: dataCart.card,
+          cardDate: dataCart.cardDate,
+          cardCVV: dataCart.cardCVV,
         }}
         validateOnBlur
         onSubmit={
@@ -40,7 +40,7 @@ function PaymentCart(props) {
             dispatch(postPayment(values))
 
             dispatch(PostProductsCart({
-              product: dataCart.product,
+              products: dataCart.products,
               deliveryMethod: dataCart.deliveryMethod,
               totalPrice: dataCart.totalPrice,
               phone: dataCart.phone,
@@ -52,7 +52,7 @@ function PaymentCart(props) {
               apartment: dataCart.apartment,
               postcode: dataCart.postcode,
               storeAddress: dataCart.storeAddress,
-              
+
               paymentMethod: values.paymentMethod,
               cashEmail: values.cashEmail,
               card: values.card,
@@ -205,7 +205,7 @@ function PaymentCart(props) {
                       <div className="payment-cart__input">
                         <input
                           maxLength={3}
-                          type={isVisiblePassword === true ? "password" : "text"}
+                          type={isVisiblePassword !== true ? "password" : "text"}
                           name={'cardCVV'}
                           className="payment-cart__item"
                           onChange={handleChange}
@@ -219,7 +219,7 @@ function PaymentCart(props) {
                           <p className="payment-cart__error">{errors.cardCVV}</p>
                         }
 
-                        <img src={isVisiblePassword ? iconEyeNot : iconEye}
+                        <img src={!isVisiblePassword ? iconEyeNot : iconEye}
                           onClick={() => { setIsVisiblePassword(!isVisiblePassword) }}
                           alt="Иконка глаза" className="payment-cart__icon-eye" />
                       </div>
@@ -259,11 +259,13 @@ function PaymentCart(props) {
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
                   handleSubmit()
+                  props.setIsActiveStepCart('four')
                 }}>
                 {values.paymentMethod === 'cash' ? 'READY' : 'Check Out'}
               </button>
               <button type="button" className='shopping-cart__button-view' onClick={() => {
                 props.setIsActiveStepCart('two')
+                dispatch(postPayment(values))
               }}>View Cart</button>
             </div>
 

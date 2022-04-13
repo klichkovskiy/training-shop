@@ -13,7 +13,7 @@ const countryStoreRegex = /^[а-яё]{0,}$/gi;
 const adressStoreRegex = /^[а-яё]{0,}$/gi;
 
 const cardRegex = /^(\d{4}\s?){4}$/gi;
-const cardDateRegex = /^\d{2}\/\d{2}$/gi;
+const cardDateRegex = /^((([0][5-9])|([1][0-2]))\/[2-9][2-9])|((([0][1-9])|([1][0-2]))\/[2-9][3-9])$/gi;
 const cardCVVRegex = /^\d{3}$/gi;
 
 export const validatoinSchemaMethodPickupFromPostOffices = yup.object().shape({

@@ -3,9 +3,18 @@ import { all } from 'redux-saga/effects';
 import rootSagaCards from './cards';
 import emailSagaPostWatcher from './email';
 import reviewSagaPostWatcher from './review';
-import countryStoreGet from './countryStore';
+import countrySagaGetWatcher from './country';
 import adressSagaGetWatcher from './adress';
+import orderSagaPostWatcher from './order';
+
 
 export default function* allSaga() {
-  yield all([rootSagaCards(), emailSagaPostWatcher(), reviewSagaPostWatcher(), countryStoreGet(), adressSagaGetWatcher()])
+  yield all([
+    rootSagaCards(),
+    emailSagaPostWatcher(),
+    reviewSagaPostWatcher(),
+    countrySagaGetWatcher(),
+    adressSagaGetWatcher(),
+    orderSagaPostWatcher()
+  ])
 }

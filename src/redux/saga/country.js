@@ -1,6 +1,6 @@
 import { all, put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
-import { checkedMethod, getCountryStore } from '../reducers/countryStore';
+import { checkedMethod, getCountryStore } from '../reducers/country';
 
 
 function* countryStoreSagaGet() {

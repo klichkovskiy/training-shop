@@ -10,14 +10,12 @@ const cartSlice = createSlice({
       state.itemsInCart.push(action.payload)
     },
     deleteItemFromCart: (state, action) => {
-      console.log(action);
       state.itemsInCart = state.itemsInCart.filter((card) =>
         card.size !== action.payload[0] ||
         card.color !== action.payload[1] ||
         card.name !== action.payload[2])
     },
     changeCounterPlus: (state, action) => {
-      
       state.itemsInCart.forEach((card) => {
         if (
           card.size === action.payload[0] &&
@@ -42,10 +40,13 @@ const cartSlice = createSlice({
           }
         }
       })
+    },
+    resetItemsInCart: (state) => {
+      state.itemsInCart = []
     }
 
   }
 })
 
-export const { setItemInCart, deleteItemFromCart, changeCounterPlus, changeCounterMinus } = cartSlice.actions;
+export const { setItemInCart, deleteItemFromCart, changeCounterPlus, changeCounterMinus, resetItemsInCart } = cartSlice.actions;
 export default cartSlice.reducer;

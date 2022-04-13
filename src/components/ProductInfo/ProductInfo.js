@@ -84,14 +84,14 @@ function ProductInfo(props) {
     const card = {size, color, name, image, price, quantity}
 
     if (isItemInCart) {
-      dispatch(deleteItemFromCart({size, color, name}))
+      dispatch(deleteItemFromCart([size, color, name]))
     } else {
       dispatch(setItemInCart(card))
     }
   }
 
   const cards = useSelector(state => state.cart.itemsInCart)
-  const isItemInCart = cards.some(item => item[0] === isSizeValue && item[1] === isColorValue && item[2] === props.card.name)
+  const isItemInCart = cards.some(item => item.size === isSizeValue && item.color === isColorValue && item.name === props.card.name)
 
 
   //Форма открытия отзыва
