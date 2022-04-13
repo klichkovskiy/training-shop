@@ -44,7 +44,6 @@ const cartSlice = createSlice({
     resetItemsInCart: (state) => {
       state.itemsInCart = []
     }
-
   }
 })
 

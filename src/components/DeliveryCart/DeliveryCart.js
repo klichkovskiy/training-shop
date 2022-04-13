@@ -13,7 +13,6 @@ import {
 } from '../../utils/validationSchema'
 import { postDeliveryInfo } from '../../redux/reducers/order';
 
-
 function DeliveryCart(props) {
   const [isMethodPickupFromPostOffices, setIsMethodPickupFromPostOffices] = useState(true);
   const [isMethodExpressDelivery, setIsMethodExpressDelivery] = useState(false);
