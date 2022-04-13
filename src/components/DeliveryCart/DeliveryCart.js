@@ -57,8 +57,8 @@ function DeliveryCart(props) {
         validateOnBlur
         onSubmit={
           (values) => {
-            //dispatch(postDeliveryInfo(values))
-            //props.setIsActiveStepCart('three')
+            dispatch(postDeliveryInfo(values))
+            props.setIsActiveStepCart('three')
           }
         }
         validationSchema={
@@ -402,9 +402,7 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  //handleSubmit()
-                  dispatch(postDeliveryInfo(values))
-                  props.setIsActiveStepCart('three')
+                  handleSubmit()
                 }}>
                 Further
               </button>
