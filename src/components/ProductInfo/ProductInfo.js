@@ -81,10 +81,10 @@ function ProductInfo(props) {
     const price = props.card.price
     const name = props.card.name
     const quantity = 1;
-    const card = [size, color, name, image, price, quantity]
+    const card = {size, color, name, image, price, quantity}
 
     if (isItemInCart) {
-      dispatch(deleteItemFromCart([size, color, name]))
+      dispatch(deleteItemFromCart({size, color, name}))
     } else {
       dispatch(setItemInCart(card))
     }
@@ -128,15 +128,6 @@ function ProductInfo(props) {
           document.getElementById('reviev-popap')
         )
       }
-
-      {/*<div className={classNames('product-info__form product-info__form-review',
-        { 'product-info__form product-info__form-review_active': isActiveFormReview })}>
-        <FormPostReview
-          idCard={props.card.id}
-          setIsActiveFormReview={setIsActiveFormReview}
-          setIsFixedFormReview={props.setIsActiveFormReview}
-        />
-      </div>*/}
 
       <form className="product-info__form">
         <fieldset className="product-info__color">

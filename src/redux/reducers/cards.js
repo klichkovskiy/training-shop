@@ -1,10 +1,9 @@
 const defaultState = {
-  itemsInCads: {
-    men: [],
-    women: [],
+  itemsInCards: {
   },
   isLoading: false,
   isError: false,
+  isSuccessData: false,
 };
 
 const cards = (state = defaultState, action) => {
@@ -12,16 +11,17 @@ const cards = (state = defaultState, action) => {
     case 'LOADING_DATA': {
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        itemsInCards: action.payload,
       };
     }
 
     case 'LOAD_SUCCESS_DATA': {
       return {
         ...state,
-        ...state.itemsInCads.men = action.payload.men,
-        ...state.itemsInCads.women = action.payload.women,
+        itemsInCards: action.payload,
         isLoading: false,
+        isSuccessData: true,
       };
     }
 

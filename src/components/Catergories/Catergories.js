@@ -10,7 +10,8 @@ import Filter from '../Filter/Filter';
 function Catergories(props) {
   const { isLoading } = useSelector((state) => state.cards);
   const [filteredСardsArr, setfilteredСardsArr] = useState(props.products);
-  const cards = useSelector(state => state.cards.itemsInCads[props.url])
+
+  const cards = useSelector(state => state.cards.itemsInCards[props.url])
   useEffect(() => {
     setfilteredСardsArr(cards);
   }, [cards]);

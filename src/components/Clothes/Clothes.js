@@ -20,7 +20,7 @@ function Clothes(props) {
       return true
     }
   }
-
+  
   return (
     <section className="сlothes" data-test-id={`clothes-${props.url}`}>
       <div className="сlothes__header">

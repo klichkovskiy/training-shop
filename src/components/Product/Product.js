@@ -8,6 +8,7 @@ import RelatedProducts from '../RelatedProducts/RelatedProducts';
 
 import { useSelector } from 'react-redux';
 
+
 function Product(props) {
   const history = useHistory()
 
@@ -16,8 +17,8 @@ function Product(props) {
       return data
     }
   }
-
-  const cards = useSelector(state => state.cards.itemsInCads)
+  const { isSuccessData } = useSelector((state) => state.cards);
+  const cards = useSelector(state => state.cards.itemsInCards)
 
   return (
     <div>

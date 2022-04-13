@@ -3,11 +3,13 @@ const axios = require('axios');
 
 function* loadCards() {
   const request = yield call(axios.get, 'https://training.cleverland.by/shop/products');
+  
   return request.data;
 }
 
 export function* loadingBasicData() {
-  yield put({ type: 'LOADING_DATA' });
+  const data = yield loadCards();
+  yield put({ type: 'LOADING_DATA', payload: data });
 }
 
 export function* loadSuccessBasicData() {

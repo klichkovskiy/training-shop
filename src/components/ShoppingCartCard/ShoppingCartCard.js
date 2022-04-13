@@ -18,7 +18,6 @@ function ShoppingCartCard(props) {
   function handlePlusCounter() {
     dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
-
   const totalPriceCard = props.price * props.quantity
   return (
     <article className='cart__card' data-test-id='cart-card'>

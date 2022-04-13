@@ -10,20 +10,22 @@ const cartSlice = createSlice({
       state.itemsInCart.push(action.payload)
     },
     deleteItemFromCart: (state, action) => {
+      console.log(action);
       state.itemsInCart = state.itemsInCart.filter((card) =>
-        card[0] !== action.payload[0] ||
-        card[1] !== action.payload[1] ||
-        card[2] !== action.payload[2])
+        card.size !== action.payload[0] ||
+        card.color !== action.payload[1] ||
+        card.name !== action.payload[2])
     },
     changeCounterPlus: (state, action) => {
+      
       state.itemsInCart.forEach((card) => {
         if (
-          card[0] === action.payload[0] &&
-          card[1] === action.payload[1] &&
-          card[2] === action.payload[2]
+          card.size === action.payload[0] &&
+          card.color === action.payload[1] &&
+          card.name === action.payload[2]
         ) {
-          if (card[5] >= 1) {
-            card[5] = card[5] + 1;
+          if (card.quantity >= 1) {
+            card.quantity = card.quantity + 1;
           }
         }
       })
@@ -31,12 +33,12 @@ const cartSlice = createSlice({
     changeCounterMinus: (state, action) => {
       state.itemsInCart.forEach((card) => {
         if (
-          card[0] === action.payload[0] &&
-          card[1] === action.payload[1] &&
-          card[2] === action.payload[2]
+          card.size === action.payload[0] &&
+          card.color === action.payload[1] &&
+          card.name === action.payload[2]
         ) {
-          if (card[5] > 1) {
-            card[5] = card[5] - 1;
+          if (card.quantity > 1) {
+            card.quantity = card.quantity - 1;
           }
         }
       })

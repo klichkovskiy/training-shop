@@ -33,13 +33,13 @@ function App() {
   const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);
   const [isActiveFormReview, setIsActiveFormReview] = useState(false);
 
-  const cardsMen = useSelector(state => state.cards.itemsInCads.men)
-  const cardsWomen = useSelector(state => state.cards.itemsInCads.women)
-  const cards = useSelector(state => state.cards.itemsInCads)
-  const { isLoading, isError } = useSelector((state) => state.cards);
+  const cardsMen = useSelector(state => state.cards.itemsInCards.men)
+  const cardsWomen = useSelector(state => state.cards.itemsInCards.women)
+  const cards = useSelector(state => state.cards.itemsInCards)
+  const { isLoading, isError, isSuccessData } = useSelector((state) => state.cards);
 
   return (
-    <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart || isActiveFormReview})} data-test-id='app'>
+    <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart || isActiveFormReview })} data-test-id='app'>
       <Header
         setIsActiveButtonMenu={setIsActiveButtonMenu}
         setIsActiveButtonCart={setIsActiveButtonCart}
@@ -57,37 +57,46 @@ function App() {
         <Switch>
 
           <Route exact path="/men">
-            <Catergories
-              key={PRODUCTS_MEN.id}
-              name='Men'
-              url={URL_MEN}
-              products={cardsMen}
-            />
+            {isSuccessData &&
+              <Catergories
+                key={PRODUCTS_MEN.id}
+                name='Men'
+                url={URL_MEN}
+                products={cardsMen}
+              />
+            }
           </Route>
 
           <Route exact path="/women">
-            <Catergories
-              key={PRODUCTS_WOMEN.id}
-              name='Women'
-              url={URL_WOMEN}
-              products={cardsWomen}
-            />
+            {isSuccessData &&
+              <Catergories
+                key={PRODUCTS_WOMEN.id}
+                name='Women'
+                url={URL_WOMEN}
+                products={cardsWomen}
+              />
+            }
           </Route>
 
           <Route exact path={`/${URL_WOMEN}/:id`}>
-            <Product
-              productType={PRODUCT_TYPE_WOMEN}
-              url={URL_WOMEN}
-              setIsActiveFormReview={setIsActiveFormReview}
-            />
+            {isSuccessData &&
+              <Product
+                productType={PRODUCT_TYPE_WOMEN}
+                url={URL_WOMEN}
+                setIsActiveFormReview={setIsActiveFormReview}
+              />
+            }
           </Route>
 
           <Route exact path={`/${URL_MEN}/:id`}>
-            <Product
-              productType={PRODUCT_TYPE_MEN}
-              url={URL_MEN}
-              setIsActiveFormReview={setIsActiveFormReview}
-            />
+            {isSuccessData &&
+              <Product
+                productType={PRODUCT_TYPE_MEN}
+                url={URL_MEN}
+                setIsActiveFormReview={setIsActiveFormReview}
+              />
+            }
+
           </Route>
 
           <Route path="/">
@@ -99,7 +108,7 @@ function App() {
 
         </Switch>
       </div>
-      
+
       <Footer />
     </div>
   );
