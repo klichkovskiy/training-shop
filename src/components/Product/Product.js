@@ -17,7 +17,7 @@ function Product(props) {
       return data
     }
   }
-  const { isSuccessData } = useSelector((state) => state.cards);
+
   const cards = useSelector(state => state.cards.itemsInCards)
 
   return (
