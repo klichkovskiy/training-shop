@@ -37,7 +37,6 @@ function DeliveryCart(props) {
 
   return (
     <section className="delivery-cart">
-
       <Formik
         initialValues={{
           deliveryMethod: 'pickup-from-post-offices',
@@ -154,7 +153,7 @@ function DeliveryCart(props) {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="+375 (__) _______"
-
+                    required
                   >
                   </InputMask>
 
@@ -175,7 +174,7 @@ function DeliveryCart(props) {
                     onBlur={handleBlur}
                     value={values.email}
                     placeholder="e-mail"
-
+                    required
                   >
                   </input>
                   {touched.email && errors.email &&
@@ -197,7 +196,7 @@ function DeliveryCart(props) {
                         onBlur={handleBlur}
                         value={values.country}
                         placeholder="Country"
-
+                        required
                       >
                       </input>
                       {touched.country && errors.country &&
@@ -214,7 +213,7 @@ function DeliveryCart(props) {
                         onBlur={handleBlur}
                         value={values.city}
                         placeholder="City"
-
+                        required
                       >
                       </input>
                       {touched.city && errors.city &&
@@ -231,7 +230,7 @@ function DeliveryCart(props) {
                         onBlur={handleBlur}
                         value={values.street}
                         placeholder="Street"
-
+                        required
                       >
                       </input>
                       {touched.street && errors.street &&
@@ -249,7 +248,7 @@ function DeliveryCart(props) {
                           onBlur={handleBlur}
                           value={values.house}
                           placeholder="House"
-
+                          required
                         >
                         </input>
                         {touched.house && errors.house &&
@@ -291,7 +290,7 @@ function DeliveryCart(props) {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       placeholder="BY ______"
-
+                      required
                     >
                     </InputMask>
 

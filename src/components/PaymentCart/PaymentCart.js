@@ -37,7 +37,6 @@ function PaymentCart(props) {
         validateOnBlur
         onSubmit={
           (values) => {
-            dispatch(postPayment(values))
 
             dispatch(PostProductsCart({
               products: dataCart.products,
@@ -59,6 +58,7 @@ function PaymentCart(props) {
               cardDate: values.cardDate,
               cardCVV: values.cardCVV,
             }));
+            props.setIsActiveStepCart('four')
           }
         }
         validationSchema={
@@ -213,6 +213,7 @@ function PaymentCart(props) {
                           value={values.cardCVV}
                           placeholder="CVV"
                           suggested="current-password"
+                          required
                         >
                         </input>
                         {touched.cardCVV && errors.cardCVV &&
@@ -259,7 +260,7 @@ function PaymentCart(props) {
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
                   handleSubmit()
-                  props.setIsActiveStepCart('four')
+                  
                 }}>
                 {values.paymentMethod === 'cash' ? 'READY' : 'Check Out'}
               </button>
