@@ -20,8 +20,8 @@ function DeliveryCart(props) {
 
   const dispatch = useDispatch();
   const dataCart = useSelector(state => state.order.data);
-  console.log(dataCart)
   const countryStrore = useSelector(state => state.country.countryStore);
+  const adressState = useSelector(state => state.adress);
 
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
 
@@ -32,8 +32,8 @@ function DeliveryCart(props) {
     if (adress.target.value.length < 3) {
       dispatch(checkedAdress({ checked: false, adress: '', country: '' }))
     }
+
   }
-  const adressState = useSelector(state => state.adress);
 
   return (
     <section className="delivery-cart">
@@ -49,6 +49,7 @@ function DeliveryCart(props) {
           house: dataCart.house,
           apartment: dataCart.apartment,
           postcode: dataCart.postcode,
+          
           countryStore: adressState.selectedСountry,
           adressStore: adressState.inputAdress,
           agree: false
@@ -340,7 +341,7 @@ function DeliveryCart(props) {
                     <input
                       type="text"
                       name={'adressStore'}
-                      className="delivery-cart__item"
+                      className="delivery-cart__item delivery-cart__item-adress"
                       onChange={(e) => {
                         handleChange(e);
                         onChangeAdressStore(e);
@@ -365,10 +366,17 @@ function DeliveryCart(props) {
                     </datalist>
 
                     {touched.adressStore && errors.adressStore &&
+                      (values.countryStore !== 'Country' && values.countryStore !== '') &&
                       <p className="delivery-cart__error">{errors.adressStore}</p>
                     }
                     {values.adressStore.length >= 3 && adressState.adressStore.length === 0 &&
                       <p className="delivery-cart__not-find">Не найдено ни одного города</p>
+                    }
+
+                    {adressState.adressStore.some(data => data.city === values.adressStore) === false &&
+                      (values.countryStore !== 'Country' && values.countryStore !== '') &&
+                      values.adressStore.length >= 3 && adressState.adressStore.length > 0 ?
+                      <p className="delivery-cart__not-list">Выберите город из списка</p> : ''
                     }
                   </div>
                 </div>}
@@ -401,7 +409,14 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  handleSubmit()
+                  if (values.adressStore !== '') {
+                    if (adressState.adressStore.some(data => data.city === values.adressStore)) {
+                      handleSubmit()
+                    }
+                  } else {
+                    handleSubmit()
+                  }
+                  
                 }}>
                 Further
               </button>

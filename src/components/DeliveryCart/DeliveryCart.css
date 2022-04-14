@@ -66,6 +66,11 @@
   width: 92%;
   height: 48px;
   padding-left: 16px;
+  margin-bottom: 40px;
+}
+
+.delivery-cart__item-adress{
+  margin-bottom: 50px;
 }
 
 .delivery-cart__phone{
@@ -74,10 +79,6 @@
 
 .delivery-cart__title{
   margin-bottom: 8px;
-}
-
-.delivery-cart__item{
-  margin-bottom: 40px;
 }
 
 .delivery-cart__input{
@@ -104,7 +105,19 @@
   line-height: 18px;
   color: #D61313;
   left: 0;
-  bottom: 22px;
+  bottom: 25px;
+  white-space: nowrap;
+}
+
+.delivery-cart__not-list{
+  position: absolute;
+  margin: 0;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 18px;
+  color: #D61313;
+  left: 0;
+  bottom: -2px;
   white-space: nowrap;
 }
 

@@ -15,6 +15,7 @@ function ShoppingCartPopup(props) {
   function handleClickCloseCart() {
     props.setIsStateButtonCart(false)
     props.setIsActiveButtonCart(false)
+    setIsActiveStepCart('one')
     dispatch(resetProductsCart())
     dispatch(resetAdressStore())
     dispatch(resetCountryStore())
