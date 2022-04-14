@@ -21,7 +21,7 @@ const initialState = {
     house: "",
     apartment: "",
     postcode: "",
-    storeAddress: "",
+    storeAdress: "",
 
     paymentMethod: "visa",
     cashEmail: "",
@@ -48,7 +48,7 @@ export default createReducer(initialState, {
     state.data.apartment = action.payload.apartment;
     state.data.postcode = action.payload.postcode;
     state.data.country = action.payload.countryStore;
-    state.data.storeAddress = action.payload.adressStore;
+    state.data.storeAdress = action.payload.adressStore;
   },
   [postPayment]: (state, action) => {
     state.data.paymentMethod = action.payload.paymentMethod;
@@ -75,7 +75,7 @@ export default createReducer(initialState, {
     state.data.house = "";
     state.data.apartment = "";
     state.data.postcode = "";
-    state.data.storeAddress = "";
+    state.data.storeAdress = "";
     state.data.paymentMethod = "visa";
     state.data.cashEmail = "";
     state.data.card = "";

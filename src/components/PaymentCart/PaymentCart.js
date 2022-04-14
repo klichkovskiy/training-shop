@@ -50,7 +50,7 @@ function PaymentCart(props) {
               house: dataCart.house,
               apartment: dataCart.apartment,
               postcode: dataCart.postcode,
-              storeAddress: dataCart.storeAddress,
+              storeAdress: dataCart.storeAdress,
 
               paymentMethod: values.paymentMethod,
               cashEmail: values.cashEmail,
@@ -157,7 +157,7 @@ function PaymentCart(props) {
                     >
                     </input>
                     <label htmlFor='cash' className="payment-cart__method-label">
-                      CASH
+                      Cash
                     </label>
                   </div>
 
