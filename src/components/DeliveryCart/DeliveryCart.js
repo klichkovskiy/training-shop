@@ -20,7 +20,7 @@ function DeliveryCart(props) {
 
   const dispatch = useDispatch();
   const dataCart = useSelector(state => state.order.data);
-
+  console.log(dataCart)
   const countryStrore = useSelector(state => state.country.countryStore);
 
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
@@ -407,6 +407,7 @@ function DeliveryCart(props) {
               </button>
               <button type="button" className='shopping-cart__button-view' onClick={() => {
                 props.setIsActiveStepCart('one');
+                dispatch(postDeliveryInfo(values))
               }}>View Cart</button>
             </div>
 
