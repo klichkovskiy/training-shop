@@ -155,6 +155,9 @@ function ShoppingCartPopup(props) {
               <button type="button" className='shopping-cart__button-view'
                 onClick={() => {
                   setIsActiveStepCart('one')
+                  dispatch(resetProductsCart())
+                  dispatch(resetAdressStore())
+                  dispatch(resetCountryStore())
                 }}
               >View Cart</button>
             </div>
