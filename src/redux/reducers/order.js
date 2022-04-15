@@ -47,8 +47,6 @@ export default createReducer(initialState, {
     state.data.house = action.payload.house;
     state.data.apartment = action.payload.apartment;
     state.data.postcode = action.payload.postcode;
-    state.data.country = action.payload.countryStore;
-    state.data.storeAdress = action.payload.adressStore;
   },
   [postPayment]: (state, action) => {
     state.data.paymentMethod = action.payload.paymentMethod;
