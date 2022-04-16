@@ -152,7 +152,7 @@
 }
 
 .shopping-cart__cards{
-  height: calc(100vh - 322px);
+  height: calc(100vh - 262px);
   overflow: auto;
   margin: 32px 24px 0px;
   display: grid;

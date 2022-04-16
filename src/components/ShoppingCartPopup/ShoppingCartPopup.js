@@ -99,7 +99,6 @@ function ShoppingCartPopup(props) {
                   handleClickFurter()
                 }}
               >Further</button>
-              <button type="button" onClick={handleClickCloseCart} className='shopping-cart__button-view'>View Cart</button>
             </div>
           </form>}
 
