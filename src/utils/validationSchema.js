@@ -13,7 +13,34 @@ const countryStoreRegex = /^[а-яё]{0,}$/gi;
 const adressStoreRegex = /^[а-яё]{0,}$/gi;
 
 const cardRegex = /^(\d{4}\s?){4}$/gi;
-const cardDateRegex = /^((([0][5-9])|([1][0-2]))\/[2-9][2-9])|((([0][1-9])|([1][0-2]))\/[2-9][3-9])$/gi;
+
+const date = new Date();
+const yearStart = Number(date.getFullYear().toString().slice(2, 3));
+const yearFinish = Number(date.getFullYear().toString().slice(-1));
+const month = date.getMonth() + 1;
+let cardDateRegex
+if (month < 9) {
+  if (yearFinish === 9) {
+    cardDateRegex = new RegExp(`^((([0][${month + 1}-9])|([1][0-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
+  } else {
+    cardDateRegex = new RegExp(`^((([0][${month + 1}-9])|([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+  }
+} else if (month > 9) {
+  const monthFinish = Number(month.toString().slice(-1));
+  if (yearFinish === 9) {
+    cardDateRegex = new RegExp(`^((([1][${monthFinish + 1}-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
+  } else {
+    cardDateRegex = new RegExp(`^((([1][${monthFinish + 1}-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+  }
+}
+else if (month === 9) {
+  if (yearFinish === 9) {
+    cardDateRegex = new RegExp(`^((([1][0-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
+  } else {
+    cardDateRegex = new RegExp(`^((([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+  }
+}
+
 const cardCVVRegex = /^\d{3}$/gi;
 
 export const validatoinSchemaMethodPickupFromPostOffices = yup.object().shape({
@@ -71,7 +98,7 @@ export const validatoinSchemaMethodExpressDelivery = yup.object().shape({
 
 export const validatoinSchemaMethodStorePickup = yup.object().shape({
   phone: yup.string()
-    .matches(phoneRegex, "Поле должно быть заполнено")
+    .matches(phoneRegex, "Неверный формат телефона")
     .required('Поле должно быть заполнено'),
   email: yup.string()
     .matches(emailRegex, "Неверный формат email")
