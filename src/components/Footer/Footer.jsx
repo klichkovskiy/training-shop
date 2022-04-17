@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import * as yup from 'yup'
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames'

@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-import * as yup from 'yup'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux';
 
