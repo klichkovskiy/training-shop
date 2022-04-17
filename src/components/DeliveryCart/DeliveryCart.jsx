@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 import { checkedMethod } from '../../redux/reducers/country';
 import { checkedAdress, getAdressStore } from '../../redux/reducers/adress';
-import { postDeliveryInfo } from '../../redux/reducers/order';
+import { postDeliveryInfo, pullAgreeChecked } from '../../redux/reducers/order';
 
 import {
   validatoinSchemaMethodPickupFromPostOffices,
@@ -16,14 +16,15 @@ import {
 import { DELIVERY_METHOD } from '../../constants/constants';
 
 function DeliveryCart(props) {
-  const [isMethodPickupFromPostOffices, setIsMethodPickupFromPostOffices] = useState(true);
-  const [isMethodExpressDelivery, setIsMethodExpressDelivery] = useState(false);
-  const [isMethodStorePickup, setIsMethodStorePickup] = useState(false);
-
   const dispatch = useDispatch();
+  
   const dataCart = useSelector(state => state.order.data);
   const countryStrore = useSelector(state => state.country.countryStore);
   const adressState = useSelector(state => state.adress);
+
+  const [isMethodPickupFromPostOffices, setIsMethodPickupFromPostOffices] = useState(dataCart.deliveryMethod === DELIVERY_METHOD.pickupFromPostOffices);
+  const [isMethodExpressDelivery, setIsMethodExpressDelivery] = useState(dataCart.deliveryMethod === DELIVERY_METHOD.expressDelivery);
+  const [isMethodStorePickup, setIsMethodStorePickup] = useState(dataCart.deliveryMethod === DELIVERY_METHOD.storePickup);
 
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
 
@@ -81,7 +82,7 @@ function DeliveryCart(props) {
     <section className="delivery-cart">
       <Formik
         initialValues={{
-          deliveryMethod: 'pickup-from-post-offices',
+          deliveryMethod: dataCart.deliveryMethod,
           phone: dataCart.phone,
           email: dataCart.email,
           country: dataCart.country,
@@ -93,7 +94,7 @@ function DeliveryCart(props) {
 
           countryStore: adressState.selectedСountry,
           adressStore: adressState.inputAdress,
-          agree: false
+          agree: dataCart.agree
         }}
         validateOnBlur
         onSubmit={(values) => {
@@ -104,8 +105,7 @@ function DeliveryCart(props) {
           } else {
             onSubmitForm(values)
           }
-        }
-        }
+        }}
         validationSchema={
           onValidationShema()
         }
@@ -126,7 +126,7 @@ function DeliveryCart(props) {
                       name='deliveryMethod'
                       onChange={handleChange}
                       id={DELIVERY_METHOD.pickupFromPostOffices}
-                      defaultChecked
+                      checked={isMethodPickupFromPostOffices}
                       onClick={() => { onClickMethodPickupFromPostOffices() }}
                     >
                     </input>
@@ -144,6 +144,7 @@ function DeliveryCart(props) {
                       name='deliveryMethod'
                       onChange={handleChange}
                       id={DELIVERY_METHOD.expressDelivery}
+                      checked={isMethodExpressDelivery}
                       onClick={() => { onClickMethodExpressDeliver() }}
                     >
                     </input>
@@ -161,6 +162,7 @@ function DeliveryCart(props) {
                       name='deliveryMethod'
                       onChange={handleChange}
                       id={DELIVERY_METHOD.storePickup}
+                      checked={isMethodStorePickup}
                       onClick={() => { onClickMethodStorePickup() }}
                     >
                     </input>
@@ -417,7 +419,8 @@ function DeliveryCart(props) {
                   className="delivery-cart__agree-item"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.agree}
+                  //value={values.agree}
+                  checked={values.agree}
                   id='agree'
 
                 >
@@ -438,13 +441,14 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  if (values.adressStore !== '') {
-                    if (adressState.adressStore.some(data => data.city === values.adressStore)) {
-                      handleSubmit()
-                    }
+                  if(isValid) {
+                    dispatch(pullAgreeChecked(true))
+                    values.agree = true
                   } else {
-                    handleSubmit()
+                    dispatch(pullAgreeChecked(false))
+                    values.agree = false
                   }
+                  handleSubmit()
                 }}>
                 Further
               </button>
