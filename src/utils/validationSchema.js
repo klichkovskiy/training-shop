@@ -23,21 +23,21 @@ if (month < 9) {
   if (yearFinish === 9) {
     cardDateRegex = new RegExp(`^((([0][${month + 1}-9])|([1][0-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
   } else {
-    cardDateRegex = new RegExp(`^((([0][${month + 1}-9])|([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+    cardDateRegex = new RegExp(`^((([0][${month + 1}-9])|([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart + 1}-9][0-9])))$`);
   }
 } else if (month > 9) {
   const monthFinish = Number(month.toString().slice(-1));
   if (yearFinish === 9) {
     cardDateRegex = new RegExp(`^((([1][${monthFinish + 1}-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
   } else {
-    cardDateRegex = new RegExp(`^((([1][${monthFinish + 1}-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+    cardDateRegex = new RegExp(`^((([1][${monthFinish + 1}-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart + 1}-9][0-9])))$`);
   }
 }
 else if (month === 9) {
   if (yearFinish === 9) {
     cardDateRegex = new RegExp(`^((([1][0-2]))/[${yearStart}-9][9])|((([0][1-9])|([1][0-2]))/[${yearStart + 1}-9][0])$`);
   } else {
-    cardDateRegex = new RegExp(`^((([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart+1}-9][0-9])))$`);
+    cardDateRegex = new RegExp(`^((([1][0-2]))/[${yearStart}-9][${yearFinish}-9])|((([0][1-9])|([1][0-2]))/(([${yearStart}-9][${yearFinish + 1}-9])|([${yearStart + 1}-9][0-9])))$`);
   }
 }
 
@@ -106,7 +106,7 @@ export const validatoinSchemaMethodStorePickup = yup.object().shape({
   countryStore: yup.string()
     .matches(countryStoreRegex, "Поле должно быть заполнено")
     .required('Поле должно быть заполнено'),
-    storeAddress: yup.string()
+  storeAddress: yup.string()
     .matches(adressStoreRegex, "Поле должно быть заполнено кирилицей")
     .required('Поле должно быть заполнено'),
   agree: yup.boolean()
