@@ -29,6 +29,7 @@ function DeliveryCart(props) {
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
 
   function onChangeAdressStore(adress) {
+    console.log(adress);
     if (adress.target.value.length >= 3) {
       dispatch(checkedAdress({ checked: true, adress: adress.target.value, country: isSelectedСountry }))
     }
@@ -93,13 +94,13 @@ function DeliveryCart(props) {
           postcode: dataCart.postcode,
 
           countryStore: adressState.selectedСountry,
-          adressStore: adressState.inputAdress,
+          storeAddress: adressState.inputAdress,
           agree: dataCart.agree
         }}
         validateOnBlur
         onSubmit={(values) => {
-          if (values.adressStore !== '') {
-            if (adressState.adressStore.some(data => data.city === values.adressStore)) {
+          if (values.storeAddress !== '') {
+            if (adressState.storeAddress.some(data => data.city === values.storeAddress)) {
               onSubmitForm(values)
             }
           } else {
@@ -371,7 +372,7 @@ function DeliveryCart(props) {
                   <div className="delivery-cart__input">
                     <input
                       type="text"
-                      name={'adressStore'}
+                      name={'storeAddress'}
                       className="delivery-cart__item delivery-cart__item-adress"
                       onChange={(e) => {
                         handleChange(e);
@@ -380,13 +381,13 @@ function DeliveryCart(props) {
                       onBlur={handleBlur}
                       placeholder="Store adress"
                       disabled={(values.countryStore !== 'Country') ? false : true}
-                      value={values.adressStore}
+                      value={values.storeAddress}
                       list="city-list"
                       autoComplete='off'
                     >
                     </input>
                     <datalist id="city-list">
-                      {adressState.adressStore.map(({ city, _id }) => (
+                      {adressState.storeAddress.map(({ city, _id }) => (
                         <option
                           key={_id}
                           value={city}
@@ -396,17 +397,17 @@ function DeliveryCart(props) {
                       ))}
                     </datalist>
 
-                    {touched.adressStore && errors.adressStore &&
+                    {touched.storeAddress && errors.storeAddress &&
                       (values.countryStore !== 'Country' && values.countryStore !== '') &&
-                      <p className="delivery-cart__error">{errors.adressStore}</p>
+                      <p className="delivery-cart__error">{errors.storeAddress}</p>
                     }
-                    {values.adressStore.length >= 3 && adressState.adressStore.length === 0 &&
+                    {values.storeAddress.length >= 3 && adressState.storeAddress.length === 0 &&
                       <p className="delivery-cart__not-find">Не найдено ни одного города</p>
                     }
 
-                    {adressState.adressStore.some(data => data.city === values.adressStore) === false &&
+                    {adressState.storeAddress.some(data => data.city === values.storeAddress) === false &&
                       (values.countryStore !== 'Country' && values.countryStore !== '') &&
-                      values.adressStore.length >= 3 && adressState.adressStore.length > 0 ?
+                      values.storeAddress.length >= 3 && adressState.storeAddress.length > 0 ?
                       <p className="delivery-cart__not-list">Выберите город из списка</p> : ''
                     }
                   </div>
@@ -419,7 +420,6 @@ function DeliveryCart(props) {
                   className="delivery-cart__agree-item"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  //value={values.agree}
                   checked={values.agree}
                   id='agree'
 
@@ -441,6 +441,7 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
+                  console.log(isValid);
                   if(isValid) {
                     dispatch(pullAgreeChecked(true))
                     values.agree = true

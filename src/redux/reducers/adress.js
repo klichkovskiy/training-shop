@@ -5,7 +5,7 @@ export const checkedAdress = createAction('CHECKED_ADRESS');
 export const resetAdressStore = createAction('RESET_ADRESS_STORE');
 
 const initialState = {
-  adressStore: [],
+  storeAddress: [],
   selectedСountry: 'Country',
   inputAdress: '',
   checkedAdress: false
@@ -18,11 +18,11 @@ export default createReducer(initialState, {
     state.checkedAdress = action.payload.checked;
   },
   [getAdressStore]: (state, action) => {
-    state.adressStore = action.payload.data;
+    state.storeAddress = action.payload.data;
     state.checkedAdress = false;
   },
   [resetAdressStore]: (state) => {
-    state.adressStore = [];
+    state.storeAddress = [];
     state.selectedСountry = 'Country';
     state.inputAdress = '';
     state.checkedAdress = false;

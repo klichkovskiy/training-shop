@@ -23,7 +23,7 @@ const initialState = {
     house: "",
     apartment: "",
     postcode: "",
-    storeAdress: "",
+    storeAddress: "",
 
     agree: false,
 
@@ -81,7 +81,7 @@ export default createReducer(initialState, {
     state.data.house = "";
     state.data.apartment = "";
     state.data.postcode = "";
-    state.data.storeAdress = "";
+    state.data.storeAddress = "";
     state.data.agree = false;
     state.data.paymentMethod = "visa";
     state.data.cashEmail = "";

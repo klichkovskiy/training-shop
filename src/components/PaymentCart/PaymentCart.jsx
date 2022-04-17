@@ -50,7 +50,7 @@ function PaymentCart(props) {
               house: dataCart.house,
               apartment: dataCart.apartment,
               postcode: dataCart.postcode,
-              storeAdress: dataCart.storeAdress,
+              storeAddress: dataCart.storeAddress,
 
               paymentMethod: values.paymentMethod,
               cashEmail: values.cashEmail,

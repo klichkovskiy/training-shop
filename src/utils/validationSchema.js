@@ -106,7 +106,7 @@ export const validatoinSchemaMethodStorePickup = yup.object().shape({
   countryStore: yup.string()
     .matches(countryStoreRegex, "Поле должно быть заполнено")
     .required('Поле должно быть заполнено'),
-  adressStore: yup.string()
+    storeAddress: yup.string()
     .matches(adressStoreRegex, "Поле должно быть заполнено кирилицей")
     .required('Поле должно быть заполнено'),
   agree: yup.boolean()
