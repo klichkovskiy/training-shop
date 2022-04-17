@@ -20,6 +20,7 @@ function ShoppingCartPopup(props) {
     dispatch(resetAdressStore())
     dispatch(resetCountryStore())
   }
+  
 
   const cards = useSelector(state => state.cart.itemsInCart)
   const totalValue = cards.reduce((acc, card) => acc += card.price * card.quantity, 0)
@@ -36,6 +37,28 @@ function ShoppingCartPopup(props) {
       totalPrice: totalValue.toFixed(2)
     }))
   }
+
+  function onClickBackToShopping() {
+    handleClickCloseCart();
+    setIsActiveStepCart('one')
+    dispatch(resetItemsInCart())
+    dispatch(resetProductsCart())
+    dispatch(resetAdressStore())
+    dispatch(resetCountryStore())
+  }
+
+  function onClickViewCart() {
+    setIsActiveStepCart('one')
+    dispatch(resetProductsCart())
+    dispatch(resetAdressStore())
+    dispatch(resetCountryStore())
+  }
+
+  function onClickBackToPayment() {
+    setIsActiveStepCart('three')
+  }
+
+  
 
   return (
     <section className={classNames('shopping-cart', { 'shopping-cart_active': props.isStateButtonCart })} data-test-id='cart'>
@@ -127,12 +150,7 @@ function ShoppingCartPopup(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  handleClickCloseCart();
-                  setIsActiveStepCart('one')
-                  dispatch(resetItemsInCart())
-                  dispatch(resetProductsCart())
-                  dispatch(resetAdressStore())
-                  dispatch(resetCountryStore())
+                  onClickBackToShopping()
                 }}
               >back to shopping</button>
             </div>
@@ -148,15 +166,12 @@ function ShoppingCartPopup(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  setIsActiveStepCart('three')
+                  onClickBackToPayment()
                 }}
               >Back to payment</button>
               <button type="button" className='shopping-cart__button-view'
                 onClick={() => {
-                  setIsActiveStepCart('one')
-                  dispatch(resetProductsCart())
-                  dispatch(resetAdressStore())
-                  dispatch(resetCountryStore())
+                  onClickViewCart()
                 }}
               >View Cart</button>
             </div>
