@@ -130,3 +130,8 @@ export const validatoinSchemaMethodCard = yup.object().shape({
     .matches(cardCVVRegex, "Неверные данные")
     .required('Поле должно быть заполнено'),
 });
+
+export const validatoinSchemaEmail = yup.object().shape({
+  mail: yup.string()
+    .matches(emailRegex, "Введите email")
+});

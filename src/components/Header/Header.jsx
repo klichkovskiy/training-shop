@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classNames from 'classnames'
@@ -7,11 +7,9 @@ import SocialLinks from '../SocialLinks/SocialLinks';
 import ShoppingCartPopup from '../ShoppingCartPopup/ShoppingCartPopup';
 
 import logo from '../../images/logo.svg';
-
 import iconPhone from '../../images/icon_phone.svg';
 import iconAddress from '../../images/icon_address.svg';
 import iconWeek from '../../images/icon_week.svg';
-
 import iconSearch from '../../images/icon_search.svg';
 import iconGlobe from '../../images/icon_globe.svg';
 import iconUser from '../../images/icon_user.svg';

@@ -2,8 +2,12 @@ import { Formik } from 'formik';
 import * as yup from 'yup'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux';
-import { postUserEmail, reseptionResponseEmail } from '../../redux/reducers/email';
+
 import Preloader from '../Preloader/Preloader';
+
+import { postUserEmail, reseptionResponseEmail } from '../../redux/reducers/email';
+
+import { validatoinSchemaEmail } from '../../utils/validationSchema'
 
 function Subscribe() {
   const dispatch = useDispatch();
@@ -11,13 +15,6 @@ function Subscribe() {
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
   const responce = useSelector(state => state.email.serverResponce);
   const id = useSelector(state => state.email.id);
-
-
-  const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-  const validatoinSchema = yup.object().shape({
-    mail: yup.string()
-      .matches(emailRegex, "Введите email")
-  })
 
   function handleClickInput() {
     dispatch(reseptionResponseEmail(null))
@@ -52,7 +49,7 @@ function Subscribe() {
                 mail: ""
               });
             }}
-            validationSchema={validatoinSchema}
+            validationSchema={validatoinSchemaEmail}
           >
             {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
 

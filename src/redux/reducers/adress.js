@@ -6,7 +6,7 @@ export const resetAdressStore = createAction('RESET_ADRESS_STORE');
 
 const initialState = {
   adressStore: [],
-  selectedСountry: '',
+  selectedСountry: 'Country',
   inputAdress: '',
   checkedAdress: false
 }
@@ -23,7 +23,7 @@ export default createReducer(initialState, {
   },
   [resetAdressStore]: (state) => {
     state.adressStore = [];
-    state.selectedСountry = '';
+    state.selectedСountry = 'Country';
     state.inputAdress = '';
     state.checkedAdress = false;
   },

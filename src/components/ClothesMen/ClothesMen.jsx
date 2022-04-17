@@ -4,7 +4,7 @@ import Card from '../Card/Card';
 
 import { PRODUCTS_MEN } from '../../constants/constants';
 
-function ClothesMen(props) {
+function ClothesMen() {
   return (
     <section className="clothes-men">
       <div className="clothes-men__header">

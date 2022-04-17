@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { changeCounterPlus, changeCounterMinus, deleteItemFromCart } from '../../redux/reducers/cart';
 
 import iconTrash from '../../images/icon_trash.svg';

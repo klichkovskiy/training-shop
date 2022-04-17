@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -7,15 +7,13 @@ import classNames from 'classnames'
 import RatingStar from '../RatingStar/RatingStar';
 import FormPostReview from '../FormPostReview/FormPostReview';
 
+import { deleteItemFromCart, setItemInCart } from '../../redux/reducers/cart';
 
 import iconHanger from '../../images/icon_hanger.svg';
-
 import iconCar from '../../images/icon_car.svg';
 import iconReturn from '../../images/icon_return.svg';
 import iconLetter from '../../images/icon_letter.svg';
-
 import iconComent from '../../images/icon_coment.svg';
-
 import iconStripe from '../../images/stripe.png';
 import iconAes from '../../images/aes256.png';
 import iconPayPal from '../../images/paypal.png';
@@ -23,7 +21,7 @@ import iconVisa from '../../images/visa.png';
 import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
-import { deleteItemFromCart, setItemInCart } from '../../redux/reducers/cart';
+
 
 
 function ProductInfo(props) {

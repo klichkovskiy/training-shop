@@ -1,16 +1,20 @@
 import { Formik } from 'formik';
 import * as yup from 'yup'
 import { NavLink } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames'
 
 import SocialLinks from '../SocialLinks/SocialLinks';
+import Preloader from '../Preloader/Preloader';
+
+import { reseptionResponseEmail, postUserEmail } from '../../redux/reducers/email';
+
+import { validatoinSchemaEmail } from '../../utils/validationSchema'
 
 import iconPhone from '../../images/icon_phone.svg';
 import iconAddress from '../../images/icon_address-border.svg';
 import iconWeek from '../../images/icon_week-border.svg';
 import iconLetter from '../../images/icon_letter.svg';
-
-
 import iconStripe from '../../images/stripe.png';
 import iconAes from '../../images/aes256.png';
 import iconPayPal from '../../images/paypal.png';
@@ -18,10 +22,6 @@ import iconVisa from '../../images/visa.png';
 import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { reseptionResponseEmail, postUserEmail } from '../../redux/reducers/email';
-import Preloader from '../Preloader/Preloader';
-
 
 function Footer() {
   const dispatch = useDispatch();
@@ -29,12 +29,6 @@ function Footer() {
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
   const responce = useSelector(state => state.email.serverResponce);
   const id = useSelector(state => state.email.id);
-
-  const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-  const validatoinSchema = yup.object().shape({
-    mail: yup.string()
-    .matches(emailRegex, "Введите email")
-  })
 
   function handleClickInput() {
     dispatch(reseptionResponseEmail(null))
@@ -61,12 +55,15 @@ function Footer() {
               id: 'footer'
             }}
             validateOnBlur
-            onSubmit={(values) => {
+            onSubmit={(values, { resetForm }) => {
               if (values.mail) {
                 dispatch(postUserEmail(values));
               }
+              resetForm({
+                mail: ""
+              });
             }}
-            validationSchema={validatoinSchema}
+            validationSchema={validatoinSchemaEmail}
           >
             {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
               <div className="footer__field">

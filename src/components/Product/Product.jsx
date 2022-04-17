@@ -1,13 +1,11 @@
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import RatingStar from '../RatingStar/RatingStar';
 import CarouselImages from '../CarouselImages/CarouselImages';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
-
-import { useSelector } from 'react-redux';
-
 
 function Product(props) {
   const history = useHistory()

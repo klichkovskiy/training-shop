@@ -1,3 +1,5 @@
+import { useSelector } from 'react-redux';
+
 import Banner from '../Banner/Banner';
 import Advantage from '../Advantage/Advantage';
 import Clothes from '../Clothes/Clothes';
@@ -7,7 +9,7 @@ import LatestBlog from '../LatestBlog/LatestBlog';
 
 import { URL_WOMEN } from '../../constants/constants';
 import { URL_MEN } from '../../constants/constants';
-import { useSelector } from 'react-redux';
+
 
 function Main(props) {
   const { isSuccessData } = useSelector((state) => state.cards);

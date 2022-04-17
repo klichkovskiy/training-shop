@@ -1,17 +1,19 @@
 import { Formik } from 'formik';
 import InputMask from 'react-input-mask';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+
 import { checkedMethod } from '../../redux/reducers/country';
 import { checkedAdress, getAdressStore } from '../../redux/reducers/adress';
-import { useState } from 'react';
-//import classNames from 'classnames'
+import { postDeliveryInfo } from '../../redux/reducers/order';
 
 import {
   validatoinSchemaMethodPickupFromPostOffices,
   validatoinSchemaMethodExpressDelivery,
   validatoinSchemaMethodStorePickup
 } from '../../utils/validationSchema'
-import { postDeliveryInfo } from '../../redux/reducers/order';
+
+import { DELIVERY_METHOD } from '../../constants/constants';
 
 function DeliveryCart(props) {
   const [isMethodPickupFromPostOffices, setIsMethodPickupFromPostOffices] = useState(true);
@@ -32,7 +34,47 @@ function DeliveryCart(props) {
     if (adress.target.value.length < 3) {
       dispatch(checkedAdress({ checked: false, adress: '', country: '' }))
     }
+  }
 
+  function onSubmitForm(data) {
+    dispatch(postDeliveryInfo(data))
+    props.setIsActiveStepCart('three')
+  }
+
+  function onValidationShema() {
+    if (isMethodPickupFromPostOffices) {
+      return validatoinSchemaMethodPickupFromPostOffices
+    } else if (isMethodExpressDelivery) {
+      return validatoinSchemaMethodExpressDelivery
+    } else if (isMethodStorePickup) {
+      return validatoinSchemaMethodStorePickup
+    } else {
+      return null
+    }
+  }
+
+  function onClickMethodPickupFromPostOffices() {
+    setIsMethodPickupFromPostOffices(true)
+    setIsMethodExpressDelivery(false)
+    setIsMethodStorePickup(false)
+  }
+
+  function onClickMethodExpressDeliver() {
+    setIsMethodPickupFromPostOffices(false)
+    setIsMethodExpressDelivery(true)
+    setIsMethodStorePickup(false)
+  }
+
+  function onClickMethodStorePickup() {
+    dispatch(checkedMethod('true'))
+    setIsMethodPickupFromPostOffices(false)
+    setIsMethodExpressDelivery(false)
+    setIsMethodStorePickup(true)
+  }
+
+  function onClickGetAdressStore(country) {
+    setIsSelectedСountry(country)
+    dispatch(getAdressStore({ data: [] }))
   }
 
   return (
@@ -48,22 +90,24 @@ function DeliveryCart(props) {
           house: dataCart.house,
           apartment: dataCart.apartment,
           postcode: dataCart.postcode,
-          
+
           countryStore: adressState.selectedСountry,
           adressStore: adressState.inputAdress,
           agree: false
         }}
         validateOnBlur
-        onSubmit={
-          (values) => {
-            dispatch(postDeliveryInfo(values))
-            props.setIsActiveStepCart('three')
+        onSubmit={(values) => {
+          if (values.adressStore !== '') {
+            if (adressState.adressStore.some(data => data.city === values.adressStore)) {
+              onSubmitForm(values)
+            }
+          } else {
+            onSubmitForm(values)
           }
         }
+        }
         validationSchema={
-          isMethodPickupFromPostOffices ? validatoinSchemaMethodPickupFromPostOffices :
-            isMethodExpressDelivery ? validatoinSchemaMethodExpressDelivery :
-              isMethodStorePickup ? validatoinSchemaMethodStorePickup : null
+          onValidationShema()
         }
       >
         {({ values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
@@ -78,19 +122,15 @@ function DeliveryCart(props) {
                     <input
                       type='radio'
                       className="delivery-cart__method-item"
-                      value='pickup-from-post-offices'
+                      value={DELIVERY_METHOD.pickupFromPostOffices}
                       name='deliveryMethod'
                       onChange={handleChange}
-                      id='pickup-from-post-offices'
+                      id={DELIVERY_METHOD.pickupFromPostOffices}
                       defaultChecked
-                      onClick={() => {
-                        setIsMethodPickupFromPostOffices(true)
-                        setIsMethodExpressDelivery(false)
-                        setIsMethodStorePickup(false)
-                      }}
+                      onClick={() => { onClickMethodPickupFromPostOffices() }}
                     >
                     </input>
-                    <label htmlFor='pickup-from-post-offices' className="delivery-cart__method-label">
+                    <label htmlFor={DELIVERY_METHOD.pickupFromPostOffices} className="delivery-cart__method-label">
                       Pickup from post offices
                     </label>
                   </div>
@@ -100,18 +140,14 @@ function DeliveryCart(props) {
                     <input
                       type='radio'
                       className="delivery-cart__method-item"
-                      value='express-delivery'
+                      value={DELIVERY_METHOD.expressDelivery}
                       name='deliveryMethod'
                       onChange={handleChange}
-                      id='express-delivery'
-                      onClick={() => {
-                        setIsMethodPickupFromPostOffices(false)
-                        setIsMethodExpressDelivery(true)
-                        setIsMethodStorePickup(false)
-                      }}
+                      id={DELIVERY_METHOD.expressDelivery}
+                      onClick={() => { onClickMethodExpressDeliver() }}
                     >
                     </input>
-                    <label htmlFor='express-delivery' className="delivery-cart__method-label">
+                    <label htmlFor={DELIVERY_METHOD.expressDelivery} className="delivery-cart__method-label">
                       Express delivery
                     </label>
                   </div>
@@ -121,19 +157,14 @@ function DeliveryCart(props) {
                     <input
                       type='radio'
                       className="delivery-cart__method-item"
-                      value='store-pickup'
+                      value={DELIVERY_METHOD.storePickup}
                       name='deliveryMethod'
                       onChange={handleChange}
-                      id='store-pickup'
-                      onClick={() => {
-                        dispatch(checkedMethod('true'))
-                        setIsMethodPickupFromPostOffices(false)
-                        setIsMethodExpressDelivery(false)
-                        setIsMethodStorePickup(true)
-                      }}
+                      id={DELIVERY_METHOD.storePickup}
+                      onClick={() => { onClickMethodStorePickup() }}
                     >
                     </input>
-                    <label htmlFor='store-pickup' className="delivery-cart__method-label">
+                    <label htmlFor={DELIVERY_METHOD.storePickup} className="delivery-cart__method-label">
                       Store pickup
                     </label>
                   </div>
@@ -183,7 +214,7 @@ function DeliveryCart(props) {
                 </div>
               </div>
 
-              {(values.deliveryMethod === 'pickup-from-post-offices' || values.deliveryMethod === 'express-delivery') &&
+              {(values.deliveryMethod === DELIVERY_METHOD.pickupFromPostOffices || values.deliveryMethod === DELIVERY_METHOD.expressDelivery) &&
                 <div>
                   <div className="delivery-cart__adress">
                     <p className="delivery-cart__title">ADRESS</p>
@@ -276,7 +307,7 @@ function DeliveryCart(props) {
 
                 </div>}
 
-              {values.deliveryMethod === 'pickup-from-post-offices' &&
+              {values.deliveryMethod === DELIVERY_METHOD.pickupFromPostOffices &&
                 <div className="delivery-cart__postcode">
                   <p className="delivery-cart__title">POSTcode</p>
                   <div className="delivery-cart__input">
@@ -300,7 +331,7 @@ function DeliveryCart(props) {
                   </div>
                 </div>}
 
-              {values.deliveryMethod === 'store-pickup' &&
+              {values.deliveryMethod === DELIVERY_METHOD.storePickup &&
                 <div className="delivery-cart__adress-store">
                   <p className="delivery-cart__title">ADRESS of store</p>
                   <div className="delivery-cart__input">
@@ -311,9 +342,8 @@ function DeliveryCart(props) {
                       className="delivery-cart__item"
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      onClick={() => {
-                        setIsSelectedСountry(values.countryStore)
-                        dispatch(getAdressStore({ data: [] }))
+                      onClick={(value) => {
+                        onClickGetAdressStore(value.target.value)
                       }}
                       value={values.countryStore}
 
@@ -347,7 +377,7 @@ function DeliveryCart(props) {
                       }}
                       onBlur={handleBlur}
                       placeholder="Store adress"
-                      disabled={(values.countryStore !== 'Country' && values.countryStore !== '') ? false : true}
+                      disabled={(values.countryStore !== 'Country') ? false : true}
                       value={values.adressStore}
                       list="city-list"
                       autoComplete='off'
@@ -415,7 +445,6 @@ function DeliveryCart(props) {
                   } else {
                     handleSubmit()
                   }
-                  
                 }}>
                 Further
               </button>

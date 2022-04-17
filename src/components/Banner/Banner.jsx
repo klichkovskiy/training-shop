@@ -2,12 +2,12 @@ import { Link } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from "swiper";
 
+import slideOne from '../../images/banner__principal.jpg';
+
 import 'swiper/css';
 import "swiper/css/navigation";
-
 import "./Banner.css"
 
-import slideOne from '../../images/banner__principal.jpg';
 
 function Banner() {
   return (

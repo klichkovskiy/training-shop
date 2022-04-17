@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Switch, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames'
 
 import Header from '../Header/Header';
@@ -10,18 +11,7 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import Error from '../Error/Error';
 
-import { URL_WOMEN } from '../../constants/constants';
-import { URL_MEN } from '../../constants/constants';
-
-import { PRODUCT_TYPE_WOMEN } from '../../constants/constants';
-import { PRODUCT_TYPE_MEN } from '../../constants/constants';
-
-import { PRODUCTS_WOMEN } from '../../constants/constants';
-import { PRODUCTS_MEN } from '../../constants/constants';
-
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-
+import { URL_WOMEN, URL_MEN, PRODUCT_TYPE_WOMEN, PRODUCT_TYPE_MEN } from '../../constants/constants';
 
 function App() {
   const { pathname } = useLocation();
@@ -33,10 +23,7 @@ function App() {
   const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);
   const [isActiveFormReview, setIsActiveFormReview] = useState(false);
 
-  const cardsMen = useSelector(state => state.cards.itemsInCards.men)
-  const cardsWomen = useSelector(state => state.cards.itemsInCards.women)
-  const cards = useSelector(state => state.cards.itemsInCards)
-  const { isLoading, isError, isSuccessData } = useSelector((state) => state.cards);
+  const { isLoading, isError, isSuccessData, itemsInCards } = useSelector((state) => state.cards);
 
   return (
     <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart || isActiveFormReview })} data-test-id='app'>
@@ -59,10 +46,9 @@ function App() {
           <Route exact path="/men">
             {isSuccessData &&
               <Catergories
-                key={PRODUCTS_MEN.id}
                 name='Men'
                 url={URL_MEN}
-                products={cardsMen}
+                products={itemsInCards.men}
               />
             }
           </Route>
@@ -70,10 +56,9 @@ function App() {
           <Route exact path="/women">
             {isSuccessData &&
               <Catergories
-                key={PRODUCTS_WOMEN.id}
                 name='Women'
                 url={URL_WOMEN}
-                products={cardsWomen}
+                products={itemsInCards.women}
               />
             }
           </Route>
@@ -101,7 +86,7 @@ function App() {
 
           <Route path="/">
             <Main
-              products={cards}
+              products={itemsInCards}
               isActiveButtonCart={isActiveButtonCart}
             />
           </Route>

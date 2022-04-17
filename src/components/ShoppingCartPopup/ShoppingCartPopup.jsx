@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import classNames from 'classnames'
 
 import ShoppingCartCard from '../ShoppingCartCard/ShoppingCartCard';
 import DeliveryCart from '../DeliveryCart/DeliveryCart';
-
-import { useState } from 'react';
 import PaymentCart from '../PaymentCart/PaymentCart';
+
 import { postProducts, resetProductsCart } from '../../redux/reducers/order';
 import { resetItemsInCart } from '../../redux/reducers/cart';
 import { resetAdressStore } from '../../redux/reducers/adress';
