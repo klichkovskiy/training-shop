@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -7,15 +7,13 @@ import classNames from 'classnames'
 import RatingStar from '../RatingStar/RatingStar';
 import FormPostReview from '../FormPostReview/FormPostReview';
 
+import { deleteItemFromCart, setItemInCart } from '../../redux/reducers/cart';
 
 import iconHanger from '../../images/icon_hanger.svg';
-
 import iconCar from '../../images/icon_car.svg';
 import iconReturn from '../../images/icon_return.svg';
 import iconLetter from '../../images/icon_letter.svg';
-
 import iconComent from '../../images/icon_coment.svg';
-
 import iconStripe from '../../images/stripe.png';
 import iconAes from '../../images/aes256.png';
 import iconPayPal from '../../images/paypal.png';
@@ -23,7 +21,7 @@ import iconVisa from '../../images/visa.png';
 import iconMasterCard from '../../images/mastercard.png';
 import iconDiscover from '../../images/discover.png';
 import iconAmericanExpress from '../../images/american-express.png';
-import { deleteItemFromCart, setItemInCart } from '../../redux/reducers/cart';
+
 
 
 function ProductInfo(props) {
@@ -81,7 +79,7 @@ function ProductInfo(props) {
     const price = props.card.price
     const name = props.card.name
     const quantity = 1;
-    const card = [size, color, name, image, price, quantity]
+    const card = {size, color, name, image, price, quantity}
 
     if (isItemInCart) {
       dispatch(deleteItemFromCart([size, color, name]))
@@ -91,7 +89,7 @@ function ProductInfo(props) {
   }
 
   const cards = useSelector(state => state.cart.itemsInCart)
-  const isItemInCart = cards.some(item => item[0] === isSizeValue && item[1] === isColorValue && item[2] === props.card.name)
+  const isItemInCart = cards.some(item => item.size === isSizeValue && item.color === isColorValue && item.name === props.card.name)
 
 
   //Форма открытия отзыва
@@ -128,15 +126,6 @@ function ProductInfo(props) {
           document.getElementById('reviev-popap')
         )
       }
-
-      {/*<div className={classNames('product-info__form product-info__form-review',
-        { 'product-info__form product-info__form-review_active': isActiveFormReview })}>
-        <FormPostReview
-          idCard={props.card.id}
-          setIsActiveFormReview={setIsActiveFormReview}
-          setIsFixedFormReview={props.setIsActiveFormReview}
-        />
-      </div>*/}
 
       <form className="product-info__form">
         <fieldset className="product-info__color">

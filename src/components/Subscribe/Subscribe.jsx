@@ -1,29 +1,27 @@
+import { useRef } from 'react';
 import { Formik } from 'formik';
-import * as yup from 'yup'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux';
-import { postUserEmail, reseptionResponseEmail } from '../../redux/reducers/email';
+
 import Preloader from '../Preloader/Preloader';
+
+import { postUserEmail, reseptionResponseEmail } from '../../redux/reducers/email';
+
+import { validatoinSchemaEmail } from '../../utils/validationSchema'
 
 function Subscribe() {
   const dispatch = useDispatch();
 
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
-  const responce = useSelector(state => state.email.serverResponce);
+  const response = useSelector(state => state.email.serverResponse);
   const id = useSelector(state => state.email.id);
 
-
-  const emailRegex = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
-  const validatoinSchema = yup.object().shape({
-    mail: yup.string()
-      .matches(emailRegex, "Введите email")
-  })
+  const formRef = useRef();
 
   function handleClickInput() {
     dispatch(reseptionResponseEmail(null))
-    const div = document.querySelector('.subscribe__form');
     document.addEventListener('click', (event) => {
-      const withinBoundaries = event.composedPath().includes(div);
+      const withinBoundaries = event.composedPath().includes(formRef);
 
       if (!withinBoundaries) {
         dispatch(reseptionResponseEmail(null))
@@ -32,13 +30,14 @@ function Subscribe() {
   }
   return (
     <section className="subscribe">
-      <div className="subscribe__form">
+      <form className="subscribe__form">
         <fieldset className="subscribe__fieldset">
           <h3 className="subscribe__title">Special Offer</h3>
           <p className="subscribe__subtitle">Subscribe<br />And <span
             className="subscribe__subtitle subscribe__subtitle_red">Get 10% Off</span></p>
 
           <Formik
+            innerRef={formRef}
             initialValues={{
               mail: '',
               id: 'subscribe'
@@ -46,18 +45,17 @@ function Subscribe() {
             validateOnBlur
             onSubmit={(values, { resetForm }) => {
               if (values.mail) {
-                dispatch(postUserEmail(
-                  {
-                    'values': values,
-                    'reset': resetForm
-                  }))
+                dispatch(postUserEmail(values));
               }
+              resetForm({
+                mail: ""
+              });
             }}
-            validationSchema={validatoinSchema}
+            validationSchema={validatoinSchemaEmail}
           >
             {({ values, errors, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
 
-              <form className="subscribe__formik">
+              <div className="subscribe__formik">
                 <input
                   type="email"
                   name={'mail'}
@@ -65,7 +63,7 @@ function Subscribe() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={values.mail}
+                  value={response === "OK" ? "" : values.mail}
                   placeholder="Enter your email"
                   data-test-id='main-subscribe-mail-field'
                 ></input>
@@ -88,16 +86,16 @@ function Subscribe() {
                 {!isValid && <p className="subscribe__error">{errors.mail}</p>}
 
                 <div className="subscribe__responce">
-                  {responce === null ? "" : responce === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'subscribe' ? `${responce}` : ''}
+                  {response === null ? "" : response === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : response === "Network Error" && id === 'subscribe' ? `${response}` : ''}
                 </div>
-              </form>
+              </div>
             )}
           </Formik>
 
           <div className="subscribe__form-img-women"></div>
           <div className="subscribe__form-img-men"></div>
         </fieldset>
-      </div>
+      </form>
     </section>
   )
 }

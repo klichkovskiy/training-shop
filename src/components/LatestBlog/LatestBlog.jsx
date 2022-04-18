@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 import ArticlePromo from '../ArticlePromo/ArticlePromo';
 
 import { ARTICLE_PROMO } from '../../constants/constants';

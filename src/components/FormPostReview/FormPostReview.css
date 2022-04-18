@@ -112,7 +112,7 @@
   position: absolute;
   bottom: -21px;
   left: 50px;
-  color: rgb(182, 36, 36);
+  color: #D61313;
 }
 
 .form-post__button_deactivated{
@@ -144,7 +144,7 @@
 }
 
 .form-post__responce{
-  color: rgb(182, 36, 36);
+  color: #D61313;
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;

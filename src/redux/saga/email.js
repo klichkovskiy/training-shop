@@ -5,12 +5,10 @@ import { postUserEmail, reseptionResponseEmail, loadingPostEmail } from '../redu
 
 function* emailSagaPost(action) {
   yield put(loadingPostEmail(true));
-  
   try {
     const responce = yield call(axios.post, "https://training.cleverland.by/shop/email", {
       mail: action.payload.mail
     });
-    action.payload.reset()
     yield put(reseptionResponseEmail(responce.statusText))
   } catch (err) {
     yield put(reseptionResponseEmail(err.message))

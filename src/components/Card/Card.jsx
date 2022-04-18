@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import RatingStar from '../RatingStar/RatingStar';
 
 function Card(props) {
-  let discountClassNames = classNames('card__discount', { 'card__discount_active': props.discount });
+  const discountClassNames = classNames('card__discount', { 'card__discount_active': props.discount });
 
   return (
     <article className="card" key={props.id}>

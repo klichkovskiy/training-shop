@@ -1,11 +1,13 @@
 import { Formik } from 'formik';
 import * as yup from 'yup'
 import classNames from 'classnames'
-
-import { useDispatch, useSelector } from 'react-redux';
-import Preloader from '../Preloader/Preloader';
-import { postReview } from '../../redux/reducers/review';
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Preloader from '../Preloader/Preloader';
+
+import { postReview } from '../../redux/reducers/review';
+
 
 function FormPostReview(props) {
     const validatoinSchema = yup.object().shape({

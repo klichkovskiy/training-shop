@@ -8,6 +8,8 @@
   grid-column: 1/3;
   height: 318px!important;
   width: 255px!important;
+  object-fit: cover;
+  object-position: top;
 }
 
 .card__name{

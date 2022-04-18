@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+
 import { changeCounterPlus, changeCounterMinus, deleteItemFromCart } from '../../redux/reducers/cart';
 
 import iconTrash from '../../images/icon_trash.svg';
@@ -18,7 +19,6 @@ function ShoppingCartCard(props) {
   function handlePlusCounter() {
     dispatch(changeCounterPlus([props.size, props.color, props.name, props.image, props.price, props.quantity]))
   }
-
   const totalPriceCard = props.price * props.quantity
   return (
     <article className='cart__card' data-test-id='cart-card'>

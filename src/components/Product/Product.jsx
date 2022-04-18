@@ -1,12 +1,11 @@
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import RatingStar from '../RatingStar/RatingStar';
 import CarouselImages from '../CarouselImages/CarouselImages';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import RelatedProducts from '../RelatedProducts/RelatedProducts';
-
-import { useSelector } from 'react-redux';
 
 function Product(props) {
   const history = useHistory()
@@ -17,9 +16,11 @@ function Product(props) {
     }
   }
 
-  const cards = useSelector(state => state.cards.itemsInCads)
+  const { isSuccessData } = useSelector((state) => state.cards);
+  const cards = useSelector(state => state.cards.itemsInCards)
 
   return (
+    isSuccessData &&
     <div>
       {cards[props.url].filter((cards) => getCard(cards, history.location.pathname.split('/')[2])).map((card) =>
         <section className="product" data-test-id={`product-page-${props.url}`} key={card.id}>
