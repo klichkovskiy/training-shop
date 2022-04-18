@@ -58,15 +58,13 @@ function ShoppingCartPopup(props) {
     setIsActiveStepCart('three')
   }
 
-  
-
   return (
     <section className={classNames('shopping-cart', { 'shopping-cart_active': props.isStateButtonCart })} data-test-id='cart'>
       <div className='shopping-cart__header'>
         <p className='shopping-cart__title'>Shopping Cart</p>
         <button type="button" onClick={handleClickCloseCart} className='shopping-cart__button-close'>
-          <span className='shopping-cart__button-span shopping-cart__button-span_first'></span>
-          <span className='shopping-cart__button-span shopping-cart__button-span_second'></span>
+          <span className='shopping-cart__button-span shopping-cart__button-span_first' />
+          <span className='shopping-cart__button-span shopping-cart__button-span_second' />
         </button>
       </div>
 
@@ -88,10 +86,10 @@ function ShoppingCartPopup(props) {
           <div className='shopping-cart__breadcrumbs'>
             <p className={classNames('shopping-cart__step-title',
               { 'shopping-cart__step-title_active': isActiveStepCart === 'one' })}>Item in Cart</p>
-            <span className='shopping-cart__step-separator'></span>
+            <span className='shopping-cart__step-separator' />
             <p className={classNames('shopping-cart__step-title',
               { 'shopping-cart__step-title_active': isActiveStepCart === 'two' })}>Delivery Info</p>
-            <span className='shopping-cart__step-separator'></span>
+            <span className='shopping-cart__step-separator' />
             <p className={classNames('shopping-cart__step-title',
               { 'shopping-cart__step-title_active': isActiveStepCart === 'three' })}>Payment</p>
           </div>
@@ -154,10 +152,7 @@ function ShoppingCartPopup(props) {
                 }}
               >back to shopping</button>
             </div>
-          </div>
-
-          :
-
+          </div> :
           <div className='shopping-cart__responce'>
             <div className='shopping-cart__center-grid'>
               <p className='shopping-cart__subtitle'>Sorry, your payment has not been processed.</p>
@@ -177,8 +172,7 @@ function ShoppingCartPopup(props) {
             </div>
           </div>
         }
-
-
+        
       </div>
     </section>
   )

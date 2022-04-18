@@ -23,7 +23,7 @@ function App() {
   const [isActiveButtonCart, setIsActiveButtonCart] = useState(false);
   const [isActiveFormReview, setIsActiveFormReview] = useState(false);
 
-  const { isLoading, isError, isSuccessData, itemsInCards } = useSelector((state) => state.cards);
+  const { isLoading, isError, itemsInCards } = useSelector((state) => state.cards);
 
   return (
     <div className={classNames('app', { 'app__fixed': isActiveButtonMenu }, { 'app__fixed app__muted': isActiveButtonCart || isActiveFormReview })} data-test-id='app'>
@@ -44,44 +44,35 @@ function App() {
         <Switch>
 
           <Route exact path="/men">
-            {isSuccessData &&
-              <Catergories
-                name='Men'
-                url={URL_MEN}
-                products={itemsInCards.men}
-              />
-            }
+            <Catergories
+              name='Men'
+              url={URL_MEN}
+              products={itemsInCards.men}
+            />
           </Route>
 
           <Route exact path="/women">
-            {isSuccessData &&
-              <Catergories
-                name='Women'
-                url={URL_WOMEN}
-                products={itemsInCards.women}
-              />
-            }
+            <Catergories
+              name='Women'
+              url={URL_WOMEN}
+              products={itemsInCards.women}
+            />
           </Route>
 
           <Route exact path={`/${URL_WOMEN}/:id`}>
-            {isSuccessData &&
-              <Product
-                productType={PRODUCT_TYPE_WOMEN}
-                url={URL_WOMEN}
-                setIsActiveFormReview={setIsActiveFormReview}
-              />
-            }
+            <Product
+              productType={PRODUCT_TYPE_WOMEN}
+              url={URL_WOMEN}
+              setIsActiveFormReview={setIsActiveFormReview}
+            />
           </Route>
 
           <Route exact path={`/${URL_MEN}/:id`}>
-            {isSuccessData &&
-              <Product
-                productType={PRODUCT_TYPE_MEN}
-                url={URL_MEN}
-                setIsActiveFormReview={setIsActiveFormReview}
-              />
-            }
-
+            <Product
+              productType={PRODUCT_TYPE_MEN}
+              url={URL_MEN}
+              setIsActiveFormReview={setIsActiveFormReview}
+            />
           </Route>
 
           <Route path="/">

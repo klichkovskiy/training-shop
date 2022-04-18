@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Formik } from 'formik';
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,14 +13,15 @@ function Subscribe() {
   const dispatch = useDispatch();
 
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
-  const responce = useSelector(state => state.email.serverResponce);
+  const response = useSelector(state => state.email.serverResponse);
   const id = useSelector(state => state.email.id);
+
+  const formRef = useRef();
 
   function handleClickInput() {
     dispatch(reseptionResponseEmail(null))
-    const div = document.querySelector('.subscribe__form');
     document.addEventListener('click', (event) => {
-      const withinBoundaries = event.composedPath().includes(div);
+      const withinBoundaries = event.composedPath().includes(formRef);
 
       if (!withinBoundaries) {
         dispatch(reseptionResponseEmail(null))
@@ -35,6 +37,7 @@ function Subscribe() {
             className="subscribe__subtitle subscribe__subtitle_red">Get 10% Off</span></p>
 
           <Formik
+            innerRef={formRef}
             initialValues={{
               mail: '',
               id: 'subscribe'
@@ -60,7 +63,7 @@ function Subscribe() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={responce === "OK" ? "" : values.mail}
+                  value={response === "OK" ? "" : values.mail}
                   placeholder="Enter your email"
                   data-test-id='main-subscribe-mail-field'
                 ></input>
@@ -83,7 +86,7 @@ function Subscribe() {
                 {!isValid && <p className="subscribe__error">{errors.mail}</p>}
 
                 <div className="subscribe__responce">
-                  {responce === null ? "" : responce === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'subscribe' ? `${responce}` : ''}
+                  {response === null ? "" : response === "OK" && id === 'subscribe' ? "Почта успешно отправлена" : response === "Network Error" && id === 'subscribe' ? `${response}` : ''}
                 </div>
               </div>
             )}

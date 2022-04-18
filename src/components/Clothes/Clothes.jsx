@@ -24,7 +24,7 @@ function Clothes(props) {
   return (
     <section className="сlothes" data-test-id={`clothes-${props.url}`}>
       <div className="сlothes__header">
-        <h2 className="сlothes__title">{props.title}</h2>
+        <h2 className="сlothes__title">{props.title}&#10076;S</h2>
         <nav className="сlothes__nav">
           {CLOTHES_BLOCK_MENU.map((button) =>
             <button type="button" onClick={() => setIsStateParticulars(button.particularName)}

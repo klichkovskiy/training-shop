@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,15 +27,15 @@ function Footer() {
   const dispatch = useDispatch();
 
   const loadingAction = useSelector(state => state.email.isLoadingPostEmail);
-  const responce = useSelector(state => state.email.serverResponce);
+  const response = useSelector(state => state.email.serverResponse);
   const id = useSelector(state => state.email.id);
+
+  const formRef = useRef();
 
   function handleClickInput() {
     dispatch(reseptionResponseEmail(null))
-    const div = document.querySelector('.footer__form');
     document.addEventListener('click', (event) => {
-      const withinBoundaries = event.composedPath().includes(div);
-
+      const withinBoundaries = event.composedPath().includes(formRef);
       if (!withinBoundaries) {
         dispatch(reseptionResponseEmail(null))
       }
@@ -49,6 +50,7 @@ function Footer() {
           </div>
 
           <Formik
+            innerRef={formRef}
             initialValues={{
               mail: '',
               id: 'footer'
@@ -73,7 +75,7 @@ function Footer() {
                   onChange={handleChange}
                   onClick={handleClickInput}
                   onBlur={handleBlur}
-                  value={responce === "OK" ?  "" : values.mail }
+                  value={response === "OK" ? "" : values.mail}
                   placeholder="Enter your email"
                   data-test-id='footer-mail-field'
                 >
@@ -95,7 +97,7 @@ function Footer() {
                 {!isValid && <p className="footer__error">{errors.mail}</p>}
 
                 <div className="footer__responce">
-                  {responce === null ? "" : responce === "OK" && id === 'footer' ? "Почта успешно отправлена" : responce === "Network Error" && id === 'footer' ? `${responce}`: ''}
+                  {response === null ? "" : response === "OK" && id === 'footer' ? "Почта успешно отправлена" : response === "Network Error" && id === 'footer' ? `${response}` : ''}
                 </div>
               </div>
             )}

@@ -16,9 +16,11 @@ function Product(props) {
     }
   }
 
+  const { isSuccessData } = useSelector((state) => state.cards);
   const cards = useSelector(state => state.cards.itemsInCards)
 
   return (
+    isSuccessData &&
     <div>
       {cards[props.url].filter((cards) => getCard(cards, history.location.pathname.split('/')[2])).map((card) =>
         <section className="product" data-test-id={`product-page-${props.url}`} key={card.id}>

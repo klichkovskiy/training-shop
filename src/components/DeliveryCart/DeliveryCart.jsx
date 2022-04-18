@@ -29,7 +29,6 @@ function DeliveryCart(props) {
   const [isSelectedСountry, setIsSelectedСountry] = useState('');
 
   function onChangeAdressStore(adress) {
-    console.log(adress);
     if (adress.target.value.length >= 3) {
       dispatch(checkedAdress({ checked: true, adress: adress.target.value, country: isSelectedСountry }))
     }
@@ -441,7 +440,6 @@ function DeliveryCart(props) {
             <div className='shopping-cart__buttons'>
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
-                  console.log(isValid);
                   if(isValid) {
                     dispatch(pullAgreeChecked(true))
                     values.agree = true

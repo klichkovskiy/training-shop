@@ -23,7 +23,7 @@ function Main(props) {
       <hr className="main__line" />
       {isSuccessData &&
         <Clothes
-          title='WOMEN&#10076;S'
+          title='WOMEN'
           products={props.products.women}
           url={URL_WOMEN}
         />
@@ -31,7 +31,7 @@ function Main(props) {
 
       {isSuccessData &&
       <Clothes
-      title='MEN&#10076;S'
+      title='MEN'
       products={props.products.men}
       url={URL_MEN}
     />

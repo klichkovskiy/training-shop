@@ -1,6 +1,6 @@
 import { all, put, call, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
-import { PostProductsCart, responsePostProducts } from '../reducers/order';
+import { postProductsCart, responsePostProducts } from '../reducers/order';
 
 
 function* orderSagaPost(action) {
@@ -10,14 +10,13 @@ function* orderSagaPost(action) {
     );
     yield put(responsePostProducts(responce.statusText));
   } catch (err) {
-    console.log(err);
     yield put(responsePostProducts(err.message))
     console.log(err.message);
   }
 }
 
 function* orderSagaPostWatcher() {
-  yield all([takeLatest(PostProductsCart().type, orderSagaPost)]);
+  yield all([takeLatest(postProductsCart().type, orderSagaPost)]);
 }
 
 export default orderSagaPostWatcher;

@@ -10,6 +10,9 @@ export const URL_MEN = 'men'
 export const PRODUCT_TYPE_WOMEN = 'Women'
 export const PRODUCT_TYPE_MEN = 'Men'
 
+export const TITLE_MEN = 'MEN&#10076;S'
+export const TITLE_WOMEN = 'WOMEN&#10076;S'
+
 export const CLOTHES_BLOCK_MENU = [
   {
     particularName: 'isNewArrivals',

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { validatoinSchemaMethodCard, validatoinSchemaMethodPayPal } from '../../utils/validationSchema';
 
-import { postPayment, PostProductsCart } from '../../redux/reducers/order';
+import { postPayment, postProductsCart } from '../../redux/reducers/order';
 
 import iconPayPal from '../../images/paypal.png';
 import iconVisa from '../../images/visa.png';
@@ -38,7 +38,7 @@ function PaymentCart(props) {
         onSubmit={
           (values) => {
 
-            dispatch(PostProductsCart({
+            dispatch(postProductsCart({
               products: dataCart.products,
               deliveryMethod: dataCart.deliveryMethod,
               totalPrice: dataCart.totalPrice,
@@ -71,8 +71,7 @@ function PaymentCart(props) {
             <div className="payment-cart__items">
               <div className="payment-cart__method">
                 <p className="payment-cart__method-title">Method of payments</p>
-                <span className='payment-cart__span'></span>
-
+                <span className='payment-cart__span' />
                 <div className="payment-cart__method-items">
                   <div className="payment-cart__method-radio">
                     <input
@@ -94,7 +93,7 @@ function PaymentCart(props) {
                     </label>
                   </div>
 
-                  <span className='payment-cart__span'></span>
+                  <span className='payment-cart__span' />
 
                   <div className="payment-cart__method-radio">
                     <input
@@ -117,7 +116,7 @@ function PaymentCart(props) {
                     </label>
                   </div>
 
-                  <span className='payment-cart__span'></span>
+                  <span className='payment-cart__span' />
 
                   <div className="payment-cart__method-radio">
                     <input
@@ -139,7 +138,7 @@ function PaymentCart(props) {
                     </label>
                   </div>
 
-                  <span className='payment-cart__span'></span>
+                  <span className='payment-cart__span' />
 
                   <div className="payment-cart__method-radio">
                     <input
@@ -161,7 +160,7 @@ function PaymentCart(props) {
                     </label>
                   </div>
 
-                  <span className='payment-cart__span'></span>
+                  <span className='payment-cart__span' />
                 </div>
 
                 {(values.paymentMethod === 'visa' || values.paymentMethod === 'mastercard') &&
@@ -260,7 +259,6 @@ function PaymentCart(props) {
               <button type="button" className='shopping-cart__button-further'
                 onClick={() => {
                   handleSubmit()
-                  
                 }}>
                 {values.paymentMethod === 'cash' ? 'READY' : 'Check Out'}
               </button>

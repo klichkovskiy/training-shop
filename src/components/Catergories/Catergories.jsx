@@ -8,7 +8,7 @@ import Card from '../Card/Card';
 import Filter from '../Filter/Filter';
 
 function Catergories(props) {
-  const { isLoading } = useSelector((state) => state.cards);
+  const { isLoading, isSuccessData } = useSelector((state) => state.cards);
   const [filteredСardsArr, setfilteredСardsArr] = useState(props.products);
 
   const cards = useSelector(state => state.cards.itemsInCards[props.url])
@@ -25,8 +25,9 @@ function Catergories(props) {
   function handleChangeAddCard() {
     setСounterCard(counterCard + 4);
   }
-  
+
   return (
+    isSuccessData &&
     <section className={classNames('catergories_none', { 'catergories': !isLoading })} data-test-id={`products-page-${props.url}`}>
       <Breadcrumbs
         stepTwo={props.name}
@@ -60,6 +61,8 @@ function Catergories(props) {
 
       <button type="button" onClick={handleChangeAddCard} className="catergories__button">show more</button>
     </section>
+
+
   )
 }
 

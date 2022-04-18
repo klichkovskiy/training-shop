@@ -24,8 +24,6 @@ function FormPostReview(props) {
 
   useEffect(() => {
     if (closeForm === true && error === false) {
-      console.log(closeForm);
-      console.log(error);
       props.setIsActiveFormReview(false);
       props.setIsFixedFormReview(false);
     }

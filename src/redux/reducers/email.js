@@ -5,7 +5,7 @@ export const reseptionResponseEmail = createAction('RESEPTION_RESPONSE_EMAIL');
 export const loadingPostEmail = createAction('LOADING_POST_EMAIL');
 
 const initialState ={
-  serverResponce:null,
+  serverResponse:null,
   isLoadingPostEmail:false,
   mail:"",
   id: null,
@@ -17,7 +17,7 @@ export default createReducer(initialState, {
       state.id=action.payload.id;
   },
   [reseptionResponseEmail]: (state,action) => {
-      state.serverResponce=action.payload; 
+      state.serverResponse=action.payload; 
   },
   [loadingPostEmail]: (state,action) => {
       state.isLoadingPostEmail=action.payload; 
